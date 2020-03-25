@@ -1,0 +1,11 @@
+﻿  Game.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  VektoriaApp.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Code wird generiert.
+  Previous IPDB not found, fall back to full compilation.
+  All 19 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Codegenerierung ist abgeschlossen.
+Vektoria_Release64.lib(Splash.obj) : warning LNK4099: PDB "Vektoria.pdb" wurde nicht mit "Vektoria_Release64.lib(Splash.obj)" oder an "C:\Users\dejan\Documents\Visual Studio 2019\Projects\App\x64\Release\Vektoria.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+Vektoria_Release64.lib(Timer.obj) : warning LNK4099: PDB "Vektoria.pdb" wurde nicht mit "Vektoria_Release64.lib(Timer.obj)" oder an "C:\Users\dejan\Documents\Visual Studio 2019\Projects\App\x64\Release\Vektoria.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+  VektoriaApp.vcxproj -> C:\Users\dejan\Documents\Visual Studio 2019\Projects\App\x64\Release\VektoriaApp.exe
