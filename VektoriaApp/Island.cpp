@@ -8,27 +8,51 @@ Island::Island()
         -F_MAX, 0,								// von -? bis N.N.
         false,									//invertieren?
         true, true);							//"glattziehen"
-    m_cutInverseBeach.Init(eCutKind_Height, 0, TERRAIN_SAND_MAX, true, true, false);
-    m_cutInverseBeachToSnow.Init(eCutKind_Height, 0, TERRAIN_HEIGHT, true, true, false);
-    m_cutInverseGrass.Init(eCutKind_Height, TERRAIN_SAND_MAX, TERRAIN_HEIGHT, true, false, false);
-    //m_cutInverseSnow.Init(eCutKind_Height, TERRAIN_GRASS_MAX, TERRAIN_SNOW_MAX, true, false, false);
+    m_cutInverseSand.Init(eCutKind_Height, 0, TERRAIN_SAND_MAX, true, true, false);
+    m_cutInverseSandMossy.Init(eCutKind_Height, TERRAIN_SAND_MAX, TERRAIN_SAND_MOSSY_MAX, true, false, false);
+    m_cutInverseSeaToBeach.Init(eCutKind_Height, 0, TERRAIN_SAND_MOSSY_MAX, true, true, false);
+    m_cutInverseRockMossy.Init(eCutKind_Height, TERRAIN_SAND_MOSSY_MAX, TERRAIN_ROCK_MOSSY_MAX, true, false, false);
+    m_cutInverseRock.Init(eCutKind_Height, 0, TERRAIN_ROCK_MAX, true, true, false);
+    m_cutInverseRockSnowy.Init(eCutKind_Height, TERRAIN_ROCK_SNOWY_MIN, TERRAIN_ROCK_SNOWY_MAX, true, false, false);
+    m_cutInverseUnderSea.Init(eCutKind_Height, -F_MAX, 0.0f, true, false, true);
 
-    m_cutInverseUnder15Degrees.Init(eCutKind_Steepness, 0.0f, PI / 12.0f, true, false, false);
+    m_cutInverseUnder15Degrees.Init(eCutKind_Steepness, 0.0f, PI / 12.0f, true, true, false);
     m_cutUnder15Degrees.Init(eCutKind_Steepness, 0.0f, PI / 12.0f, false, false, false);
+    m_cutInverseUnder45Degrees.Init(eCutKind_Steepness, 0, QUARTERPI, true, false, false);
+    m_cutUnder45Degrees.Init(eCutKind_Steepness, 0, QUARTERPI, false, false, false);
+    m_cutInverse15To45Degrees.Init(eCutKind_Steepness, PI / 12.0f, QUARTERPI, true, true, false);
+    m_cutInverseOver45Degrees.Init(eCutKind_Steepness, QUARTERPI, PI, true, false, false);
+    m_cutOver45Degrees.Init(eCutKind_Steepness, QUARTERPI, PI, false, false, false);
+
+
 
     //Cut dem Terrain hinzufügen:
     m_gTerrain.AddCut(&m_cutUnderSea);
-    m_gTerrain.AddCut(&m_cutInverseBeachToSnow);
-    m_gTerrainSand.AddCut(&m_cutInverseBeach);
+
+    m_gTerrainLow.AddCut(&m_cutInverseSeaToBeach);
+    m_gTerrainLow.AddCut(&m_cutInverse15To45Degrees);
+
+    m_gTerrainSand.AddCut(&m_cutInverseSand);
     m_gTerrainSand.AddCut(&m_cutInverseUnder15Degrees);
-    m_gTerrainSandMossy.AddCut(&m_cutInverseBeach);
-    m_gTerrainSandMossy.AddCut(&m_cutUnder15Degrees);
-    m_gTerrainGrass.AddCut(&m_cutInverseGrass);
+
+    m_gTerrainSandMossy.AddCut(&m_cutInverseSandMossy);
+    m_gTerrainSandMossy.AddCut(&m_cutInverseUnder15Degrees);
+
+    m_gTerrainRockMossy.AddCut(&m_cutInverseRockMossy);
+    m_gTerrainRockMossy.AddCut(&m_cutOver45Degrees);
+
+    m_gTerrainRock.AddCut(&m_cutInverseRock);
+    m_gTerrainRock.AddCut(&m_cutInverseOver45Degrees);
+
+    m_gTerrainRockSnowy.AddCut(&m_cutInverseRockSnowy);
+    m_gTerrainRockSnowy.AddCut(&m_cutInverseUnder45Degrees);
+
+    m_gTerrainMirror.AddCut(&m_cutInverseUnderSea);
 
     //perlin-Noise
     m_pperlin = new CPerlin(
         420,							//zufallsseed
-        1.0f,						//Amplitude
+        1.5f,						//Amplitude
         16,							//Oktaven
         0.5f,						//Persistenz
         12.0f,						//Frequenz
@@ -41,21 +65,25 @@ Island::Island()
     m_mWater.LoadPreset("Water");
     m_mWater.SetAni(8, 8, 7);
     m_mWater.Translate(CColor(0.0f, 0.2f, 0.3f));
-    m_mWater.SetTransparency(0.9f);
+    m_mWater.SetTransparency(0.7f);
     m_mWater.MakeTextureHaze("textures\\waterHaze.jpg");
     m_mWater.SetPostprocessingOn();
     m_mWater.SetHazeOn();
-    m_mWater.SetHazeStrength(1.8);
+    m_mWater.SetHazeStrength(1.8f);
 
     m_mSand.LoadPreset("Sand");
     m_mSandMossy.LoadPreset("SandMossy");
-    m_mEarthMossy.LoadPreset("RockMossy");
+    m_mRockMossy.LoadPreset("RockMossy");
+    m_mRock.LoadPreset("Rock");
+    m_mRockSnow.LoadPreset("RockSnowy");
+    m_mMirror.LoadPreset("RockMossy");
+
 
     //blob und perlinnoise mischen
     m_pblob_rest = new CBlob(
         0.5f, 0.5f,					//Mittelpunkt des Blobs (u&v)
         0.51f, 0.51f,					//Radius des Blobs (u&v)
-        -1,							//Höhe des Blobs
+        -10,							//Höhe des Blobs
         eBlobShapeGround_Rect,		//Grundflächentopologie
         eBlobShapeSide_All,			//Höhenverlauftopologie
         nullptr);
@@ -77,13 +105,17 @@ Island::Island()
         TERRAIN_SIZE, TERRAIN_SIZE,							//ein Quadratkilomenter Terrain
         TERRAIN_VERTICES, TERRAIN_VERTICES,					//2000 x 2000 vertices
         0.0f, 0.0f,											//UV-textur beginnt bei (0,0)
-        1.0f, 1.0f);										//geht bis (1,1)
+        100.0f, 100.0f);										//geht bis (1,1)
 
       //Abschnitte erstellen
-    m_gTerrain.InitFromOther(m_gTerrainOri, &m_mEarthMossy);
+    m_gTerrain.InitFromOther(m_gTerrainOri, &m_mRockMossy);
+    m_gTerrainLow.InitFromOther(m_gTerrainOri, &m_mSandMossy);
     m_gTerrainSand.InitFromOther(m_gTerrainOri, &m_mSand);
     m_gTerrainSandMossy.InitFromOther(m_gTerrainOri, &m_mSandMossy);
-    m_gTerrainGrass.InitFromOther(m_gTerrainOri, &m_mEarthMossy);
+    m_gTerrainRockMossy.InitFromOther(m_gTerrainOri, &m_mRockMossy);
+    m_gTerrainRock.InitFromOther(m_gTerrainOri, &m_mRock);
+    m_gTerrainRockSnowy.InitFromOther(m_gTerrainOri, &m_mRockSnow);
+    m_gTerrainMirror.InitFromOther(m_gTerrainOri, &m_mMirror, true);
 
     //wasseroberfläche erzeugen:
     m_gWater.Init(
@@ -96,13 +128,17 @@ Island::Island()
 
       //Geos an placement hängen:
     m_pIsland1.AddGeo(&m_gTerrain);
+    m_pIsland1.AddGeo(&m_gTerrainLow);
     m_pIsland1.AddGeo(&m_gWater);
     m_pIsland1.AddGeo(&m_gTerrainSand);
     m_pIsland1.AddGeo(&m_gTerrainSandMossy);
-    m_pIsland1.AddGeo(&m_gTerrainGrass);
+    m_pIsland1.AddGeo(&m_gTerrainRockMossy);
+    m_pIsland1.AddGeo(&m_gTerrainRock);
+    m_pIsland1.AddGeo(&m_gTerrainRockSnowy);
+    m_pIsland1.AddGeo(&m_gTerrainMirror);
 
     //Terrain zu kollisionscontainer:
-    m_gsTerrain.Add(&m_gTerrain);
+    m_gsTerrain.Add(&m_gTerrainOri);
 }
 
 Island::~Island() {
