@@ -18,6 +18,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_frame.AddViewport(&m_viewport);
 	m_frame.AddDeviceKeyboard(&m_keyboard);
 	m_root.AddScene(&m_scene);
+	m_root.AddMaterial(&m_zmBlossom);
 	
 	//Himmel mit SOnne, Mond und Sterne
 	m_scene.SetSkyOn(&m_pCamera);
@@ -25,9 +26,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Placements
 	m_scene.AddPlacement(&island.m_pIsland1);
-  island.m_pIsland1.AddPlacement(&m_zpLSystem);
-  m_zpLSystem.AddGeo(&tree);
-  m_zpLSystem.TranslateX(500.0f);
+	island.m_pIsland1.AddPlacement(&m_zpLSystem);
+	island.m_pIsland1.AddPlacement(&m_zpBlume);
+	m_zpLSystem.AddGeo(&tree);
+	m_zpLSystem.TranslateX(500.0f);
 	
 	//Beschränkte bewegungsfreiheit der Kamera
 	m_pCamera.SetMoveRange(CAABB(
@@ -51,6 +53,12 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	// Stelle die Kamera an einen geeigneten Anfangsort:
 	m_pCamera.Translate(0.0f,300.0f,200.0f);
+
+
+	// Blume Test 
+	Poppy *BlumeAlla = new Poppy();
+	m_zpBlume.AddGeo(BlumeAlla);
+	m_zpBlume.TranslateX(490.0f);
 
 }
 

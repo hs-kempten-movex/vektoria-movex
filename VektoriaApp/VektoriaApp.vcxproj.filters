@@ -30,6 +30,9 @@
     <ClInclude Include="CherryBlossomTree.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Poppy.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -42,6 +45,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="CherryBlossomTree.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Poppy.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

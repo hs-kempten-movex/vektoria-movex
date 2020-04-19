@@ -23,6 +23,7 @@
 #include "Vektoria\Root.h"
 #include "Island.h"
 #include "CherryBlossomTree.h"
+#include "Poppy.h"
 
 using namespace Vektoria;
 
@@ -56,7 +57,8 @@ private:
     CherryBlossomTree tree;
 
     CPlacement m_zpLSystem;
-
+	CPlacement m_zpBlume;
+	CMaterial m_zmBlossom;																		// Material für Mohnblume
     // Hier ist Platz für Deine Vektoriaobjekte:
 };
 
