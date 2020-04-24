@@ -18,8 +18,8 @@ Island::Island()
 
     m_cutInverseUnder15Degrees.Init(eCutKind_Steepness, 0.0f, PI / 12.0f, true, true, false);
     m_cutUnder15Degrees.Init(eCutKind_Steepness, 0.0f, PI / 12.0f, false, false, false);
-    m_cutInverseUnder45Degrees.Init(eCutKind_Steepness, 0, QUARTERPI, true, false, false);
-    m_cutUnder45Degrees.Init(eCutKind_Steepness, 0, QUARTERPI, false, false, false);
+    m_cutInverseUnder45Degrees.Init(eCutKind_Steepness, 0, QUARTERPI, true, true, false);
+    m_cutUnder45Degrees.Init(eCutKind_Steepness, 0, QUARTERPI, false, true, false);
     m_cutInverse15To45Degrees.Init(eCutKind_Steepness, PI / 12.0f, QUARTERPI, true, true, false);
     m_cutInverseOver45Degrees.Init(eCutKind_Steepness, QUARTERPI, PI, true, false, false);
     m_cutOver45Degrees.Init(eCutKind_Steepness, QUARTERPI, PI, false, false, false);
@@ -83,7 +83,7 @@ Island::Island()
     m_pblob_rest = new CBlob(
         0.5f, 0.5f,					//Mittelpunkt des Blobs (u&v)
         0.51f, 0.51f,					//Radius des Blobs (u&v)
-        -10,							//Höhe des Blobs
+        -20,							//Höhe des Blobs
         eBlobShapeGround_Rect,		//Grundflächentopologie
         eBlobShapeSide_All,			//Höhenverlauftopologie
         nullptr);
