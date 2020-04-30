@@ -23,6 +23,7 @@
 #include "Vektoria\Root.h"
 #include "Island.h"
 #include "CherryBlossomTree.h"
+#include "KeyboardControl.h"
 #include "Poppy.h"
 
 using namespace Vektoria;
@@ -43,8 +44,7 @@ public:
 	CFrame m_frame;
 	CViewport m_viewport;
 	CCamera m_camera;
-	CDeviceKeyboard m_keyboard;
-	CPlacement m_pCamera;
+	KeyboardControl m_keyboard;
 
 	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash);	// Wird zu Begin einmal aufgerufen
 	void Tick(float fTime, float fTimeDelta);													// Wird während der Laufzeit bei jedem Bildaufbau aufgerufen
@@ -57,8 +57,8 @@ private:
     CherryBlossomTree tree;
 
     CPlacement m_zpLSystem;
-	CPlacement m_zpBlume;
-	CMaterial m_zmBlossom;																		// Material für Mohnblume
+  CPlacement m_zpBlume;
+  CMaterial m_zmBlossom;																		// Material für Mohnblume
     // Hier ist Platz für Deine Vektoriaobjekte:
 };
 
