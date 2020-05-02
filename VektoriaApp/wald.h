@@ -15,10 +15,9 @@ private:
 	CPlacement m_pBaumCluster1;
 	CPlacement m_pBaumCluster2;
 	CPlacement m_pBaumCluster3;
-	CPlacement m_pWald;
 
 	//cherrytree zeug
-	CPlacement m_zpLSystem; 
+	//CPlacement m_zpLSystem; 
 	CherryBlossomTree m_CBTBaum;
 
 public:

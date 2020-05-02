@@ -5,12 +5,12 @@ using namespace Vektoria;
 Wald::Wald()
 {
 	//CherryBlossomTree erstellen
-	m_zpLSystem.AddGeo(&m_CBTBaum);
+	//m_zpLSystem.AddGeo(&m_CBTBaum);
 
 	//Baum1,2,3 Placements den CherryBlossomTree zuweisen
-	m_pBaum1.AddPlacement(&m_zpLSystem);
-	m_pBaum2.AddPlacement(&m_zpLSystem);
-	m_pBaum3.AddPlacement(&m_zpLSystem);
+	m_pBaum1.AddGeo(&m_CBTBaum);
+	m_pBaum2.AddGeo(&m_CBTBaum);
+	m_pBaum3.AddGeo(&m_CBTBaum);
 
 	//BaumCluster erstellen
 	m_pBaumCluster1.AddPlacement(&m_pBaum1);
@@ -28,9 +28,9 @@ Wald::Wald()
 	m_pBaumCluster3.AddPlacement(&m_pBaum3);
 
 	//BaumCluster an den Wald hängen
-	m_pWald.AddPlacement(&m_pBaumCluster1);
-	m_pWald.AddPlacement(&m_pBaumCluster2);
-	m_pWald.AddPlacement(&m_pBaumCluster3);
+	this->AddPlacement(&m_pBaumCluster1);
+	this->AddPlacement(&m_pBaumCluster2);
+	this->AddPlacement(&m_pBaumCluster3);
 
 	//translate cluster
 	m_pBaumCluster1.TranslateX(450.0f);
