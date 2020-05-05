@@ -33,6 +33,15 @@
     <ClInclude Include="Poppy.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="KeyboardControl.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Nadelbaum.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="wald.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -48,6 +57,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Poppy.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardControl.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Nadelbaum.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="wald.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

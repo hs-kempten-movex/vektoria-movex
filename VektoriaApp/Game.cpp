@@ -17,11 +17,12 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_root.AddFrame(&m_frame);
 	m_frame.AddViewport(&m_viewport);
 	m_frame.AddDeviceKeyboard(&m_keyboard);
+  m_frame.AddDeviceMouse(&m_keyboard);
 	m_root.AddScene(&m_scene);
 	m_root.AddMaterial(&m_zmBlossom);
 	
 	//Himmel mit SOnne, Mond und Sterne
-	m_scene.SetSkyOn(&m_pCamera);
+	m_scene.SetSkyOn(&m_keyboard.pitch);
 	m_scene.SetSkyFlowOn(120);
 
 	//Placements
@@ -32,7 +33,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zpLSystem.TranslateX(500.0f);
 	
 	//Beschränkte bewegungsfreiheit der Kamera
-	m_pCamera.SetMoveRange(CAABB(
+  m_keyboard.pitch.SetMoveRange(CAABB(
 		CHVector(-50000.0f, 4.0f, -50000.0f, 1.0f),
 		CHVector(+50000.0f, 20000.0f, +50000.0f, 1.0f)));
 
@@ -45,15 +46,11 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_scene.GetSkyLightPlacement());		 // Info für das OBVHSFC
 
 	// Initialisiere die Kamera:
-	m_scene.AddPlacement(&m_pCamera);
-	m_pCamera.AddCamera(&m_camera);
-	
-	// Die Kamera soll sich 30 m/s bewegen:
-	m_pCamera.SetTranslationSensitivity(200);
+	m_scene.AddPlacement(&m_keyboard.translation);
+  m_keyboard.pitch.AddCamera(&m_camera);
 
 	// Stelle die Kamera an einen geeigneten Anfangsort:
-	m_pCamera.Translate(0.0f,300.0f,200.0f);
-
+	m_keyboard.translation.Translate(0.0f,300.0f,200.0f);
 
 	// Blume Test 
 	Poppy *BlumeAlla = new Poppy();
@@ -67,19 +64,8 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	// Hier die Echtzeit-Veränderungen einfügen:
 	CHitPoint hitpointGround;
 	CHitPoint hitpointCollision;
-	m_keyboard.PlaceWASDTerrain(
-		m_pCamera,
-    island.m_gsCol,
-    island.m_gsHeight,
-    island.m_gsTerrain,
-		4.0f,
-		3000.0f,
-		hitpointCollision,
-		hitpointGround,
-		fTimeDelta);
+  m_keyboard.Tick(fTimeDelta);
 	m_root.Tick(fTimeDelta);
-
-
 }
 
 void CGame::Fini()
