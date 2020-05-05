@@ -64,5 +64,7 @@ private:
     CMaterial m_mRock;
     CMaterial m_mRockSnow;
     CMaterial m_mMirror;
+
+    CMaterial m_mGround;
 };
 

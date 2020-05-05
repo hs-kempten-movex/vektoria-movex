@@ -64,12 +64,12 @@ Island::Island()
       //Texturen laden für wasser und land
     m_mWater.LoadPreset("Water");
     m_mWater.SetAni(8, 8, 7);
-    m_mWater.Translate(CColor(0.0f, 0.2f, 0.3f));
-    m_mWater.SetTransparency(0.7f);
+    m_mWater.Translate(CColor(0.0f, 0.2f, 0.8f));
+    m_mWater.SetTransparency(0.4f);
     m_mWater.MakeTextureHaze("textures\\waterHaze.jpg");
     m_mWater.SetPostprocessingOn();
     m_mWater.SetHazeOn();
-    m_mWater.SetHazeStrength(1.8f);
+    m_mWater.SetHazeStrength(1.8);
 
     m_mSand.LoadPreset("Sand");
     m_mSandMossy.LoadPreset("SandMossy");
@@ -78,19 +78,26 @@ Island::Island()
     m_mRockSnow.LoadPreset("RockSnowy");
     m_mMirror.LoadPreset("RockMossy");
 
+    m_mGround.MakeTextureDiffuse("textures\\Ground_basecolor.png");
+    m_mGround.MakeTextureBump("textures\\Ground_normal.png");
+    m_mGround.SetBumpStrength(2.0);
+    m_mGround.MakeTextureHeight("textures\\Ground_height.png");
+    m_mGround.MakeTextureSpecular("textures\\Ground_specular.png");
+    m_mGround.SetSpecular(3.0);
+
 
     //blob und perlinnoise mischen
     m_pblob_rest = new CBlob(
         0.5f, 0.5f,					//Mittelpunkt des Blobs (u&v)
         0.51f, 0.51f,					//Radius des Blobs (u&v)
-        -20,							//Höhe des Blobs
+        -7,							//Höhe des Blobs
         eBlobShapeGround_Rect,		//Grundflächentopologie
         eBlobShapeSide_All,			//Höhenverlauftopologie
         nullptr);
 
     m_pblob1 = new CBlob(
         0.5f, 0.5f,					//Mittelpunkt des Blobs (u&v)
-        0.51f, 0.51f,					//Radius des Blobs (u&v)
+        0.35f, 0.35f,					//Radius des Blobs (u&v)
         TERRAIN_HEIGHT,							//Höhe des Blobs
         eBlobShapeGround_Radial,		//Grundflächentopologie
         eBlobShapeSide_Parabol,			//Höhenverlauftopologie
@@ -112,7 +119,8 @@ Island::Island()
     m_gTerrainLow.InitFromOther(m_gTerrainOri, &m_mSandMossy);
     m_gTerrainSand.InitFromOther(m_gTerrainOri, &m_mSand);
     m_gTerrainSandMossy.InitFromOther(m_gTerrainOri, &m_mSandMossy);
-    m_gTerrainRockMossy.InitFromOther(m_gTerrainOri, &m_mRockMossy);
+    //m_gTerrainRockMossy.InitFromOther(m_gTerrainOri, &m_mRockMossy);      //vorgefertigtes Material
+    m_gTerrainRockMossy.InitFromOther(m_gTerrainOri, &m_mGround);           //eigenes materia, fehlerhaft
     m_gTerrainRock.InitFromOther(m_gTerrainOri, &m_mRock);
     m_gTerrainRockSnowy.InitFromOther(m_gTerrainOri, &m_mRockSnow);
     m_gTerrainMirror.InitFromOther(m_gTerrainOri, &m_mMirror, true);
@@ -127,7 +135,7 @@ Island::Island()
         500.0f);		//in jeder Richtung
 
       //Geos an placement hängen:
-    m_pIsland1.AddGeo(&m_gTerrain);
+    //m_pIsland1.AddGeo(&m_gTerrain);
     m_pIsland1.AddGeo(&m_gTerrainLow);
     m_pIsland1.AddGeo(&m_gWater);
     m_pIsland1.AddGeo(&m_gTerrainSand);
