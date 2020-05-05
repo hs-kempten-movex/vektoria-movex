@@ -97,10 +97,10 @@ Island::Island()
 
     m_pblob1 = new CBlob(
         0.5f, 0.5f,					//Mittelpunkt des Blobs (u&v)
-        0.35f, 0.35f,					//Radius des Blobs (u&v)
+        0.5f, 0.5f,					//Radius des Blobs (u&v)
         TERRAIN_HEIGHT,							//Höhe des Blobs
         eBlobShapeGround_Radial,		//Grundflächentopologie
-        eBlobShapeSide_Parabol,			//Höhenverlauftopologie
+        eBlobShapeSide_Hill,			//Höhenverlauftopologie
         m_pperlin);						//Perlin-noise-instanz
 
       //Blob einem Blaupausen-terrain hinzufügen
@@ -144,6 +144,7 @@ Island::Island()
     m_pIsland1.AddGeo(&m_gTerrainRock);
     m_pIsland1.AddGeo(&m_gTerrainRockSnowy);
     m_pIsland1.AddGeo(&m_gTerrainMirror);
+    //m_pIsland1.TranslateDelta(4000, 0, 3500);
 
     //Terrain zu kollisionscontainer:
     m_gsTerrain.Add(&m_gTerrainOri);
@@ -152,5 +153,6 @@ Island::Island()
 Island::~Island() {
     delete m_pperlin;
     delete m_pblob1;
+    delete m_pblob2;
     delete m_pblob_rest;
 }

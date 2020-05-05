@@ -38,7 +38,8 @@ private:
     CPerlin * m_pperlin = nullptr; //Perlin-Noise
 
     CBlob * m_pblob1 = nullptr; //Erhebung aus dem meer
-    CBlob* m_pblob_rest = nullptr; //Artefaktlöschung
+    CBlob * m_pblob2 = nullptr;
+    CBlob * m_pblob_rest = nullptr; //Artefaktlöschung
 
     CCut m_cutUnderSea; //Schnitt unter N.N.
     CCut m_cutInverseUnderSea;
