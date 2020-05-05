@@ -152,17 +152,21 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Island.h" />
     <ClInclude Include="KeyboardControl.h" />
+    <ClInclude Include="Nadelbaum.h" />
     <ClInclude Include="Poppy.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="wald.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CherryBlossomTree.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="KeyboardControl.cpp" />
+    <ClCompile Include="Nadelbaum.cpp" />
     <ClCompile Include="Poppy.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
+    <ClCompile Include="wald.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\VektoriaTest.ico" />
