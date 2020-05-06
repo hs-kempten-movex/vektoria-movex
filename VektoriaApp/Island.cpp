@@ -71,7 +71,14 @@ Island::Island()
     m_mWater.SetHazeOn();
     m_mWater.SetHazeStrength(1.8);
 
-    m_mSand.LoadPreset("Sand");
+    //m_mSand.LoadPreset("Sand");
+    m_mSand.MakeTextureDiffuse("textures\\Sand_basecolor.png");
+    m_mSand.MakeTextureBump("textures\\Sand_normal.jpg");
+    m_mSand.SetBumpStrength(2.0);
+    m_mSand.MakeTextureHeight("textures\\Sand_height.png");
+    m_mSand.SetHeightStrength(5.0);
+    m_mSand.MakeTextureSpecular("textures\\Ground_specular.jpg");
+
     m_mSandMossy.LoadPreset("SandMossy");
     m_mRockMossy.LoadPreset("RockMossy");
     m_mRock.LoadPreset("Rock");
