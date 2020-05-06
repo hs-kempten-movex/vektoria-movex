@@ -25,8 +25,6 @@ Island::Island()
     m_cutInverseOver45Degrees.Init(eCutKind_Steepness, QUARTERPI, PI, true, false, false);
     m_cutOver45Degrees.Init(eCutKind_Steepness, QUARTERPI, PI, false, false, false);
 
-
-
     //Cut dem Terrain hinzufügen:
     m_gTerrain.AddCut(&m_cutUnderSea);
 
