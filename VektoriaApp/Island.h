@@ -7,7 +7,8 @@ using namespace Vektoria;
 #define TERRAIN_VERTICES 1001
 #define TERRAIN_HEIGHT 500
 #define TERRAIN_SAND_MAX 3
-#define TERRAIN_SAND_MOSSY_MAX 7
+#define TERRAIN_SANDLESSMOSSY_MAX 5
+#define TERRAIN_SAND_MOSSY_MAX 8
 #define TERRAIN_ROCK_MOSSY_MAX 130
 #define TERRAIN_ROCK_MAX 250
 #define TERRAIN_ROCK_SNOWY_MIN 130
@@ -28,6 +29,7 @@ private:
 	CGeoTerrain m_gTerrain; //inselausschnitt
 	CGeoTerrain m_gTerrainLow;
 	CGeoTerrain m_gTerrainSand; //Sandausschnitt
+    CGeoTerrain m_gTerrainSandLessMossy;
 	CGeoTerrain m_gTerrainSandMossy;
 	CGeoTerrain m_gTerrainRockMossy;
 	CGeoTerrain m_gTerrainRock;
@@ -45,6 +47,7 @@ private:
     CCut m_cutInverseUnderSea;
     CCut m_cutInverseSand; //strandschnitt
     CCut m_cutInverseSeaToBeach;
+    CCut m_cutInverseSandLessMossy;
     CCut m_cutInverseSandMossy;
     CCut m_cutInverseRockMossy;
     CCut m_cutInverseRock;
@@ -60,6 +63,7 @@ private:
 
     CMaterial m_mWater;	//Wellenmaterial
     CMaterial m_mSand; //Strandmaterial
+    CMaterial m_mSandLessMossy;
     CMaterial m_mSandMossy;
     CMaterial m_mRockMossy; //Erdmaterial
     CMaterial m_mRock;

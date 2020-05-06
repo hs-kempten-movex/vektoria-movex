@@ -9,8 +9,9 @@ Island::Island()
         false,									//invertieren?
         true, true);							//"glattziehen"
     m_cutInverseSand.Init(eCutKind_Height, 0, TERRAIN_SAND_MAX, true, true, false);
-    m_cutInverseSandMossy.Init(eCutKind_Height, TERRAIN_SAND_MAX, TERRAIN_SAND_MOSSY_MAX, true, false, false);
-    m_cutInverseSeaToBeach.Init(eCutKind_Height, 0, TERRAIN_SAND_MOSSY_MAX, true, true, false);
+    m_cutInverseSandLessMossy.Init(eCutKind_Height, 0, TERRAIN_SANDLESSMOSSY_MAX, true, true, false);
+    m_cutInverseSandMossy.Init(eCutKind_Height, 0, TERRAIN_SAND_MOSSY_MAX, true, true, false); //Terrainsandmossy
+    m_cutInverseSeaToBeach.Init(eCutKind_Height, 0, TERRAIN_SAND_MOSSY_MAX, true, true, false); //terrainlow
     m_cutInverseRockMossy.Init(eCutKind_Height, TERRAIN_SAND_MOSSY_MAX, TERRAIN_ROCK_MOSSY_MAX, true, false, false);
     m_cutInverseRock.Init(eCutKind_Height, 0, TERRAIN_ROCK_MAX, true, true, false);
     m_cutInverseRockSnowy.Init(eCutKind_Height, TERRAIN_ROCK_SNOWY_MIN, TERRAIN_ROCK_SNOWY_MAX, true, false, false);
@@ -29,14 +30,17 @@ Island::Island()
     //Cut dem Terrain hinzufügen:
     m_gTerrain.AddCut(&m_cutUnderSea);
 
-    m_gTerrainLow.AddCut(&m_cutInverseSeaToBeach);
-    m_gTerrainLow.AddCut(&m_cutInverse15To45Degrees);
-
     m_gTerrainSand.AddCut(&m_cutInverseSand);
     m_gTerrainSand.AddCut(&m_cutInverseUnder15Degrees);
 
-    m_gTerrainSandMossy.AddCut(&m_cutInverseSandMossy);
-    m_gTerrainSandMossy.AddCut(&m_cutInverseUnder15Degrees);
+    m_gTerrainSandLessMossy.AddCut(&m_cutInverseSandLessMossy);
+    m_gTerrainSandLessMossy.AddCut(&m_cutInverseUnder15Degrees);
+   
+  /*  m_gTerrainLow.AddCut(&m_cutInverseSeaToBeach);
+    m_gTerrainLow.AddCut(&m_cutInverse15To45Degrees); */
+
+    m_gTerrainSandMossy.AddCut(&m_cutInverseSeaToBeach);
+    m_gTerrainSandMossy.AddCut(&m_cutInverseUnder45Degrees);
 
     m_gTerrainRockMossy.AddCut(&m_cutInverseRockMossy);
     m_gTerrainRockMossy.AddCut(&m_cutOver45Degrees);
@@ -78,6 +82,13 @@ Island::Island()
     m_mSand.MakeTextureHeight("textures\\Sand_height.png");
     m_mSand.SetHeightStrength(5.0);
     m_mSand.MakeTextureSpecular("textures\\Ground_specular.jpg");
+
+    m_mSandLessMossy.MakeTextureDiffuse("textures\\SandLessMossy_basecolor.png");
+    m_mSandLessMossy.MakeTextureBump("textures\\SandLessMossy_normal.jpg");
+    m_mSandLessMossy.SetBumpStrength(2.0);
+    m_mSandLessMossy.MakeTextureHeight("textures\\SandLessMossy_height.png");
+    m_mSandLessMossy.SetHeightStrength(5.0);
+    m_mSandLessMossy.MakeTextureSpecular("textures\\Ground_specular.jpg");
 
     m_mSandMossy.LoadPreset("SandMossy");
     m_mRockMossy.LoadPreset("RockMossy");
@@ -123,10 +134,10 @@ Island::Island()
 
       //Abschnitte erstellen
     m_gTerrain.InitFromOther(m_gTerrainOri, &m_mRockMossy);
-    m_gTerrainLow.InitFromOther(m_gTerrainOri, &m_mSandMossy);
     m_gTerrainSand.InitFromOther(m_gTerrainOri, &m_mSand);
+    m_gTerrainSandLessMossy.InitFromOther(m_gTerrainOri, &m_mSandLessMossy);
+    //m_gTerrainLow.InitFromOther(m_gTerrainOri, &m_mSandMossy);
     m_gTerrainSandMossy.InitFromOther(m_gTerrainOri, &m_mSandMossy);
-    //m_gTerrainRockMossy.InitFromOther(m_gTerrainOri, &m_mRockMossy);      //vorgefertigtes Material
     m_gTerrainRockMossy.InitFromOther(m_gTerrainOri, &m_mGround);           //eigenes materia, fehlerhaft
     m_gTerrainRock.InitFromOther(m_gTerrainOri, &m_mRock);
     m_gTerrainRockSnowy.InitFromOther(m_gTerrainOri, &m_mRockSnow);
@@ -146,6 +157,7 @@ Island::Island()
     m_pIsland1.AddGeo(&m_gTerrainLow);
     m_pIsland1.AddGeo(&m_gWater);
     m_pIsland1.AddGeo(&m_gTerrainSand);
+    m_pIsland1.AddGeo(&m_gTerrainSandLessMossy);
     m_pIsland1.AddGeo(&m_gTerrainSandMossy);
     m_pIsland1.AddGeo(&m_gTerrainRockMossy);
     m_pIsland1.AddGeo(&m_gTerrainRock);
