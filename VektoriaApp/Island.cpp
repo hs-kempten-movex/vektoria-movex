@@ -79,11 +79,11 @@ Island::Island()
     m_mMirror.LoadPreset("RockMossy");
 
     m_mGround.MakeTextureDiffuse("textures\\Ground_basecolor.png");
-    m_mGround.MakeTextureBump("textures\\Ground_normal.png");
+    m_mGround.MakeTextureBump("textures\\Ground_normal.jpg");
     m_mGround.SetBumpStrength(2.0);
     m_mGround.MakeTextureHeight("textures\\Ground_height.png");
+    m_mGround.SetHeightStrength(2.0);
     m_mGround.MakeTextureSpecular("textures\\Ground_specular.jpg");
-    //m_mGround.SetSpecular(3.0);
 
 
     //blob und perlinnoise mischen
