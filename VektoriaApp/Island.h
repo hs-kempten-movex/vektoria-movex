@@ -9,9 +9,9 @@ using namespace Vektoria;
 #define TERRAIN_SAND_MAX 3
 #define TERRAIN_SAND_MOSSY_MAX 7
 #define TERRAIN_ROCK_MOSSY_MAX 130
-#define TERRAIN_ROCK_MAX 170
+#define TERRAIN_ROCK_MAX 250
 #define TERRAIN_ROCK_SNOWY_MIN 130
-#define TERRAIN_ROCK_SNOWY_MAX 170
+#define TERRAIN_ROCK_SNOWY_MAX 250
 
 class Island
 {

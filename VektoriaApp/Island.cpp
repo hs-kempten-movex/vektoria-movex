@@ -52,7 +52,7 @@ Island::Island()
     //perlin-Noise
     m_pperlin = new CPerlin(
         420,							//zufallsseed
-        1.5f,						//Amplitude
+        1.75f,						//Amplitude
         16,							//Oktaven
         0.5f,						//Persistenz
         12.0f,						//Frequenz
@@ -82,8 +82,8 @@ Island::Island()
     m_mGround.MakeTextureBump("textures\\Ground_normal.png");
     m_mGround.SetBumpStrength(2.0);
     m_mGround.MakeTextureHeight("textures\\Ground_height.png");
-    m_mGround.MakeTextureSpecular("textures\\Ground_specular.png");
-    m_mGround.SetSpecular(3.0);
+    m_mGround.MakeTextureSpecular("textures\\Ground_specular.jpg");
+    //m_mGround.SetSpecular(3.0);
 
 
     //blob und perlinnoise mischen
