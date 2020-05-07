@@ -25,6 +25,7 @@
 #include "CherryBlossomTree.h"
 #include "KeyboardControl.h"
 #include "Poppy.h"
+#include "Butterfly.h"
 
 using namespace Vektoria;
 
@@ -57,8 +58,9 @@ private:
     CherryBlossomTree tree;
 
     CPlacement m_zpLSystem;
-  CPlacement m_zpBlume;
-  CMaterial m_zmBlossom;																		// Material für Mohnblume
+	CPlacement m_zpBlume;
+	CMaterial m_zmBlossom;																		// Material für Mohnblume
+	Butterfly m_zpButterfly;
     // Hier ist Platz für Deine Vektoriaobjekte:
 };
 

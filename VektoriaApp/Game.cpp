@@ -17,7 +17,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_root.AddFrame(&m_frame);
 	m_frame.AddViewport(&m_viewport);
 	m_frame.AddDeviceKeyboard(&m_keyboard);
-  m_frame.AddDeviceMouse(&m_keyboard);
+	m_frame.AddDeviceMouse(&m_keyboard);
 	m_root.AddScene(&m_scene);
 	m_root.AddMaterial(&m_zmBlossom);
 	
@@ -31,9 +31,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	island.m_pIsland1.AddPlacement(&m_zpBlume);
 	m_zpLSystem.AddGeo(&tree);
 	m_zpLSystem.TranslateX(500.0f);
+	m_keyboard.pitch.AddPlacement(&m_zpButterfly);		//Butterfly wird an Pitch Placement gehängt.
 	
 	//Beschränkte bewegungsfreiheit der Kamera
-  m_keyboard.pitch.SetMoveRange(CAABB(
+	m_keyboard.pitch.SetMoveRange(CAABB(
 		CHVector(-50000.0f, 4.0f, -50000.0f, 1.0f),
 		CHVector(+50000.0f, 20000.0f, +50000.0f, 1.0f)));
 
@@ -47,7 +48,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	// Initialisiere die Kamera:
 	m_scene.AddPlacement(&m_keyboard.translation);
-  m_keyboard.pitch.AddCamera(&m_camera);
+	m_keyboard.pitch.AddCamera(&m_camera);
 
 	// Stelle die Kamera an einen geeigneten Anfangsort:
 	m_keyboard.translation.Translate(0.0f,300.0f,200.0f);
@@ -64,7 +65,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	// Hier die Echtzeit-Veränderungen einfügen:
 	CHitPoint hitpointGround;
 	CHitPoint hitpointCollision;
-  m_keyboard.Tick(fTimeDelta);
+	m_keyboard.Tick(fTimeDelta);
 	m_root.Tick(fTimeDelta);
 }
 

@@ -42,6 +42,9 @@
     <ClInclude Include="wald.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Butterfly.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -66,6 +69,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="wald.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Butterfly.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
