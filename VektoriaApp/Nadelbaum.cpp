@@ -126,7 +126,10 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 	AddRule("33:A={r>0.03,(r0.55)(l0.6)f[(>20)(r0.75)(^15)fC]C}{r<0.031,B}");
 	AddRule("33:A={r>0.03,(r0.55)(l0.6)f[(>29)(r0.75)(v15)fC]C}{r<0.031,B}");
 	AddRule("34:A={r>0.03,(r0.55)(l0.6)fC}{r<0.031,B}");
-	AddRule("B=°(l0.6)[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]f[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]f[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]");
+
+	//AddRule("B=°(l0.6)[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]f[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]f[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]");
+	//test mit fruits (a) und leaves
+	AddRule("B=(l0.6)[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]f[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]f[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]");
 
 
 	m_iIterations += 23;
@@ -237,37 +240,33 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 			m_zgLeafMain.AddOuter(&avOuter[i]);
 
 		m_zgLeafMain.Init(&m_zmLeaf, true, true);
-		SetGeoLeaf(&m_zgLeafMain);
+		SetGeoFruit(&m_zgLeafMain);
+
+		/*CHMat mScale;
+		mScale.Scale(20.0f);
+
+
+		test = m_filewavefront.LoadGeo("models\\cylinder.obj");
+
+		m_zgLeafMain.Transform(mScale);
+		m_zgFruitMain.AddGeo(test);
+
+		test->SetMaterial(&m_zmLeaf);
+		SetGeoFruit(&m_zgFruitMain);*/
 
 	}
 	else if (uLoD <= 2)
 	{
-		CHVector avOuter[15];
+		CHMat mScale;
+		mScale.Scale(20.0f);
 
-		//Stiel:
-		avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
-		avOuter[1] = CHVector(0.020f, 0.0f, 1.0f, 1.0f);
-		avOuter[2] = CHVector(0.015f, 0.0f, 0.90f, 1.0f);
 
-		//Ausbuchtung:
-		avOuter[3] = CHVector(0.04f, 0.0f, 0.90f, 1.0f);
-		avOuter[4] = CHVector(0.15f, 0.0f, 0.85f, 1.0f);
-		avOuter[5] = CHVector(0.3f, 0.0f, 0.8f, 1.0f);
-		avOuter[6] = CHVector(0.4f, 0.0f, 0.7f, 1.0f);
-		avOuter[7] = CHVector(0.45f, 0.0f, 0.6f, 1.0f);
-		avOuter[8] = CHVector(0.48f, 0.0f, 0.5f, 1.0f);
-		avOuter[9] = CHVector(0.45f, 0.0f, 0.4f, 1.0f);
-		avOuter[10] = CHVector(0.38f, 0.0f, 0.3f, 1.0f);
-		avOuter[11] = CHVector(0.27f, 0.0f, 0.2f, 1.0f);
-		avOuter[12] = CHVector(0.12f, 0.0f, 0.12f, 1.0f);
-		avOuter[13] = CHVector(0.02f, 0.0f, 0.05f, 1.0f);
-		avOuter[14] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
+		test = m_filewavefront.LoadGeo("models\\cylinder.obj");
+		m_zgLeafMain.Transform(mScale);
+		m_zgFruitMain.AddGeo(test);
+		test->SetMaterial(&m_zmLeaf);
+		SetGeoFruit(&m_zgFruitMain);
 
-		for (int i = 0; i < 15; i++)
-			m_zgLeafMain.AddOuter(&avOuter[i]);
-
-		m_zgLeafMain.Init(&m_zmLeaf, true, true);
-		SetGeoLeaf(&m_zgLeafMain);
 	}
 	else
 	{
@@ -334,7 +333,12 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 	*/
 
 
-	m_zmBark.LoadPreset("BarkBirch");
+	m_zmBark.MakeTextureDiffuse("textures\\bark.png");
+	m_zmBark.MakeTextureBump("textures\\bark_n.png");
+	m_zmBark.MakeTextureHeight("textures\\bark_h.png");
+	//m_zmBark.SetSpecularSharpness(100.0f);
+	//m_zmBark.SetTextureSpecularBlack();
+	m_zmBark.SetTextureSpecularAsDiffuse();
 	SetMaterial(&m_zmBark);
 
 
@@ -395,6 +399,8 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 		}
 
 	}
+
+
 	if (m_iTurtleStartLattitude == 1)
 		m_iTurtleStartLattitude = 2;
 	if (m_iTurtleStartLattitude == 0 && m_iTurtleStartLongitude > 0)

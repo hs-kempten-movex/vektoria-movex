@@ -13,5 +13,7 @@ public:
 	void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight);
 	void Init(Nadelbaum * pzgTemplate, unsigned int uLoD);
 	void DeIterate();
+	CGeo * test;
+	CFileWavefront m_filewavefront;
 };
 
