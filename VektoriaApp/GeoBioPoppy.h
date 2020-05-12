@@ -3,14 +3,17 @@
 using namespace Vektoria;
 
 
-class Poppy :
+class GeoBioPoppy :
 	public CGeoBio
 {
 public:
-	Poppy();
-	~Poppy();
+	GeoBioPoppy();
+	~GeoBioPoppy();
 
 private:
 
 	CMaterial m_zmBlossom;
+	CGeoLeaf m_zgLeafMain;
+	CGeoLeaf m_zgBlossomMain;
+	CGeoLeaf m_zgStamenMain;
 };

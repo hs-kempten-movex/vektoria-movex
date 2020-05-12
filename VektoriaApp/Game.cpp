@@ -58,7 +58,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_keyboard.translation.Translate(0.0f,300.0f,200.0f);
 
 	// Blume Test 
-	Poppy *BlumeAlla = new Poppy();
+	GeoBioPoppy *BlumeAlla = new GeoBioPoppy();
 	m_zpBlume.AddGeo(BlumeAlla);
 	m_zpBlume.TranslateX(490.0f);
 

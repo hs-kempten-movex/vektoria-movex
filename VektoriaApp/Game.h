@@ -24,7 +24,7 @@
 #include "Island.h"
 #include "CherryBlossomTree.h"
 #include "KeyboardControl.h"
-#include "Poppy.h"
+#include "GeoBioPoppy.h"
 #include "Butterfly.h"
 
 using namespace Vektoria;
