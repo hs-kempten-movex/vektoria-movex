@@ -49,7 +49,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	// Initialisiere die Kamera:
 	m_scene.AddPlacement(&m_keyboard.translation);
-	m_keyboard.pitch.AddCamera(&m_camera);
+	m_keyboard.pitch.AddPlacement(&m_zpCamera);
+
+  m_zpCamera.TranslateDelta(0.0f, 20.0f, 100.0f);
+  m_zpCamera.AddCamera(&m_camera);
 
 	// Stelle die Kamera an einen geeigneten Anfangsort:
 	m_keyboard.translation.Translate(0.0f,300.0f,200.0f);
@@ -68,6 +71,8 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	CHitPoint hitpointCollision;
 	m_keyboard.Tick(fTimeDelta);
 	m_root.Tick(fTimeDelta);
+
+  m_zpButterfly.Tick(fTime, fTimeDelta);
 }
 
 void CGame::Fini()

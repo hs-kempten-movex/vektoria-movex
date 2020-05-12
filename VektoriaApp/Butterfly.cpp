@@ -2,15 +2,15 @@
 
 Butterfly::Butterfly()
 {
-	torso = butterfly_torso_obj.LoadGeo("models\\ButterflyTorso.obj");
-	wingsL = butterfly_wingsL_obj.LoadGeo("models\\ButterflyWingsLeft.obj");
-	wingsR = butterfly_wingsR_obj.LoadGeo("models\\ButterflyWingsRight.obj");
+	torso = objLoader.LoadGeo("models\\ButterflyTorso.obj");
+	wingsL = objLoader.LoadGeo("models\\ButterflyWingsLeft.obj");
+	wingsR = objLoader.LoadGeo("models\\ButterflyWingsRight.obj");
 
 	this->AddPlacement(&zp_Torso);
 	this->AddPlacement(&zp_WingsL);
 	this->AddPlacement(&zp_WingsR);
-	this->RotateY(PI / 2);
-	this->TranslateZDelta(-30);
+  this->RotateY(HALFPI);
+  this->RotateXDelta(-HALFPI);
 
 	zp_Torso.AddGeo(torso);
 	zp_WingsL.AddGeo(wingsL);
@@ -21,4 +21,16 @@ Butterfly::~Butterfly() {
 	delete torso;
 	delete wingsL;
 	delete wingsR;
+}
+
+void Butterfly::Tick(float fTime, float fTimeDelta) {
+  if (abs(wingRotation) >= MAX_WING_ROTATION) {
+    wingRotation = wingRotationDirection * MAX_WING_ROTATION;
+    wingRotationDirection *= -1.0f;
+  }
+
+  wingRotation += WING_ROTATION_SPEED * wingRotationDirection * fTimeDelta;
+
+  zp_WingsL.RotateY(wingRotation);
+  zp_WingsR.RotateY(-wingRotation);
 }

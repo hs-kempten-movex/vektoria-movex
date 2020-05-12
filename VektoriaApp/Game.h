@@ -45,6 +45,7 @@ public:
 	CFrame m_frame;
 	CViewport m_viewport;
 	CCamera m_camera;
+  CPlacement m_zpCamera;
 	KeyboardControl m_keyboard;
 
 	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash);	// Wird zu Begin einmal aufgerufen
@@ -54,14 +55,14 @@ public:
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
 
 private:
-    Island island;
-    CherryBlossomTree tree;
+  Island island;
+  CherryBlossomTree tree;
 
-    CPlacement m_zpLSystem;
+  CPlacement m_zpLSystem;
 	CPlacement m_zpBlume;
 	CMaterial m_zmBlossom;																		// Material für Mohnblume
-	Butterfly m_zpButterfly;
-    // Hier ist Platz für Deine Vektoriaobjekte:
+  Butterfly m_zpButterfly;
+  // Hier ist Platz für Deine Vektoriaobjekte:
 };
 
 
