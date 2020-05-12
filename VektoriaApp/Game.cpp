@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 CGame::CGame(void)
 {
@@ -40,7 +41,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
-	m_scene.SetFrustumCullingOn();
+  m_scene.SetFrustumCullingOff();
 	m_camera.Init(HALFPI,					// 45° Kameraöffnungswinkel
 	0.3, 170000.0f,							// 30cm bis 170 km Sicht
 	true,									// BVH-Schattenfrustumcasting an!
@@ -77,7 +78,6 @@ void CGame::Fini()
 
 void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 {
-	// Windows ReSize wird immer automatisch aufgerufen, wenn die Fenstergröße verändert wurde.
-	// Hier kannst Du dann die Auflösung des Viewports neu einstellen:
+  m_frame.ReSize(iNewWidth, iNewHeight);
 }
 
