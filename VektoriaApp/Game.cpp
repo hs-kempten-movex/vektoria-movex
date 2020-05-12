@@ -41,7 +41,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
-  m_scene.SetFrustumCullingOff();
+  m_scene.SetFrustumCullingOn();
 	m_camera.Init(HALFPI,					// 45° Kameraöffnungswinkel
 	0.3, 170000.0f,							// 30cm bis 170 km Sicht
 	true,									// BVH-Schattenfrustumcasting an!

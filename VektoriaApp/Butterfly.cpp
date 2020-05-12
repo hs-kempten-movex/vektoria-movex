@@ -15,6 +15,8 @@ Butterfly::Butterfly()
 	zp_Torso.AddGeo(torso);
 	zp_WingsL.AddGeo(wingsL);
 	zp_WingsR.AddGeo(wingsR);
+
+  this->SetFrustumCullingOff();
 }
 
 Butterfly::~Butterfly() {
