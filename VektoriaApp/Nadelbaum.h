@@ -15,5 +15,8 @@ public:
 	void DeIterate();
 	CGeo * test;
 	CFileWavefront m_filewavefront;
+	CGeoLeaf m_zgLeafMain;
+	CGeoLeaf m_zgBlossomMain;
+	CGeoLeaf m_zgStamenMain;
 };
 

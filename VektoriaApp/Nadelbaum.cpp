@@ -112,25 +112,28 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 
 
 	SetAxiom("X");
-	AddRule("30:X={r>0.03,(-23)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y]_fX}{r<0.0301,Y}");
-	AddRule("30:X={r>0.03,(+10)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y](r0.85)(l0.9)_fX}{r<0.0301,Y}");
-	AddRule("30:X={r>0.03,(+36)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y](r0.85)(l0.9)_fX}{r<0.0301,Y}");
-	AddRule("10:X={r>0.03,(r0.85)(l0.9)_fX[(r0.55)(+180)(^70)Y]}{r<0.0301,Y}");
-	AddRule("15:Y={r>0.03,+(r0.75)(l0.85)_(<2)f(r0.75)(l0.85)_f[(>25)(r0.75)A]Y}{r<0.0301,A}");
-	AddRule("20:Y={r>0.03,+(r0.75)(l0.85)_(>4)f[(<30)(r0.75)A][(>35)(r0.75)A]Y}{r<0.0301,A}");
-	AddRule("20:Y={r>0.03,+(r0.75)(l0.85)_(<7)f[(<42)(r0.75)A][(>35)(r0.75)(^15)A]Y}{r<0.0301,A}");
-	AddRule("20:Y={r>0.03,+(r0.75)(l0.85)_(>6)f[(<19)(^15)(r0.75)A][(v50)(r0.75)A]Y}{r<0.0301,A}");
-	AddRule("20:Y={r>0.03,+(r0.75)(l0.85)_(<6)f[(^31)(r0.75)A]Y}{r<0.0301,A}");
-	AddRule("5:Y={r>0.03,}{r<0.0301,}");
+	AddRule("30:X={r>0.03,+(-23)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y]_fX}{r<0.0301,Y}");
+	AddRule("30:X={r>0.03,+(+10)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y](r0.85)(l0.9)_fX}{r<0.0301,Y}");
+	AddRule("30:X={r>0.03,+(+36)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y](r0.85)(l0.9)_fX}{r<0.0301,Y}");
+	AddRule("10:X={r>0.03,+(r0.85)(l0.9)_fX[(r0.55)(+180)(^70)Y]}{r<0.0301,Y}");
+	AddRule("15:Y={r>0.05,+(r0.75)(l0.85)_(<2)f(r0.75)(l0.85)_f[+(>25)(r0.75)Y]Y}{r<0.0501,A}");
+	AddRule("20:Y={r>0.05,+(r0.75)(l0.85)_(>4)f[+(<30)(r0.75)Y][+(>35)(r0.75)Y]Y}{r<0.0501,A}");
+	AddRule("20:Y={r>0.05,+(r0.75)(l0.85)_(<7)f[+(<42)(r0.75)Y][+(>35)(r0.75)(^15)Y]Y}{r<0.0501,A}");
+	AddRule("20:Y={r>0.05,+(r0.75)(l0.85)_(>6)f[+(<19)(^15)(r0.75)Y][+(v50)(r0.75)Y]Y}{r<0.0501,A}");
+	AddRule("20:Y={r>0.05,+(r0.75)(l0.85)_(<6)f[+(^31)(r0.75)Y]Y}{r<0.0501,A}");
+	AddRule("5:Y={r>0.05,}{r<0.0301,}");
 	AddRule("C={b<99,A}{b=99,}");
 	AddRule("33:A={r>0.03,(r0.55)(l0.6)f[(>20)(r0.75)(^15)fC]C}{r<0.031,B}");
 	AddRule("33:A={r>0.03,(r0.55)(l0.6)f[(>29)(r0.75)(v15)fC]C}{r<0.031,B}");
 	AddRule("34:A={r>0.03,(r0.55)(l0.6)fC}{r<0.031,B}");
 
 	//AddRule("B=°(l0.6)[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]f[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]f[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]");
-	//test mit fruits (a) und leaves
-	AddRule("B=(l0.6)[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]f[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]f[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]");
-
+	//test mit fruits (a)
+	//AddRule("B=(l0.6)[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]f[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]f[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]");
+	// test mit nadeln (n)
+	//AddRule("B=(l0.6)[<n(+60)<n(+60)<n(+60)<n(+60)<n(+60)<n]f[<n(+60)<n(+60)<n(+60)<n(+60)<n(+60)<n]f[<n(+60)<n(+60)<n(+60)<n(+60)<n(+60)<n]");
+	//AddRule("B=(l0.1)(+10)f[<n][>n][vn][^n]B");
+	AddRule("B=(l0.1)(+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n]");
 
 	m_iIterations += 23;
 
@@ -149,7 +152,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		m_pzgRoot = new CGeoLSystem();
 		m_pzgRoot->m_random.m_uRand = m_random.m_uRand;
 
-		m_pzgRoot->SetAxiom("'Z");
+		m_pzgRoot->SetAxiom("Z");
 		m_pzgRoot->AddRule("50:Z=(l0.8)[(+0)(>90)X][(+123)(>92)X][(+239)(>88)X]°(r0.80)f[X]");
 		m_pzgRoot->AddRule("50:Z=(l0.8)[(+10)(>85)X][(+113)(>82)X][(+219)(>98)X]°(r0.80)(>9)f[X]");
 		m_pzgRoot->AddRule("5:X=#+(r0.80)_f[(l0.90)(>10)X]");
@@ -234,79 +237,73 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 		avOuter[5] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
 
 
-
-
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 6; i++) {
 			m_zgLeafMain.AddOuter(&avOuter[i]);
+		}
 
-		m_zgLeafMain.Init(&m_zmLeaf, true, true);
-		SetGeoFruit(&m_zgLeafMain);
-
-		/*CHMat mScale;
-		mScale.Scale(20.0f);
-
-
-		test = m_filewavefront.LoadGeo("models\\cylinder.obj");
-
-		m_zgLeafMain.Transform(mScale);
-		m_zgFruitMain.AddGeo(test);
-
-		test->SetMaterial(&m_zmLeaf);
-		SetGeoFruit(&m_zgFruitMain);*/
-
-	}
-	else if (uLoD <= 2)
-	{
-		CHMat mScale;
-		mScale.Scale(20.0f);
-
-
-		test = m_filewavefront.LoadGeo("models\\cylinder.obj");
-		m_zgLeafMain.Transform(mScale);
-		m_zgFruitMain.AddGeo(test);
-		test->SetMaterial(&m_zmLeaf);
-		SetGeoFruit(&m_zgFruitMain);
-
-	}
-	else
-	{
-		CHVector avOuter[5];
-		avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
-		avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
-		avOuter[1] = CHVector(0.5f, 0.0f, 1.0f, 1.0f);
-		avOuter[2] = CHVector(0.5f, 0.0f, 0.5f, 1.0f);
-		avOuter[3] = CHVector(0.5f, 0.0f, 0.0f, 1.0f);
-		avOuter[4] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
-		for (int i = 0; i < 5; i++)
-			m_zgLeafMain.AddOuter(&avOuter[i]);
-
-
-		m_zgLeafMain.Init(&m_zmLeaf, true, true);
+		SetMaxNeedleBending(0.08f);
+		SetMaxNeedleFolding(1.3f);
+		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0f);
 		SetGeoLeaf(&m_zgLeafMain);
 
 
 	}
-	// 0.0f Dez/Jan, 0.25 März/April, 0.5 Jun/Jul, 0.75 Sep/Okt
-	//float fLeafScaling = 0.0f;
-	//if (frTimeShifted >= 0.1f && frTimeShifted <= 0.8f) // Von Februar bis November
-	//	fLeafScaling = 1.6f*(frTimeShifted - 0.1f) / 0.7f;
+	else if (uLoD <= 2)
+	{
+		CHVector avOuter[6];
 
-	/*CHMat mScale;
-	mScale.Scale(2.0f);
-	m_zgLeafMain.Transform(mScale);*/
+
+		avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
+		avOuter[1] = CHVector(0.02f, 0.0f, 0.99f, 1.0f);
+		avOuter[2] = CHVector(0.04f, 0.0f, 0.9f, 1.0f);
+		avOuter[3] = CHVector(0.04f, 0.0f, 0.1f, 1.0f);
+		avOuter[4] = CHVector(0.02f, 0.0f, 0.01f, 1.0f);
+		avOuter[5] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
+
+
+		for (int i = 0; i < 6; i++) {
+			m_zgLeafMain.AddOuter(&avOuter[i]);
+		}
+
+		SetMaxNeedleBending(0.08f);
+		SetMaxNeedleFolding(1.3f);
+		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0f);
+		SetGeoLeaf(&m_zgLeafMain);
+		CHMat mScale;
+		mScale.Scale(2.0f);
+		m_zgLeafMain.Transform(mScale);
+		SetLeafSkipFactor(4);
+	}
+	else
+	{
+		CHVector avOuter[6];
+
+
+		avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
+		avOuter[1] = CHVector(0.02f, 0.0f, 0.99f, 1.0f);
+		avOuter[2] = CHVector(0.04f, 0.0f, 0.9f, 1.0f);
+		avOuter[3] = CHVector(0.04f, 0.0f, 0.1f, 1.0f);
+		avOuter[4] = CHVector(0.02f, 0.0f, 0.01f, 1.0f);
+		avOuter[5] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
+
+
+		for (int i = 0; i < 6; i++) {
+			m_zgLeafMain.AddOuter(&avOuter[i]);
+		}
+
+		SetMaxNeedleBending(0.08f);
+		SetMaxNeedleFolding(1.3f);
+		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0f);
+		SetGeoLeaf(&m_zgLeafMain);
+		CHMat mScale;
+		mScale.Scale(3.5f);
+		m_zgLeafMain.Transform(mScale);
+		SetLeafSkipFactor(30);
+	}
 
 	m_zmLeaf.MakeTextureDiffuse("textures\\darkgreen_image.jpg");
-	/*
+	m_zmLeaf.SetSpecularStrength(0.01f);
 
-	// Nicht löschen!
-	m_zmLeaf.MakeTextureDiffuse(".\\..\\..\\Lib\\Materials\\LeafBirch\\LeafBirchD.jpg");
-	m_zmLeaf.MakeTextureSpecular(".\\..\\..\\Lib\\Materials\\LeafBirch\\LeafBirchS.jpg");
-	m_zmLeaf.MakeTextureBump(".\\..\\..\\Lib\\Materials\\LeafBirch\\LeafBirchB.jpg");
-	m_zmLeaf.MakeTextureThickness(".\\..\\..\\Lib\\Materials\\LeafBirch\\LeafBirchT.jpg", CColor(0.3, 1.0, 0.3));
-	m_zmLeaf.SetSpecularSharpness(100.0f);
-	m_zmLeaf.SetLightScatteringOn();
-	m_zmLeaf.SavePreset("LeafBirch");
-	*/
 	float faLeafColoring = 0.0f;
 	float frColorScaling = 1.0f;
 	if (frTimeShifted >= 0.7f) // Ab Anfang September
@@ -318,19 +315,6 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 	}
 
 	SetMaterialLeaf(&m_zmLeaf);
-
-	/*
-
-	m_zmLeaf.MakeTextureDiffuse(".\..\..\Lib\Materials\LeafBirch\LeafBirchD.jpg");
-	m_zmLeaf.MakeTextureThickness(".\..\..\Lib\Materials\LeafBirch\LeafBirchH.jpg", CColor(0.3f, 1.0f, 0.2f));
-	m_zmLeaf.MakeTextureSpecular(".\..\..\Lib\Materials\LeafBirch\LeafBirchS.jpg");
-	m_zmLeaf.MakeTextureBump(".\..\..\Lib\Materials\LeafBirch\LeafBirchB.jpg");
-	m_zmLeaf.SetLightScatteringOn();
-
-	m_zmLeaf.SetRimLightStrength(0.1f);
-	m_zmLeaf.SetSubSurfaceColor(CColor(0.3, 1.0f, 0.3f));
-	m_zmLeaf.SavePreset("LeafBirch");
-	*/
 
 
 	m_zmBark.MakeTextureDiffuse("textures\\bark.png");

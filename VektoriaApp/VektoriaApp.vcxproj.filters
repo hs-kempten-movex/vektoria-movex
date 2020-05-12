@@ -30,9 +30,6 @@
     <ClInclude Include="CherryBlossomTree.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Poppy.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="KeyboardControl.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -43,6 +40,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Butterfly.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeoBioPoppy.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,9 +59,6 @@
     <ClCompile Include="CherryBlossomTree.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Poppy.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="KeyboardControl.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -72,6 +69,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Butterfly.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeoBioPoppy.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

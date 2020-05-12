@@ -16,4 +16,7 @@ private:
 	CGeoBio m_zgCherryblossom;
 	CMaterial m_zmBlossom;
 	bool m_bIsBlossoming = false;
+	CGeoLeaf m_zgLeafMain;
+	CGeoLeaf m_zgBlossomMain;
+	CGeoLeaf m_zgStamenMain;
 };
