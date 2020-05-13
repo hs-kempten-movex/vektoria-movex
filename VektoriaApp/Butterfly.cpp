@@ -6,17 +6,21 @@ Butterfly::Butterfly()
 	wingsL = objLoader.LoadGeo("models\\ButterflyWingsLeft.obj");
 	wingsR = objLoader.LoadGeo("models\\ButterflyWingsRight.obj");
 
+	m_zmWings.MakeTextureDiffuse("textures\\butterfly\\WingsTexExperimental.png");
+	wingsL->SetMaterial(&m_zmWings);
+	wingsR->SetMaterial(&m_zmWings);
+
 	this->AddPlacement(&zp_Torso);
 	this->AddPlacement(&zp_WingsL);
 	this->AddPlacement(&zp_WingsR);
-  this->RotateY(HALFPI);
-  this->RotateXDelta(-HALFPI);
+	this->RotateY(HALFPI);
+	this->RotateXDelta(-HALFPI);
 
 	zp_Torso.AddGeo(torso);
 	zp_WingsL.AddGeo(wingsL);
 	zp_WingsR.AddGeo(wingsR);
 
-  this->SetFrustumCullingOff();
+	this->SetFrustumCullingOff();
 }
 
 Butterfly::~Butterfly() {

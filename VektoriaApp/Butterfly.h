@@ -22,6 +22,8 @@ class Butterfly: public CPlacement
     CFileWavefront objLoader;
 		CPlacement zp_Torso, zp_WingsL, zp_WingsR;
 
+		CMaterial m_zmWings;
+
     float wingRotation;
     float wingRotationDirection = -1.0f;
 };
