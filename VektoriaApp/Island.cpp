@@ -82,7 +82,7 @@ Island::Island()
     m_mSand.MakeTextureSpecular("textures\\Ground_specular.jpg");
 
     m_mSandLessMossy.MakeTextureDiffuse("textures\\SandLessMossy_basecolor.png");
-    m_mSandLessMossy.MakeTextureBump("textures\\SandLessMossy_normal.png");
+    m_mSandLessMossy.MakeTextureBump("textures\\SandLessMossy_normal.jpg");
     m_mSandLessMossy.SetBumpStrength(2.0);
     m_mSandLessMossy.MakeTextureHeight("textures\\SandLessMossy_height.png");
     m_mSandLessMossy.SetHeightStrength(1.0);
@@ -90,7 +90,7 @@ Island::Island()
 
     //m_mSandMossy.LoadPreset("SandMossy");
     m_mSandMossy.MakeTextureDiffuse("textures\\SandVeryMossy_basecolor.png");
-    m_mSandMossy.MakeTextureBump("textures\\SandVeryMossy_normal.png");
+    m_mSandMossy.MakeTextureBump("textures\\SandVeryMossy_normal.jpg");
     m_mSandMossy.SetBumpStrength(2.0);
     m_mSandMossy.MakeTextureHeight("textures\\SandVeryMossy_height.png");
     m_mSandMossy.SetHeightStrength(1.0);
