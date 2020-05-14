@@ -12,6 +12,8 @@ public:
     KeyboardControl();
     ~KeyboardControl();
 
+    void Init(CGeos* collisionObjects);
+
     void Tick(float fTimeDelta);
 
     CPlacement translation;
@@ -21,5 +23,7 @@ public:
 private:
     void rotate();
     void move(float fTimeDelta);
+
+    CGeos* collisionObjects;
 };
 

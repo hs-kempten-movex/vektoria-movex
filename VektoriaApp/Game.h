@@ -53,7 +53,7 @@ public:
 	void Fini();																				// Wird am Ende einmal aufgerufen
 
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
-
+  void InitPlayer();
 private:
   Island island;
   CherryBlossomTree tree;
@@ -62,7 +62,8 @@ private:
 	CPlacement m_zpBlume;
 	CMaterial m_zmBlossom;																		// Material für Mohnblume
   Butterfly m_zpButterfly;
-  // Hier ist Platz für Deine Vektoriaobjekte:
+
+  CGeos CollisionObjects;
 };
 
 

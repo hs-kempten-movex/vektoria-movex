@@ -14,7 +14,7 @@ Butterfly::Butterfly()
 	this->AddPlacement(&zp_WingsL);
 	this->AddPlacement(&zp_WingsR);
 	this->RotateY(HALFPI);
-	//this->RotateXDelta(-HALFPI);
+	this->RotateXDelta(-HALFPI);
 
 	zp_Torso.AddGeo(torso);
 	zp_WingsL.AddGeo(wingsL);

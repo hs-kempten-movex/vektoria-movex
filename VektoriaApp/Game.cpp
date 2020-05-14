@@ -32,13 +32,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	island.m_pIsland1.AddPlacement(&m_zpBlume);
 	m_zpLSystem.AddGeo(&tree);
 	m_zpLSystem.TranslateX(500.0f);
-	m_keyboard.pitch.AddPlacement(&m_zpButterfly);		//Butterfly wird an Pitch Placement gehängt.
-	
-	//Beschränkte bewegungsfreiheit der Kamera
-	m_keyboard.pitch.SetMoveRange(CAABB(
-		CHVector(-50000.0f, 4.0f, -50000.0f, 1.0f),
-		CHVector(+50000.0f, 20000.0f, +50000.0f, 1.0f)));
-
+  
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
   m_scene.SetFrustumCullingOn();
@@ -47,21 +41,32 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	true,									// BVH-Schattenfrustumcasting an!
 	m_scene.GetSkyLightPlacement());		 // Info für das OBVHSFC
 
-	// Initialisiere die Kamera:
-	m_scene.AddPlacement(&m_keyboard.translation);
-	m_keyboard.pitch.AddPlacement(&m_zpCamera);
-
-  m_zpCamera.TranslateDelta(0.0f, 20.0f, 100.0f);
-  m_zpCamera.AddCamera(&m_camera);
-
-	// Stelle die Kamera an einen geeigneten Anfangsort:
-	m_keyboard.translation.Translate(0.0f,300.0f,200.0f);
-
 	// Blume Test 
 	GeoBioPoppy *BlumeAlla = new GeoBioPoppy();
 	m_zpBlume.AddGeo(BlumeAlla);
 	m_zpBlume.TranslateX(490.0f);
 
+  InitPlayer();
+}
+
+void CGame::InitPlayer()
+{
+    CollisionObjects.AddPlacementGeos(&island.m_pIsland1); //hier auskommentieren, falls es zu laggy ist
+
+    m_keyboard.Init(&CollisionObjects);
+
+    m_keyboard.pitch.SetMoveRange(CAABB(
+        CHVector(-50000.0f, 4.0f, -50000.0f, 1.0f),
+        CHVector(+50000.0f, 20000.0f, +50000.0f, 1.0f)));
+
+    m_scene.AddPlacement(&m_keyboard.translation);
+    m_keyboard.translation.Translate(0.0f, 300.0f, 200.0f);
+
+    m_keyboard.pitch.AddPlacement(&m_zpButterfly);
+    m_keyboard.pitch.AddPlacement(&m_zpCamera);
+
+    m_zpCamera.TranslateDelta(0.0f, 20.0f, 100.0f);
+    m_zpCamera.AddCamera(&m_camera);
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
