@@ -6,7 +6,7 @@ Butterfly::Butterfly()
 	wingsL = objLoader.LoadGeo("models\\ButterflyWingsLeft.obj", true);
 	wingsR = objLoader.LoadGeo("models\\ButterflyWingsRight.obj", true);
 
-	m_zmWings.MakeTextureDiffuse("textures\\butterfly\\WingsTexExperimental.png");
+	m_zmWings.MakeTextureDiffuse("textures\\butterfly\\WingsDiff.png");
 	wingsL->SetMaterial(&m_zmWings);
 	wingsR->SetMaterial(&m_zmWings);
 
