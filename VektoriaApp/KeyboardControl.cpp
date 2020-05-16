@@ -10,8 +10,9 @@ KeyboardControl::~KeyboardControl() {
 
 }
 
-void KeyboardControl::Init(CGeos* collisionObjects) {
+void KeyboardControl::Init(CGeos* collisionObjects, CGeoTerrains* collisionTerrains) {
     this->collisionObjects = collisionObjects;
+    this->collisionTerrains = collisionTerrains;
 }
 
 void KeyboardControl::Tick(float fTimeDalta) {
@@ -33,25 +34,34 @@ void KeyboardControl::move(float fTimeDalta) {
     CHVector translationVector = CHVector();
 
     if (this->KeyPressed(DIK_W)) {
-        translationVector += directionCombined * fTimeDalta * KEYBOARD_SENSITIVITY;
+        translationVector += directionCombined;
     }
 
     if (this->KeyPressed(DIK_S)) {
-        translationVector += -directionCombined * fTimeDalta * KEYBOARD_SENSITIVITY;
+        translationVector += -directionCombined;
     }
 
     if (this->KeyPressed(DIK_D)) {
-        translationVector += right * fTimeDalta * KEYBOARD_SENSITIVITY;
+        translationVector += right;
     }
 
     if (this->KeyPressed(DIK_A)) {
-        translationVector += -right * fTimeDalta * KEYBOARD_SENSITIVITY;
+        translationVector += -right;
     }
 
+    translationVector *= fTimeDalta * KEYBOARD_SENSITIVITY;
+
+    CHVector nextPos = translation.GetPos() + translationVector;
+    CHitPoint terrainHitPoint;
+    collisionTerrains->GetHitpoint(nextPos.x, nextPos.z, terrainHitPoint);
+
     CRay intersectionRay = CRay(translation.GetPos(), translationVector, QUASI_ZERO, translationVector.Length());
-    CHitPoint hitPoint;
-    collisionObjects->Intersects(intersectionRay, hitPoint);
-    if (!hitPoint.m_bExistent) {
-        translation.TranslateDelta(translationVector);
-    }    
+    CHitPoint ObjectHitPoint;
+    collisionObjects->Intersects(intersectionRay, ObjectHitPoint);
+
+    if ((terrainHitPoint.m_bExistent && terrainHitPoint.m_vPos.y > nextPos.y) || ObjectHitPoint.m_bExistent) {
+        return;
+    }
+    
+    translation.TranslateDelta(translationVector);
 }

@@ -64,6 +64,7 @@ private:
   Butterfly m_zpButterfly;
 
   CGeos CollisionObjects;
+  CGeoTerrains CollsisionTerrains;
 };
 
 

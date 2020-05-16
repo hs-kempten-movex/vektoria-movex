@@ -12,7 +12,7 @@ public:
     KeyboardControl();
     ~KeyboardControl();
 
-    void Init(CGeos* collisionObjects);
+    void Init(CGeos* collisionObjects, CGeoTerrains* collisionTerrains);
 
     void Tick(float fTimeDelta);
 
@@ -25,5 +25,6 @@ private:
     void move(float fTimeDelta);
 
     CGeos* collisionObjects;
+    CGeoTerrains* collisionTerrains;
 };
 

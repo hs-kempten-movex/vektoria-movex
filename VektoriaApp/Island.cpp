@@ -147,6 +147,7 @@ Island::Island()
     m_gTerrainRock.InitFromOther(m_gTerrainOri, &m_mRock);
     m_gTerrainRockSnowy.InitFromOther(m_gTerrainOri, &m_mRockSnow);
     m_gTerrainMirror.InitFromOther(m_gTerrainOri, &m_mMirror, true);
+    
 
     //wasseroberfläche erzeugen:
     m_gWater.Init(
@@ -168,10 +169,11 @@ Island::Island()
     m_pIsland1.AddGeo(&m_gTerrainRock);
     m_pIsland1.AddGeo(&m_gTerrainRockSnowy);
     m_pIsland1.AddGeo(&m_gTerrainMirror);
-    //m_pIsland1.TranslateDelta(4000, 0, 3500);
 
-    //Terrain zu kollisionscontainer:
-    m_gsTerrain.Add(&m_gTerrainOri);
+    //collision detection
+    m_gTerrainOri.InitFromOther(m_gTerrainOri, NULL);
+    m_pIsland1.AddGeo(&m_gTerrainOri);
+    m_gTerrainOri.SetDrawingOff();
 }
 
 Island::~Island() {

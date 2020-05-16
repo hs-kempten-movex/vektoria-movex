@@ -51,15 +51,16 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 void CGame::InitPlayer()
 {
-    CollisionObjects.AddPlacementGeos(&island.m_pIsland1); //hier auskommentieren, falls es zu laggy ist
+    CollsisionTerrains.Add(&island.m_gTerrainOri);
+    CollsisionTerrains.Add(&island.m_gWater);
 
-    m_keyboard.Init(&CollisionObjects);
+    m_keyboard.Init(&CollisionObjects, &CollsisionTerrains);
 
     m_keyboard.pitch.SetMoveRange(CAABB(
         CHVector(-50000.0f, 4.0f, -50000.0f, 1.0f),
         CHVector(+50000.0f, 20000.0f, +50000.0f, 1.0f)));
 
-    m_scene.AddPlacement(&m_keyboard.translation);
+    island.m_pIsland1.AddPlacement(&m_keyboard.translation);
     m_keyboard.translation.Translate(0.0f, 300.0f, 200.0f);
 
     m_keyboard.pitch.AddPlacement(&m_zpButterfly);
