@@ -25,7 +25,7 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 	if (frTimeShifted > 0.1f && frTimeShifted < 0.9f) // Außerhalb Februar bis November
 		m_bHasLeaves = true;
 
-	if (fAge > 0.249f && fAge < 0.499f) // Im Frühling (Frühlingstagungnachtgleiche - Sommersonnwende)
+	if (frTimeShifted > 0.249f && frTimeShifted < 0.499f) // Im Frühling (Frühlingstagungnachtgleiche - Sommersonnwende)
 		m_bIsBlossoming = true;
 
 	m_fAgeStopped = fAge;
@@ -117,18 +117,29 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 		AddRule("33:K={r>0.8,(r0.8)(^24)f(r0.8)fK}{r<0.7,X}");
 		AddRule("33:K={r>0.8,(r0.8)(>25)f(r0.8)fXK}{r<0.7,X}");
 		AddRule("34:K={r>0.8,(r0.8)(<22)f(r0.8)fK}{r<0.7,X}");
-		AddRule("35:X={r>0.003,+(l0.93)(r0.95)(_0.8)(>19)f(r0.95)(>9)f[(l0.9)(<4)(r0.9)X][°(l0.95)(r0.5)(>15)X]}{r<0.0031,Y}");
-		AddRule("15:X={r>0.003,+(l0.93)(r0.95)(_0.8)(<15)f(r0.95)(<3)f[(l0.85)(r0.8)(^15)f(^17)X][°(l0.89)(^12)f(r0.8)f(v10)(r0.8)X]}{r<0.0031,Y}");
-		AddRule("15:X={r>0.003,+(l0.93)(r0.95)(_0.8)(v18)f(r0.95)(v12)f[(l0.97)(r0.8)(<5)(^5)(v8)fX]}{r<0.0031,Y}");
-		AddRule("15:X={r>0.003,+(r0.95)(_0.8)(>13)f(r0.95)f[(l0.97)(^10)(r0.92)fX][(l0.52)(r0.5)(<17)X]}{r<0.0031,Y}");
-		AddRule("10:X={r>0.003,+(r0.95)(_0.8)(^5)f(r0.95)fX}{r<0.0031,Y}");
-		AddRule("10:X={r>0.003,+(r0.95)(_0.8)(<11)f(r0.95)f[(l0.97)(<10)(r0.92)fX][(l0.52)(r0.5)(^17)X]}{r<0.0031,Y}");
-		// Äste mit Blüten zeichnen alt
-		//AddRule("Y=(l0.05)(<15)f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]+f[(<90)fB]");
+		AddRule("35:X={r>0.004,+(l0.93)(r0.95)(_0.8)(>19)f(r0.95)(>9)f[(l0.9)(<4)(r0.9)X][°(l0.95)(r0.5)(>15)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(<15)f(r0.95)(<3)f[(l0.85)(r0.8)(^15)f(^17)X][°(l0.89)(^12)f(r0.8)f(v10)(r0.8)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(v18)f(r0.95)(v12)f[(l0.97)(r0.8)(<5)(^5)(v8)fX]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(r0.95)(_0.8)(>13)f(r0.95)f[(l0.97)(^10)(r0.92)fX][(l0.52)(r0.5)(<17)X]}{r<0.0041,Y}");
+		AddRule("10:X={r>0.004,+(r0.95)(_0.8)(^5)f(r0.95)f[(l0.85)(r0.8)(^25)f(^27)X][°(l0.89)(^22)f(r0.8)f(v20)(r0.8)X]}{r<0.0041,Y}");
+		AddRule("10:X={r>0.004,+(r0.95)(_0.8)(<11)f(r0.95)f[(l0.97)(<10)(r0.92)fX][(l0.52)(r0.5)(^17)X]}{r<0.0041,Y}");
 
-		AddRule("Y={b<10,(l0.7)f[(<30)fB][(>30)fB][(v30)fB][(^30)fB]Y}{b>9,B}");
-		// Blüten zeichnen 
-		AddRule("B=(r10.0)[<b][^b][>b][vb](r0.5)(l0.7)[(<20.2)c][(^18.4)c][(>20.4)c][(v22.4)c](+40.0)[(<10.2)c][(^11.4)c][(>14.4)c][(v12.4)c]");
+		// Äste mit Blüten zeichnen
+		/*AddRule("Y={r>0.003,(l0.7)(r0.9)+f[(<54)fB][(>54)fB][(v54)fB][(^54)fB]fY}{r<0.0031,}");*/
+
+		// Ist in Blütezeit? 
+		if (m_bIsBlossoming) {
+			// Äste mit Blüten zeichnen
+			AddRule("Y={r>0.003,(l0.7)(r0.9)+f[(<54)fB][(>54)fB][(v54)fB][(^54)fB]fY}{r<0.0031,}");
+			// Blüten zeichnen 
+			AddRule("B=(l0.001)(r30)[<b][^b][>b][vb](r0.5)(l0.7)[(<20.2)c][(^18.4)c][(>20.4)c][(v22.4)c](+40.0)[(<10.2)c][(^11.4)c][(>14.4)c][(v12.4)c]");
+		}
+		else {
+			// Äste mit Blättern zeichnen
+			AddRule("Y={r>0.003,(l0.7)(r0.9)+f[(<54)lB][(>54)lB][(v54)lB][(^54)lB]fY}{r<0.0031,}");
+			AddRule("B=(l0.001)(r30)[<l][^l][>l][vl]");
+		}
+
 
 	}
 	else
@@ -137,12 +148,13 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 		AddRule("33:K={r>0.8,(r0.8)(^24)f(r0.8)fK}{r<0.7,X}");
 		AddRule("33:K={r>0.8,(r0.8)(>25)f(r0.8)fXK}{r<0.7,X}");
 		AddRule("34:K={r>0.8,(r0.8)(<22)f(r0.8)fK}{r<0.7,X}");
-		AddRule("35:X={b<12,+(l0.93)(r0.95)(_0.8)(>19)f(r0.95)(>9)f[(l0.9)(<4)(r0.9)X][°(l0.95)(r0.5)(>15)X]}{b=12,Y}");
-		AddRule("15:X={b<12,+(l0.93)(r0.95)(_0.8)(<15)f(r0.95)(<3)f[(l0.85)(r0.8)(^15)f(^17)X][°(l0.89)(^12)f(r0.8)f(v10)(r0.8)XY]}{b=12,Y}");
-		AddRule("15:X={b<12,+(l0.93)(r0.95)(_0.8)(v18)f(r0.95)(v12)f[(l0.97)(r0.8)(<5)(^5)(v8)fXY]}{b=12,Y}");
-		AddRule("15:X={b<12,+(r0.95)(_0.8)(>13)f(r0.95)f[(l0.97)(^10)(r0.92)fXY][(l0.52)(r0.5)(<17)X]}{b=12,Y}");
-		AddRule("10:X={b<12,+(r0.95)(_0.8)(^5)f(r0.95)fXY}{b=12,Y}");
-		AddRule("10:X={b<12,+(r0.95)(_0.8)(<11)f(r0.95)f[(l0.97)(<10)(r0.92)fXY][(l0.52)(r0.5)(^17)X]}{b=12,Y}");
+		AddRule("35:X={r>0.004,+(l0.93)(r0.95)(_0.8)(>19)f(r0.95)(>9)f[(l0.9)(<4)(r0.9)X][°(l0.95)(r0.5)(>15)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(<15)f(r0.95)(<3)f[(l0.85)(r0.8)(^15)f(^17)X][°(l0.89)(^12)f(r0.8)f(v10)(r0.8)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(v18)f(r0.95)(v12)f[(l0.97)(r0.8)(<5)(^5)(v8)fX]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(r0.95)(_0.8)(>13)f(r0.95)f[(l0.97)(^10)(r0.92)fX][(l0.52)(r0.5)(<17)X]}{r<0.0041,Y}");
+		AddRule("10:X={r>0.004,+(r0.95)(_0.8)(^5)f(r0.95)fX}{r<0.0041,Y}");
+		AddRule("10:X={r>0.004,+(r0.95)(_0.8)(<11)f(r0.95)f[(l0.97)(<10)(r0.92)fX][(l0.52)(r0.5)(^17)X]}{r<0.0041,Y}");
+
 	}
 
 	m_iIterations += 23;
@@ -236,68 +248,37 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 		m_zgLeafMain.SetMiddle(CHVector(0.0f, 0.03f, 0.5f, 1.0f));
 		if (uLoD == 0)
 		{
-			CHVector avOuter[28];
+			CHVector avOuter[11];
 
 			//Stiel:
 			avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
 			avOuter[1] = CHVector(0.020f, 0.0f, 1.0f, 1.0f);
-			avOuter[2] = CHVector(0.015f, 0.0f, 0.90f, 1.0f);
+			avOuter[2] = CHVector(0.02f, 0.0f, 0.79f, 1.0f);
 
-			//Ausbuchtung Z1:
-			avOuter[3] = CHVector(0.04f, 0.0f, 0.90f, 1.0f);
-			avOuter[4] = CHVector(0.03f, 0.0f, 0.90f, 1.0f);
-			avOuter[5] = CHVector(0.08f, 0.0f, 0.83f, 1.0f);
+			//Rest:
+			avOuter[3] = CHVector(0.13f, 0.0f, 0.63f, 1.0f);
+			avOuter[4] = CHVector(0.175f, 0.0f, 0.44f, 1.0f);
+			avOuter[5] = CHVector(0.175f, 0.0f, 0.39f, 1.0f);
+			avOuter[6] = CHVector(0.155f, 0.0f, 0.32f, 1.0f);
+			avOuter[7] = CHVector(0.08f, 0.0f, 0.18f, 1.0f);
+			avOuter[8] = CHVector(0.04f, 0.0f, 0.14f, 1.0f);
+			avOuter[9] = CHVector(0.025f, 0.0f, 0.06f, 1.0f);
+			avOuter[10] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
 
-			// Z2:
-			avOuter[6] = CHVector(0.15f, 0.0f, 0.85f, 1.0f);
-			avOuter[7] = CHVector(0.13f, 0.0f, 0.85f, 1.0f);
 
 
-			// Z3:
-			avOuter[8] = CHVector(0.2f, 0.0f, 0.82f, 1.0f);
-			avOuter[9] = CHVector(0.18f, 0.0f, 0.82f, 1.0f);
 
-			// Z4:
-			avOuter[10] = CHVector(0.3f, 0.0f, 0.8f, 1.0f);
-			avOuter[11] = CHVector(0.28f, 0.0f, 0.8f, 1.0f);
-
-			// Z5:
-			avOuter[12] = CHVector(0.4f, 0.0f, 0.7f, 1.0f);
-			avOuter[13] = CHVector(0.38f, 0.0f, 0.7f, 1.0f);
-
-			// Z6:
-			avOuter[14] = CHVector(0.45f, 0.0f, 0.6f, 1.0f);
-			avOuter[15] = CHVector(0.43f, 0.0f, 0.6f, 1.0f);
-
-			// Z7:
-			avOuter[16] = CHVector(0.48f, 0.0f, 0.5f, 1.0f);
-			avOuter[17] = CHVector(0.46f, 0.0f, 0.49f, 1.0f);
-
-			// Z8:
-			avOuter[18] = CHVector(0.45f, 0.0f, 0.4f, 1.0f);
-			avOuter[19] = CHVector(0.43f, 0.0f, 0.41f, 1.0f);
-
-			// Z9:
-			avOuter[20] = CHVector(0.38f, 0.0f, 0.3f, 1.0f);
-			avOuter[21] = CHVector(0.36f, 0.0f, 0.31f, 1.0f);
-
-			// Z10:
-			avOuter[22] = CHVector(0.27f, 0.0f, 0.2f, 1.0f);
-			avOuter[23] = CHVector(0.25f, 0.0f, 0.22f, 1.0f);
-
-			// Z11:
-			avOuter[24] = CHVector(0.12f, 0.0f, 0.12f, 1.0f);
-			avOuter[25] = CHVector(0.10f, 0.0f, 0.14f, 1.0f);
-
-			avOuter[26] = CHVector(0.02f, 0.0f, 0.05f, 1.0f);
-			avOuter[27] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
-
-			for (int i = 0; i < 28; i++)
+			for (int i = 0; i < 11; i++)
 				m_zgLeafMain.AddOuter(&avOuter[i]);
 
-			m_zgLeafMain.Init(&m_zmLeaf, true, true);
+			SetMaxLeafBending(0.02f);
+			SetMaxLeafFolding(0.02f);
+			m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
 			SetGeoLeaf(&m_zgLeafMain);
 
+			CHMat scaling;
+			scaling.Scale(2.0f);
+			m_zgLeafMain.Transform(scaling);
 
 
 		}
@@ -327,13 +308,22 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 			for (int i = 0; i < 15; i++)
 				m_zgLeafMain.AddOuter(&avOuter[i]);
 
-			m_zgLeafMain.Init(&m_zmLeaf, true, true);
+			SetMaxLeafBending(0.02f);
+			SetMaxLeafFolding(0.02f);
+			m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
+
+			CHMat mScale;
+			mScale.Scale(2.0f);
+			m_zgLeafMain.Transform(mScale);
+			SetLeafSkipFactor(4);
+
 			SetGeoLeaf(&m_zgLeafMain);
+
 		}
 		else
 		{
 			CHVector avOuter[5];
-			avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
+
 			avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
 			avOuter[1] = CHVector(0.5f, 0.0f, 1.0f, 1.0f);
 			avOuter[2] = CHVector(0.5f, 0.0f, 0.5f, 1.0f);
@@ -343,7 +333,15 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 				m_zgLeafMain.AddOuter(&avOuter[i]);
 
 
-			m_zgLeafMain.Init(&m_zmLeaf, true, true);
+			SetMaxLeafBending(0.02f);
+			SetMaxLeafFolding(0.02f);
+			m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
+
+			CHMat mScale;
+			mScale.Scale((float)uLoD*1.5f);
+			m_zgLeafMain.Transform(mScale);
+			SetLeafSkipFactor(uLoD * 4);
+
 			SetGeoLeaf(&m_zgLeafMain);
 
 
@@ -358,7 +356,13 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 		mScale.Scale(fLeafScaling);
 		m_zgLeafMain.Transform(mScale);
 
-		m_zmLeaf.LoadPreset("LeafBirch");
+		m_zmLeaf.MakeTextureDiffuse("textures\\RosebloomRealLeaf.png");
+		m_zmLeaf.MakeTextureBump("textures\\RosebloomRealLeaf_n.png");
+		m_zmLeaf.MakeTextureHeight("textures\\RosebloomRealLeaf_h.png");
+		m_zmLeaf.MakeTextureSpecular("textures\\RosebloomRealLeaf_s.png");
+
+		m_zmLeaf.SetSpecularStrength(0.01f);
+
 		/*
 
 		// Nicht löschen!
@@ -382,9 +386,9 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 
 		SetMaterialLeaf(&m_zmLeaf);
 
-		/*
 
-		m_zmLeaf.MakeTextureDiffuse(".\..\..\Lib\Materials\LeafBirch\LeafBirchD.jpg");
+
+		/*m_zmLeaf.MakeTextureDiffuse(".\..\..\Lib\Materials\LeafBirch\LeafBirchD.jpg");
 		m_zmLeaf.MakeTextureThickness(".\..\..\Lib\Materials\LeafBirch\LeafBirchH.jpg", CColor(0.3f, 1.0f, 0.2f));
 		m_zmLeaf.MakeTextureSpecular(".\..\..\Lib\Materials\LeafBirch\LeafBirchS.jpg");
 		m_zmLeaf.MakeTextureBump(".\..\..\Lib\Materials\LeafBirch\LeafBirchB.jpg");
@@ -392,72 +396,131 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 
 		m_zmLeaf.SetRimLightStrength(0.1f);
 		m_zmLeaf.SetSubSurfaceColor(CColor(0.3, 1.0f, 0.3f));
-		m_zmLeaf.SavePreset("LeafBirch");
-		*/
+		m_zmLeaf.SavePreset("LeafBirch");*/
+
 
 		// Blütenblatt
+		if (m_bIsBlossoming) {
+			if (uLoD == 0) {
+
+				m_zgBlossomMain.SetMiddle(CHVector(0.0f, 0.03f, 0.5f, 1.0f));
+				CHVector avOuter[11];
+				avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
+				avOuter[1] = CHVector(0.03f, 0.0f, 0.99f, 1.0f);
+				avOuter[2] = CHVector(0.1f, 0.0f, 0.89f, 1.0f);
+				avOuter[3] = CHVector(0.195f, 0.0f, 0.77f, 1.0f);
+				avOuter[4] = CHVector(0.26f, 0.0f, 0.65f, 1.0f);
+				avOuter[5] = CHVector(0.32f, 0.0f, 0.49f, 1.0f);
+				avOuter[6] = CHVector(0.325f, 0.0f, 0.35f, 1.0f);
+				avOuter[7] = CHVector(0.3f, 0.0f, 0.29f, 1.0f);
+				avOuter[8] = CHVector(0.205f, 0.0f, 0.055f, 1.0f);
+				avOuter[9] = CHVector(0.1f, 0.0f, 0.005f, 1.0f);
+				avOuter[10] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
 
 
-		m_zgBlossomMain.SetMiddle(CHVector(0.0f, 0.03f, 0.5f, 1.0f));
-		CHVector avOuter[10];
-		avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
-		avOuter[1] = CHVector(0.03f, 0.0f, 0.99f, 1.0f);
-		avOuter[2] = CHVector(0.1f, 0.0f, 0.89f, 1.0f);
-		avOuter[3] = CHVector(0.195f, 0.0f, 0.77f, 1.0f);
-		avOuter[4] = CHVector(0.26f, 0.0f, 0.65f, 1.0f);
-		avOuter[5] = CHVector(0.32f, 0.0f, 0.49f, 1.0f);
-		avOuter[6] = CHVector(0.325f, 0.0f, 0.35f, 1.0f);
-		avOuter[7] = CHVector(0.3f, 0.0f, 0.29f, 1.0f);
-		avOuter[8] = CHVector(0.205f, 0.0f, 0.055f, 1.0f);
-		avOuter[9] = CHVector(0.1f, 0.0f, 0.005f, 1.0f);
-		avOuter[10] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
+
+				for (int i = 0; i < 11; i++)
+					m_zgBlossomMain.AddOuter(&avOuter[i]);
+				SetMaxBlossomBending(-0.01f);
+				SetMaxBlossomFolding(0.01f);
+
+				m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.002f);
+				SetGeoBlossom(&m_zgBlossomMain);
+				CHMat blossomscaling;
+				blossomscaling.Scale(2.0f);
+				m_zgBlossomMain.Transform(blossomscaling);
+
+			}
+			else if (uLoD < 2) {
+				m_zgBlossomMain.SetMiddle(CHVector(0.0f, 0.03f, 0.5f, 1.0f));
+				CHVector avOuter[6];
+				avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
+				avOuter[1] = CHVector(0.03f, 0.0f, 0.99f, 1.0f);
+				avOuter[2] = CHVector(0.26f, 0.0f, 0.65f, 1.0f);
+				avOuter[3] = CHVector(0.3f, 0.0f, 0.29f, 1.0f);
+				avOuter[4] = CHVector(0.205f, 0.0f, 0.055f, 1.0f);
+				avOuter[5] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
 
 
 
-		for (int i = 0; i < 10; i++)
-			m_zgBlossomMain.AddOuter(&avOuter[i]);
-		SetMaxBlossomBending(0.05f);
-		SetMaxBlossomFolding(0.01f);
-		m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.02f);
-		SetGeoBlossom(&m_zgBlossomMain);
+				for (int i = 0; i < 6; i++)
+					m_zgBlossomMain.AddOuter(&avOuter[i]);
+				SetMaxBlossomBending(-0.01f);
+				SetMaxBlossomFolding(0.01f);
+
+				m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.002f);
+				SetGeoBlossom(&m_zgBlossomMain);
+			}
+			else
+			{
+				m_zgBlossomMain.SetMiddle(CHVector(0.0f, 0.03f, 0.5f, 1.0f));
+				CHVector avOuter[6];
+				avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
+				avOuter[1] = CHVector(0.03f, 0.0f, 0.99f, 1.0f);
+				avOuter[2] = CHVector(0.26f, 0.0f, 0.65f, 1.0f);
+				avOuter[3] = CHVector(0.3f, 0.0f, 0.29f, 1.0f);
+				avOuter[4] = CHVector(0.205f, 0.0f, 0.055f, 1.0f);
+				avOuter[5] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
 
 
-		/*CHMat blossomscaling;
-		blossomscaling.Scale(2.5f);
-		m_zgBlossomMain.Transform(blossomscaling);*/
 
-		// Stamen
+				for (int i = 0; i < 6; i++)
+					m_zgBlossomMain.AddOuter(&avOuter[i]);
+				SetMaxBlossomBending(-0.01f);
+				SetMaxBlossomFolding(0.01f);
 
-		m_zgStamenMain.SetMiddle(CHVector(0.0f, 0.0f, 0.9f, 1.0f));
-		if (uLoD == 0)
-		{
-			CHVector avOuter[7];
-			//Stiel:
-			avOuter[0] = CHVector(0.00f, 0.0f, 1.0f, 1.0f);
-			avOuter[1] = CHVector(0.03f, 0.0f, 1.0f, 1.0f);
-			avOuter[2] = CHVector(0.03f, 0.0f, 0.2f, 1.0f);
+				m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.002f);
+				SetGeoBlossom(&m_zgBlossomMain);
 
-			//Staubstempel:
-			avOuter[3] = CHVector(0.20f, 0.0f, 0.18f, 1.0f);
-			avOuter[4] = CHVector(0.20f, 0.0f, 0.02f, 1.0f);
-			avOuter[5] = CHVector(0.07f, 0.0f, 0.00f, 1.0f);
-			avOuter[6] = CHVector(0.00f, 0.0f, 0.00f, 1.0f);
+				CHMat blossomscaling;
+				blossomscaling.Scale((float)uLoD * 2);
+				m_zgBlossomMain.Transform(blossomscaling);
 
-			for (int i = 0; i < 7; i++)
-				m_zgStamenMain.AddOuter(&avOuter[i]);
+				SetBlossomSkipFactor(uLoD * 2);
 
-			m_zgStamenMain.Init(&m_zmBlossom, true, true, -0.0f, 0.0f, 0.0f);
-			// m_zgBlossomMain.SetAngleUp(0.4f);
-			SetGeoStamen(&m_zgStamenMain);
+			}
+
+			// Zufälliges Hellermachen der Textur
+			CRandom Colorscaling;
+			m_zmBlossom.ScaleDelta(1.0f + Colorscaling.RandFr());
+
+			/*CHMat blossomscaling;
+			blossomscaling.Scale(2.5f);
+			m_zgBlossomMain.Transform(blossomscaling);*/
+
+			// Stamen
+
+			m_zgStamenMain.SetMiddle(CHVector(0.0f, 0.0f, 0.9f, 1.0f));
+			if (uLoD == 0)
+			{
+				CHVector avOuter[7];
+				//Stiel:
+				avOuter[0] = CHVector(0.00f, 0.0f, 1.0f, 1.0f);
+				avOuter[1] = CHVector(0.03f, 0.0f, 1.0f, 1.0f);
+				avOuter[2] = CHVector(0.03f, 0.0f, 0.2f, 1.0f);
+
+				//Staubstempel:
+				avOuter[3] = CHVector(0.20f, 0.0f, 0.18f, 1.0f);
+				avOuter[4] = CHVector(0.20f, 0.0f, 0.02f, 1.0f);
+				avOuter[5] = CHVector(0.07f, 0.0f, 0.00f, 1.0f);
+				avOuter[6] = CHVector(0.00f, 0.0f, 0.00f, 1.0f);
+
+				for (int i = 0; i < 7; i++)
+					m_zgStamenMain.AddOuter(&avOuter[i]);
+
+				m_zgStamenMain.Init(&m_zmBlossom, true, true, -0.0f, 0.0f, 0.0f);
+				// m_zgBlossomMain.SetAngleUp(0.4f);
+				SetGeoStamen(&m_zgStamenMain);
+			}
+
+
+
+
 		}
 
-
-
-
+		m_zmBlossom.MakeTextureDiffuse("textures\\roseblossomfrontback.png");
+		m_zgBlossomMain.SetMaterial(&m_zmBlossom);
 	}
-
-	m_zmBlossom.MakeTextureDiffuse("textures\\roseblossomfrontback.png");
-	m_zgBlossomMain.SetMaterial(&m_zmBlossom);
 	m_zmBark.LoadPreset("BarkBirch");
 	SetMaterial(&m_zmBark);
 

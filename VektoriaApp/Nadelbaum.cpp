@@ -293,7 +293,7 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 
 		SetMaxNeedleBending(0.08f);
 		SetMaxNeedleFolding(1.3f);
-		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0f);
+		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
 		SetGeoLeaf(&m_zgLeafMain);
 		CHMat mScale;
 		mScale.Scale(3.5f);
