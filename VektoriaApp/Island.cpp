@@ -71,7 +71,7 @@ Island::Island()
     m_mWater.MakeTextureHaze("textures\\waterHaze.jpg");
     m_mWater.SetPostprocessingOn();
     m_mWater.SetHazeOn();
-    m_mWater.SetHazeStrength(1.8);
+    m_mWater.SetHazeStrength(1.5);
 
     //m_mSand.LoadPreset("Sand");
     m_mSand.MakeTextureDiffuse("textures\\Sand_basecolor.png");

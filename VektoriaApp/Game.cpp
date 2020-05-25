@@ -15,6 +15,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_root.Init(psplash);
 	m_frame.Init(hwnd, procOS);
 	m_viewport.InitFull(&m_camera);
+	m_viewport.SetHazeOn();
 	m_root.AddFrame(&m_frame);
 	m_frame.AddViewport(&m_viewport);
 	m_frame.AddDeviceKeyboard(&m_keyboard);
