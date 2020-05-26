@@ -104,10 +104,9 @@ Island::Island()
     m_mRock.SetBumpStrength(2.0);
     m_mRock.MakeTextureHeight("textures\\Rock_height.png");
     m_mRock.SetHeightStrength(1.0);
-    m_mRock.MakeTextureSpecular("textures\\Ground_specular.jpg");
+    m_mRock.MakeTextureSpecular("textures\\Rock_specular.png");
 
     m_mRockSnow.LoadPreset("RockSnowy");
-    m_mMirror.LoadPreset("RockMossy");
 
     m_mGround.MakeTextureDiffuse("textures\\Ground_basecolor.png");
     m_mGround.MakeTextureBump("textures\\Ground_normal.png");
@@ -116,6 +115,7 @@ Island::Island()
     m_mGround.SetHeightStrength(1.0);
     m_mGround.MakeTextureSpecular("textures\\Ground_specular.jpg");
 
+    m_mMirror.LoadPreset("RockMossy");
 
     //blob und perlinnoise mischen
     m_pblob_rest = new CBlob(
