@@ -75,7 +75,7 @@ Island::Island()
 
     //m_mSand.LoadPreset("Sand");
     m_mSand.MakeTextureDiffuse("textures\\Sand_basecolor.png");
-    m_mSand.MakeTextureBump("textures\\Sand_normal.jpg");
+    m_mSand.MakeTextureBump("textures\\Sand_normal.png");
     m_mSand.SetBumpStrength(2.0);
     m_mSand.MakeTextureHeight("textures\\Sand_height.png");
     m_mSand.SetHeightStrength(1.0);
@@ -90,7 +90,7 @@ Island::Island()
 
     //m_mSandMossy.LoadPreset("SandMossy");
     m_mSandMossy.MakeTextureDiffuse("textures\\SandVeryMossy_basecolor.png");
-    m_mSandMossy.MakeTextureBump("textures\\SandVeryMossy_normal.jpg");
+    m_mSandMossy.MakeTextureBump("textures\\SandVeryMossy_normal.png");
     m_mSandMossy.SetBumpStrength(2.0);
     m_mSandMossy.MakeTextureHeight("textures\\SandVeryMossy_height.png");
     m_mSandMossy.SetHeightStrength(1.0);
