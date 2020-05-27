@@ -99,12 +99,12 @@ Island::Island()
     m_mRockMossy.LoadPreset("RockMossy");
 
     //m_mRock.LoadPreset("Rock");
-    m_mRock.MakeTextureDiffuse("textures\\Rock_basecolor.png");
-    m_mRock.MakeTextureBump("textures\\Rock_normal.png");
+    m_mRock.MakeTextureDiffuse("textures\\Felsen_basecolor.png");
+    m_mRock.MakeTextureBump("textures\\Felsen_normal.png");
     m_mRock.SetBumpStrength(2.0);
-    m_mRock.MakeTextureHeight("textures\\Rock_height.png");
+    m_mRock.MakeTextureHeight("textures\\Felsen_height.png");
     m_mRock.SetHeightStrength(1.0);
-    m_mRock.MakeTextureSpecular("textures\\Rock_specular.png");
+    m_mRock.MakeTextureSpecular("textures\\Felsen_specular.png");
 
     m_mRockSnow.LoadPreset("RockSnowy");
 
