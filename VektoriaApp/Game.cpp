@@ -36,7 +36,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
   
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
-  m_scene.SetFrustumCullingOn();
+	m_scene.SetFrustumCullingOn();
 	m_camera.Init(HALFPI,					// 45° Kameraöffnungswinkel
 	0.3, 170000.0f,							// 30cm bis 170 km Sicht
 	true,									// BVH-Schattenfrustumcasting an!
@@ -47,7 +47,11 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zpBlume.AddGeo(BlumeAlla);
 	m_zpBlume.TranslateX(490.0f);
 
-  InitPlayer();
+	InitPlayer();
+
+	// WALD HIER //
+	wald = new Wald(island.getSandLessMossyTerrain());
+	
 }
 
 void CGame::InitPlayer()

@@ -26,6 +26,7 @@
 #include "KeyboardControl.h"
 #include "GeoBioPoppy.h"
 #include "Butterfly.h"
+#include "wald.h"
 
 using namespace Vektoria;
 
@@ -45,7 +46,7 @@ public:
 	CFrame m_frame;
 	CViewport m_viewport;
 	CCamera m_camera;
-  CPlacement m_zpCamera;
+	CPlacement m_zpCamera;
 	KeyboardControl m_keyboard;
 
 	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash);	// Wird zu Begin einmal aufgerufen
@@ -53,18 +54,20 @@ public:
 	void Fini();																				// Wird am Ende einmal aufgerufen
 
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
-  void InitPlayer();
+	void InitPlayer();
 private:
-  Island island;
-  CherryBlossomTree tree;
+	Island island;
+	CherryBlossomTree tree;
 
-  CPlacement m_zpLSystem;
+	CPlacement m_zpLSystem;
 	CPlacement m_zpBlume;
 	CMaterial m_zmBlossom;																		// Material für Mohnblume
-  Butterfly m_zpButterfly;
+	Butterfly m_zpButterfly;
 
-  CGeos CollisionObjects;
-  CGeoTerrains CollsisionTerrains;
+	Wald* wald;
+
+	CGeos CollisionObjects;
+	CGeoTerrains CollsisionTerrains;
 };
 
 

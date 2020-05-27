@@ -26,6 +26,8 @@ public:
 
     CGeoTerrain m_gTerrainOri; //Gesamtes Terrain
     CGeoTerrain m_gWater; //wasserausschnitt
+
+	CGeoTerrain getSandLessMossyTerrain(); //returns the SandLessMossy CGeoTerrain
 private:
     CGeoTerrain m_gTerrain; //inselausschnitt
     CGeoTerrain m_gTerrainLow;

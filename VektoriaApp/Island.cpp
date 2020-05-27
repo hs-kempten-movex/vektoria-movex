@@ -190,3 +190,9 @@ Island::~Island() {
     delete m_pblob2;
     delete m_pblob_rest;
 }
+
+//returns the SandLessMossy CGeoTerrain
+CGeoTerrain Island::getSandLessMossyTerrain()
+{
+	return m_gTerrainSandLessMossy;
+}
