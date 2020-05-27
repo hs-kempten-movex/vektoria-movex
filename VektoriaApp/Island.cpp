@@ -106,7 +106,14 @@ Island::Island()
     m_mRock.SetHeightStrength(1.0);
     m_mRock.MakeTextureSpecular("textures\\Felsen_specular.png");
 
-    m_mRockSnow.LoadPreset("RockSnowy");
+    //m_mRockSnow.LoadPreset("RockSnowy");
+    m_mRockSnow.MakeTextureDiffuse("textures\\Snow_basecolor.png");
+    m_mRockSnow.MakeTextureBump("textures\\Snow_normal.png");
+    m_mRockSnow.SetBumpStrength(2.0);
+    m_mRockSnow.MakeTextureHeight("textures\\Snow_height.png");
+    m_mRockSnow.SetHeightStrength(2.0);
+    m_mRockSnow.MakeTextureSpecular("textures\\Felsen_specular.png");
+    m_mRockSnow.SetSpecularStrength(2.0);
 
     m_mGround.MakeTextureDiffuse("textures\\Ground_basecolor.png");
     m_mGround.MakeTextureBump("textures\\Ground_normal.png");
