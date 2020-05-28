@@ -7,13 +7,7 @@ void Wald::translateTreeToHeight(float x, float z, CPlacement* baum, CGeoTerrain
 	baum->TranslateYDelta(terrain->GetHeight(x, z));
 }
 
-//todo
-//bäume scalen x2 / x3
-//cluster klasse
-//wald randomizen
-//more poopys
-//baum hitboxen 
-//more more...
+
 
 Wald::Wald(CGeoTerrain * terrain)
 {
@@ -89,8 +83,6 @@ Wald::Wald(CGeoTerrain * terrain)
 	//m_pBaumCluster3.AddPlacement(&m_pBaum2);
 	//m_pBaumCluster3.AddPlacement(&m_pBaum3);
 
-
-
 	m_pBaum1.ScaleDelta(3.0f);
 	m_pBaum2.ScaleDelta(3.0f);
 	m_pBaum3.ScaleDelta(3.0f);
@@ -101,6 +93,7 @@ Wald::Wald(CGeoTerrain * terrain)
 	m_pBaum8.ScaleDelta(3.0f);
 	m_pBaum9.ScaleDelta(3.0f);
 	m_pBaum10.ScaleDelta(3.0f);
+
 	//BaumCluster an den Wald hängen
 	this->AddPlacement(&m_pBaumCluster1);
 	//this->AddPlacement(&m_pBaumCluster2);
