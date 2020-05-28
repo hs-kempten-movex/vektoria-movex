@@ -22,7 +22,6 @@
 
 #include "Vektoria\Root.h"
 #include "Island.h"
-#include "CherryBlossomTree.h"
 #include "KeyboardControl.h"
 #include "GeoBioPoppy.h"
 #include "Butterfly.h"
@@ -57,14 +56,13 @@ public:
 	void InitPlayer();
 private:
 	Island island;
-	CherryBlossomTree tree;
 
 	CPlacement m_zpLSystem;
 	CPlacement m_zpBlume;
 	CMaterial m_zmBlossom;																		// Material für Mohnblume
 	Butterfly m_zpButterfly;
 
-	Wald* wald;
+	Wald wald = Wald(&island.m_gTerrainOri);;
 
 	CGeos CollisionObjects;
 	CGeoTerrains CollsisionTerrains;

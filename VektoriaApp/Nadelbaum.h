@@ -5,7 +5,6 @@ class Nadelbaum :
 	public CGeoBio
 {
 public:
-
 	Nadelbaum();
 	~Nadelbaum();
 	float GetOptimalLoDMax(float fAge, unsigned int uLoD);

@@ -27,18 +27,16 @@ public:
     CGeoTerrain m_gTerrainOri; //Gesamtes Terrain
     CGeoTerrain m_gWater; //wasserausschnitt
 
-	CGeoTerrain getSandLessMossyTerrain(); //returns the SandLessMossy CGeoTerrain
-private:
+    CGeoTerrain m_gTerrainSandLessMossy;
     CGeoTerrain m_gTerrain; //inselausschnitt
     CGeoTerrain m_gTerrainLow;
     CGeoTerrain m_gTerrainSand; //Sandausschnitt
-    CGeoTerrain m_gTerrainSandLessMossy;
     CGeoTerrain m_gTerrainSandMossy;
     CGeoTerrain m_gTerrainRockMossy;
     CGeoTerrain m_gTerrainRock;
     CGeoTerrain m_gTerrainRockSnowy;
     CGeoTerrain m_gTerrainMirror;
-
+private:
     CPerlin * m_pperlin = nullptr; //Perlin-Noise
 
     CBlob * m_pblob1 = nullptr; //Erhebung aus dem meer

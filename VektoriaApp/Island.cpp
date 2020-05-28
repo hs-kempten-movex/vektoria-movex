@@ -166,7 +166,7 @@ Island::Island()
         500.0f,			//500 mal wiederholen
         500.0f);		//in jeder Richtung
 
-      //Geos an placement hängen:
+    //Geos an placement hängen:
     //m_pIsland1.AddGeo(&m_gTerrain);
     m_pIsland1.AddGeo(&m_gTerrainLow);
     m_pIsland1.AddGeo(&m_gWater);
@@ -189,10 +189,4 @@ Island::~Island() {
     delete m_pblob1;
     delete m_pblob2;
     delete m_pblob_rest;
-}
-
-//returns the SandLessMossy CGeoTerrain
-CGeoTerrain Island::getSandLessMossyTerrain()
-{
-	return m_gTerrainSandLessMossy;
 }

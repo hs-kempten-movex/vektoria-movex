@@ -24,13 +24,13 @@ private:
 	CPlacement m_pBaumCluster2;
 	CPlacement m_pBaumCluster3;
 
-	void translateTreeByHeight(float x, float z, CPlacement baum, CGeoTerrain terrain);
+	void translateTreeByHeight(float x, float z, CPlacement* baum, CGeoTerrain* terrain);
 	//cherrytree zeug
 	//CPlacement m_zpLSystem; 
-	CherryBlossomTree m_CBTBaum;
+	CherryBlossomTree * m_CBTBaum = new CherryBlossomTree();
 
 public:
-	Wald(CGeoTerrain terrain);
+	Wald(CGeoTerrain * terrain);
 	~Wald();
 };
 

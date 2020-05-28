@@ -1,3 +1,4 @@
+
 #include "Game.h"
 #include <iostream>
 
@@ -31,7 +32,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_scene.AddPlacement(&island.m_pIsland1);
 	island.m_pIsland1.AddPlacement(&m_zpLSystem);
 	island.m_pIsland1.AddPlacement(&m_zpBlume);
-	m_zpLSystem.AddGeo(&tree);
 	m_zpLSystem.TranslateX(500.0f);
   
 	// Initialisiere die Kamera mit Outdoor-BVH-
@@ -50,8 +50,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	InitPlayer();
 
 	// WALD HIER //
-	wald = new Wald(island.getSandLessMossyTerrain());
-	
+	island.m_pIsland1.AddPlacement(&wald);
 }
 
 void CGame::InitPlayer()
