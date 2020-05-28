@@ -115,30 +115,30 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 	if (m_bHasLeaves)
 	{
 		SetAxiom("K");
-		AddRule("33:K={r>0.8,(r0.8)(^24)f(r0.8)fK}{r<0.7,X}");
-		AddRule("33:K={r>0.8,(r0.8)(>25)f(r0.8)fXK}{r<0.7,X}");
-		AddRule("34:K={r>0.8,(r0.8)(<22)f(r0.8)fK}{r<0.7,X}");
-		AddRule("35:X={r>0.004,+(l0.93)(r0.95)(_0.8)(>19)f(r0.95)(>9)f[(l0.9)(<4)(r0.9)X][°(l0.95)(r0.5)(>15)X]}{r<0.0041,Y}");
-		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(<15)f(r0.95)(<3)f[(l0.85)(r0.8)(^15)f(^17)X][°(l0.89)(^12)f(r0.8)f(v10)(r0.8)X]}{r<0.0041,Y}");
-		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(v18)f(r0.95)(v12)f[(l0.97)(r0.8)(<5)(^5)(v8)fX]}{r<0.0041,Y}");
-		AddRule("15:X={r>0.004,+(r0.95)(_0.8)(>13)f(r0.95)f[(l0.97)(^10)(r0.92)fX][(l0.52)(r0.5)(<17)X]}{r<0.0041,Y}");
-		AddRule("10:X={r>0.004,+(r0.95)(_0.8)(^5)f(r0.95)f[(l0.85)(r0.8)(^25)f(^27)X][°(l0.89)(^22)f(r0.8)f(v20)(r0.8)X]}{r<0.0041,Y}");
-		AddRule("10:X={r>0.004,+(r0.95)(_0.8)(<11)f(r0.95)f[(l0.97)(<10)(r0.92)fX][(l0.52)(r0.5)(^17)X]}{r<0.0041,Y}");
+		AddRule("33:K={r>0.8,(r0.8)(^24)(l0.93)fK}{r<0.7,X}");
+		AddRule("33:K={r>0.8,(r0.8)(>25)(l0.93)fK}{r<0.7,X}");
+		AddRule("34:K={r>0.8,(r0.8)(<22)(l0.93)fK}{r<0.7,X}");
+		AddRule("35:X={r>0.004,+(l0.93)(r0.95)(_0.8)(>19)f(r0.95)(>19)f[(l0.9)(<14)(r0.9)X][(l0.95)(r0.5)(>15)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(<15)f(r0.95)(<13)f[(l0.85)(r0.8)(^15)f(^17)X][(l0.89)(v12)(r0.8)f(r0.8)f(v10)(r0.8)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(v12)f(r0.95)(v12)f[(l0.97)(r0.8)(<15)(^15)(v8)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(r0.95)(_0.8)(>13)f[(l0.97)(^10)(r0.92)X][(l0.52)(r0.5)(<17)X]}{r<0.0041,Y}");
+		AddRule("10:X={r>0.004,+(r0.95)(_0.8)(^15)f[(l0.85)(r0.8)(^15)f(^17)X][(l0.89)(v12)(r0.8)f(r0.8)f(v10)(r0.8)X]}{r<0.0041,Y}");
+		AddRule("10:X={r>0.004,+(r0.95)(_0.8)(<11)f[(l0.97)(<10)(r0.92)X][(l0.52)(r0.5)(^13)X]}{r<0.0041,Y}");
 
-		// Äste mit Blüten zeichnen
-		/*AddRule("Y={r>0.003,(l0.7)(r0.9)+f[(<54)fB][(>54)fB][(v54)fB][(^54)fB]fY}{r<0.0031,}");*/
+
 
 		// Ist in Blütezeit? 
 		if (m_bIsBlossoming) {
 			// Äste mit Blüten zeichnen
-			AddRule("Y={r>0.003,(l0.7)(r0.9)+f[(<54)fB][(>54)fB][(v54)fB][(^54)fB]fY}{r<0.0031,}");
+			AddRule("Y={r>0.003,(l0.7)(r0.9)+f[(<54)fB]+f[(>54)fB]+f[(v54)fB]+f[(^54)fB]fY}{r<0.0031,}");
 			// Blüten zeichnen 
-			AddRule("B=(l0.001)(r30)[<b][^b][>b][vb](r0.5)(l0.7)[(<20.2)c][(^18.4)c][(>20.4)c][(v22.4)c](+40.0)[(<10.2)c][(^11.4)c][(>14.4)c][(v12.4)c]");
+			AddRule("B=(L0.05)(R0.05)[<0b][^0b][>0b][v0b](r0.5)(l0.7)[(<20.2)0c][(^18.4)0c][(>20.4)0c][(v22.4)0c](+40.0)[(<10.2)0c][(^11.4)0c][(>14.4)0c][(v12.4)0c]");
 		}
 		else {
 			// Äste mit Blättern zeichnen
-			AddRule("Y={r>0.003,(l0.7)(r0.9)+f[(<54)lB][(>54)lB][(v54)lB][(^54)lB]fY}{r<0.0031,}");
-			AddRule("B=(l0.001)(r30)[<l][^l][>l][vl]");
+
+			AddRule("Y={r>0.003,(l0.7)(r0.9)+f[(<54)B]+f[(>54)B]+f[(v54)B]+f[(^54)B]fY}{r<0.0031,}");
+			AddRule("B=(L0.5)(R0.5)[^0l]");
 		}
 
 
@@ -277,9 +277,9 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 			m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
 			SetGeoLeaf(&m_zgLeafMain);
 
-			CHMat scaling;
+			/*CHMat scaling;
 			scaling.Scale(2.0f);
-			m_zgLeafMain.Transform(scaling);
+			m_zgLeafMain.Transform(scaling);*/
 
 
 		}

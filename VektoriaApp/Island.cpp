@@ -79,14 +79,14 @@ Island::Island()
     m_mSand.SetBumpStrength(2.0);
     m_mSand.MakeTextureHeight("textures\\Sand_height.png");
     m_mSand.SetHeightStrength(1.0);
-    m_mSand.MakeTextureSpecular("textures\\Ground_specular.jpg");
+    m_mSand.MakeTextureSpecular("textures\\Ground_specular.png");
 
     m_mSandLessMossy.MakeTextureDiffuse("textures\\SandLessMossy_basecolor.png");
-    m_mSandLessMossy.MakeTextureBump("textures\\SandLessMossy_normal.jpg");
+    m_mSandLessMossy.MakeTextureBump("textures\\SandLessMossy_normal.png");
     m_mSandLessMossy.SetBumpStrength(2.0);
     m_mSandLessMossy.MakeTextureHeight("textures\\SandLessMossy_height.png");
     m_mSandLessMossy.SetHeightStrength(1.0);
-    m_mSandLessMossy.MakeTextureSpecular("textures\\Ground_specular.jpg");
+    m_mSandLessMossy.MakeTextureSpecular("textures\\Ground_specular.png");
 
     //m_mSandMossy.LoadPreset("SandMossy");
     m_mSandMossy.MakeTextureDiffuse("textures\\SandVeryMossy_basecolor.png");
@@ -94,26 +94,33 @@ Island::Island()
     m_mSandMossy.SetBumpStrength(2.0);
     m_mSandMossy.MakeTextureHeight("textures\\SandVeryMossy_height.png");
     m_mSandMossy.SetHeightStrength(1.0);
-    m_mSandMossy.MakeTextureSpecular("textures\\Ground_specular.jpg");
+    m_mSandMossy.MakeTextureSpecular("textures\\Ground_specular.png");
 
     m_mRockMossy.LoadPreset("RockMossy");
 
     //m_mRock.LoadPreset("Rock");
-    m_mRock.MakeTextureDiffuse("textures\\Rock_basecolor.png");
-    m_mRock.MakeTextureBump("textures\\Rock_normal.png");
+    m_mRock.MakeTextureDiffuse("textures\\Felsen_basecolor.png");
+    m_mRock.MakeTextureBump("textures\\Felsen_normal.png");
     m_mRock.SetBumpStrength(2.0);
-    m_mRock.MakeTextureHeight("textures\\Rock_height.png");
+    m_mRock.MakeTextureHeight("textures\\Felsen_height.png");
     m_mRock.SetHeightStrength(1.0);
-    m_mRock.MakeTextureSpecular("textures\\Rock_specular.png");
+    m_mRock.MakeTextureSpecular("textures\\Felsen_specular.png");
 
-    m_mRockSnow.LoadPreset("RockSnowy");
+    //m_mRockSnow.LoadPreset("RockSnowy");
+    m_mRockSnow.MakeTextureDiffuse("textures\\Snow_basecolor.png");
+    m_mRockSnow.MakeTextureBump("textures\\Snow_normal.png");
+    m_mRockSnow.SetBumpStrength(2.0);
+    m_mRockSnow.MakeTextureHeight("textures\\Snow_height.png");
+    m_mRockSnow.SetHeightStrength(2.0);
+    m_mRockSnow.MakeTextureSpecular("textures\\Felsen_specular.png");
+    m_mRockSnow.SetSpecularStrength(2.0);
 
     m_mGround.MakeTextureDiffuse("textures\\Ground_basecolor.png");
     m_mGround.MakeTextureBump("textures\\Ground_normal.png");
     m_mGround.SetBumpStrength(2.0);
     m_mGround.MakeTextureHeight("textures\\Ground_height.png");
     m_mGround.SetHeightStrength(1.0);
-    m_mGround.MakeTextureSpecular("textures\\Ground_specular.jpg");
+    m_mGround.MakeTextureSpecular("textures\\Ground_specular.png");
 
     m_mMirror.LoadPreset("RockMossy");
 
