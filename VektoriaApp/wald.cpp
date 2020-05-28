@@ -2,10 +2,18 @@
 
 using namespace Vektoria;
 
-void Wald::translateTreeByHeight(float x, float z, CPlacement* baum, CGeoTerrain* terrain)
+void Wald::translateTreeToHeight(float x, float z, CPlacement* baum, CGeoTerrain* terrain)
 {
 	baum->TranslateYDelta(terrain->GetHeight(x, z));
 }
+
+//todo
+//bäume scalen x2 / x3
+//cluster klasse
+//wald randomizen
+//more poopys
+//baum hitboxen 
+//more more...
 
 Wald::Wald(CGeoTerrain * terrain)
 {
@@ -14,6 +22,11 @@ Wald::Wald(CGeoTerrain * terrain)
 	m_CBTBaum->Iterate(150.0f, 0.2f, 0.0f);
 	m_CBTBaum->Init(m_CBTBaum, 0);
 	m_CBTBaum->DeIterate();
+
+	poopy->SetRandomSeed(44444);
+	poopy->Iterate(1.0f, 0.2f, 0.0f);
+	poopy->Init(poopy, 0);
+	poopy->DeIterate();
 
 	//Baum1,2,3 Placements den CherryBlossomTree zuweisen
 	m_pBaum1.AddGeo(m_CBTBaum);
@@ -41,17 +54,6 @@ Wald::Wald(CGeoTerrain * terrain)
 
 	/*m_pBaum1.TranslateYDelta(150.0f);*/
 	/*m_pBaum1.TranslateYDelta(terrain->GetHeight(10.0f, 20.0f));*/
-
-	this->translateTreeByHeight(10.0f,  20.0f, &m_pBaum1, terrain);
-	this->translateTreeByHeight(-14.0f, 0.0f, &m_pBaum2, terrain);
-	this->translateTreeByHeight(36.0f, -42.0f, &m_pBaum3, terrain);
-	this->translateTreeByHeight(23.0f, -20.0f, &m_pBaum4, terrain);
-	this->translateTreeByHeight(-33.0f, 15.0f, &m_pBaum5, terrain);
-	this->translateTreeByHeight(-9.0f, -34.0f, &m_pBaum6, terrain);
-	this->translateTreeByHeight(49.0f, 8.0f, &m_pBaum7, terrain);
-	this->translateTreeByHeight(-4.0f, 19.0f, &m_pBaum8, terrain);
-	this->translateTreeByHeight(-0.0f, -15.0f, &m_pBaum9, terrain);
-	this->translateTreeByHeight(-13.0f, 31.0f, &m_pBaum10, terrain);
 
 	//Rotations der Bäume
 	m_pBaum1.RotateYDelta(6.9f);
@@ -96,6 +98,33 @@ Wald::Wald(CGeoTerrain * terrain)
 	m_pBaumCluster1.TranslateDelta(100.0f, 0.0f, 0.0f);
 	//m_pBaumCluster2.TranslateX(500.0f);
 	//m_pBaumCluster3.TranslateX(550.0f);
+	CHVector test1 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum1.GetPos();
+	CHVector test2 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum2.GetPos();
+	CHVector test3 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum3.GetPos();
+	CHVector test4 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum4.GetPos();
+	CHVector test5 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum5.GetPos();
+	CHVector test6 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum6.GetPos();
+	CHVector test7 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum7.GetPos();
+	CHVector test8 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum8.GetPos();
+	CHVector test9 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum9.GetPos();
+	CHVector test10 = this->GetPos() + m_pBaumCluster1.GetPos() + m_pBaum10.GetPos();
+
+	m_pPoopy.AddGeo(poopy);
+	m_pBaumCluster1.AddPlacement(&m_pPoopy);
+
+	CHVector testpoopy = this->GetPos() + m_pBaumCluster1.GetPos() + m_pPoopy.GetPos();
+
+	this->translateTreeToHeight(test1.x, test1.z, &m_pBaum1, terrain);
+	this->translateTreeToHeight(test2.x, test2.z, &m_pBaum2, terrain);
+	this->translateTreeToHeight(test3.x, test3.z, &m_pBaum3, terrain);
+	this->translateTreeToHeight(test4.x, test4.z, &m_pBaum4, terrain);
+	this->translateTreeToHeight(test5.x, test5.z, &m_pBaum5, terrain);
+	this->translateTreeToHeight(test6.x, test6.z, &m_pBaum6, terrain);
+	this->translateTreeToHeight(test7.x, test7.z, &m_pBaum7, terrain);
+	this->translateTreeToHeight(test8.x, test8.z, &m_pBaum8, terrain);
+	this->translateTreeToHeight(test9.x, test9.z, &m_pBaum9, terrain);
+	this->translateTreeToHeight(test10.x, test10.z, &m_pBaum10, terrain);
+	this->translateTreeToHeight(testpoopy.x, testpoopy.z, &m_pPoopy, terrain);
 }
 
 Wald::~Wald()

@@ -27,15 +27,16 @@ public:
     CGeoTerrain m_gTerrainOri; //Gesamtes Terrain
     CGeoTerrain m_gWater; //wasserausschnitt
 
-    CGeoTerrain m_gTerrainSandLessMossy;
     CGeoTerrain m_gTerrain; //inselausschnitt
     CGeoTerrain m_gTerrainLow;
     CGeoTerrain m_gTerrainSand; //Sandausschnitt
-    CGeoTerrain m_gTerrainSandMossy;
-    CGeoTerrain m_gTerrainRockMossy;
     CGeoTerrain m_gTerrainRock;
     CGeoTerrain m_gTerrainRockSnowy;
     CGeoTerrain m_gTerrainMirror;
+	/*benötigt für wald*/
+    CGeoTerrain m_gTerrainSandMossy;
+    CGeoTerrain m_gTerrainRockMossy;
+    CGeoTerrain m_gTerrainSandLessMossy;
 private:
     CPerlin * m_pperlin = nullptr; //Perlin-Noise
 

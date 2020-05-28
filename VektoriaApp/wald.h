@@ -1,5 +1,6 @@
 #pragma once
 #include "Vektoria\Root.h"
+#include "GeoBioPoppy.h"
 #include "CherryBlossomTree.h"
 
 using namespace Vektoria;
@@ -24,10 +25,12 @@ private:
 	CPlacement m_pBaumCluster2;
 	CPlacement m_pBaumCluster3;
 
-	void translateTreeByHeight(float x, float z, CPlacement* baum, CGeoTerrain* terrain);
+	void translateTreeToHeight(float x, float z, CPlacement* baum, CGeoTerrain* terrain);
 	//cherrytree zeug
 	//CPlacement m_zpLSystem; 
-	CherryBlossomTree * m_CBTBaum = new CherryBlossomTree();
+	CherryBlossomTree* m_CBTBaum = new CherryBlossomTree();
+	GeoBioPoppy* poopy = new GeoBioPoppy();
+	CPlacement m_pPoopy;
 
 public:
 	Wald(CGeoTerrain * terrain);
