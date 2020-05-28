@@ -89,6 +89,18 @@ Wald::Wald(CGeoTerrain * terrain)
 	//m_pBaumCluster3.AddPlacement(&m_pBaum2);
 	//m_pBaumCluster3.AddPlacement(&m_pBaum3);
 
+
+
+	m_pBaum1.ScaleDelta(3.0f);
+	m_pBaum2.ScaleDelta(3.0f);
+	m_pBaum3.ScaleDelta(3.0f);
+	m_pBaum4.ScaleDelta(3.0f);
+	m_pBaum5.ScaleDelta(3.0f);
+	m_pBaum6.ScaleDelta(3.0f);
+	m_pBaum7.ScaleDelta(3.0f);
+	m_pBaum8.ScaleDelta(3.0f);
+	m_pBaum9.ScaleDelta(3.0f);
+	m_pBaum10.ScaleDelta(3.0f);
 	//BaumCluster an den Wald hängen
 	this->AddPlacement(&m_pBaumCluster1);
 	//this->AddPlacement(&m_pBaumCluster2);
@@ -112,6 +124,7 @@ Wald::Wald(CGeoTerrain * terrain)
 	m_pPoopy.AddGeo(poopy);
 	m_pBaumCluster1.AddPlacement(&m_pPoopy);
 
+
 	CHVector testpoopy = this->GetPos() + m_pBaumCluster1.GetPos() + m_pPoopy.GetPos();
 
 	this->translateTreeToHeight(test1.x, test1.z, &m_pBaum1, terrain);
@@ -125,6 +138,7 @@ Wald::Wald(CGeoTerrain * terrain)
 	this->translateTreeToHeight(test9.x, test9.z, &m_pBaum9, terrain);
 	this->translateTreeToHeight(test10.x, test10.z, &m_pBaum10, terrain);
 	this->translateTreeToHeight(testpoopy.x, testpoopy.z, &m_pPoopy, terrain);
+
 }
 
 Wald::~Wald()
