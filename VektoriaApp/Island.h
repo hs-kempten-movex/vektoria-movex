@@ -5,6 +5,7 @@ using namespace Vektoria;
 
 #define TERRAIN_SIZE 2500
 #define TERRAIN_VERTICES 1001
+#define LOD_DIVISOR 8
 #define TERRAIN_HEIGHT 500
 #define TERRAIN_SAND_MAX 3
 #define TERRAIN_SANDLESSMOSSY_MAX 5
@@ -23,12 +24,13 @@ public:
     CGeos m_gsCol, m_gsHeight; //Kollisionscontainer
 
     CPlacement m_pIsland1; //insel- wasserplacement
+    CPlacement m_pIsland2; //background insel 1
+    CPlacement m_pIsland3; //background insel 2
+    CPlacement m_pIsland4; //background insel 3
 
     CGeoTerrain m_gTerrainOri; //Gesamtes Terrain
     CGeoTerrain m_gWater; //wasserausschnitt
 
-    CGeoTerrain m_gTerrain; //inselausschnitt
-    CGeoTerrain m_gTerrainLow;
     CGeoTerrain m_gTerrainSand; //Sandausschnitt
     CGeoTerrain m_gTerrainRock;
     CGeoTerrain m_gTerrainRockSnowy;
@@ -37,6 +39,16 @@ public:
     CGeoTerrain m_gTerrainSandMossy;
     CGeoTerrain m_gTerrainRockMossy;
     CGeoTerrain m_gTerrainSandLessMossy;
+
+    //Background inseln: low LoD
+    CGeoTerrain m_gTerrainOriBack;
+    CGeoTerrain m_gTerrainSandBack; //Sandausschnitt
+    CGeoTerrain m_gTerrainRockBack;
+    CGeoTerrain m_gTerrainRockSnowyBack;
+    CGeoTerrain m_gTerrainMirrorBack;
+    CGeoTerrain m_gTerrainSandMossyBack;
+    CGeoTerrain m_gTerrainRockMossyBack;
+    CGeoTerrain m_gTerrainSandLessMossyBack;
 private:
     CPerlin * m_pperlin = nullptr; //Perlin-Noise
 

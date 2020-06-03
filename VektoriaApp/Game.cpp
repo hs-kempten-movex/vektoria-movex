@@ -30,6 +30,9 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Placements
 	m_scene.AddPlacement(&island.m_pIsland1);
+	m_scene.AddPlacement(&island.m_pIsland2);
+	m_scene.AddPlacement(&island.m_pIsland3);
+	m_scene.AddPlacement(&island.m_pIsland4);
 	island.m_pIsland1.AddPlacement(&m_zpLSystem);
 	island.m_pIsland1.AddPlacement(&m_zpBlume);
 	m_zpLSystem.TranslateX(500.0f);
