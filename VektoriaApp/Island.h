@@ -51,9 +51,10 @@ public:
     CGeoTerrain m_gTerrainSandLessMossyBack;
 private:
     CPerlin * m_pperlin = nullptr; //Perlin-Noise
+    CPerlin * m_pperlinBack = nullptr; 
 
     CBlob * m_pblob1 = nullptr; //Erhebung aus dem meer
-    CBlob * m_pblob2 = nullptr;
+    CBlob * m_pblobBack = nullptr;
     CBlob * m_pblob_rest = nullptr; //Artefaktlöschung
 
     CCut m_cutUnderSea; //Schnitt unter N.N.

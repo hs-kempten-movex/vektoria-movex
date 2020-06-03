@@ -72,6 +72,8 @@ Island::Island()
         ePerlinInterpol_Linear,	//Interpolationsart
         false);						//Repetivität
 
+    m_pperlinBack = new CPerlin(422, 1.75f, 16, 0.5f, 12.0f, 0.0f, 0.0f, ePerlinInterpol_Linear, false);
+
       //Texturen laden für wasser und land
     m_mWater.LoadPreset("Water");
     m_mWater.SetAni(8, 8, 7);
@@ -142,19 +144,14 @@ Island::Island()
         eBlobShapeSide_All,			//Höhenverlauftopologie
         nullptr);
 
-    m_pblob1 = new CBlob(
-        0.5f, 0.5f,					//Mittelpunkt des Blobs (u&v)
-        0.5f, 0.5f,					//Radius des Blobs (u&v)
-        TERRAIN_HEIGHT,							//Höhe des Blobs
-        eBlobShapeGround_Radial,		//Grundflächentopologie
-        eBlobShapeSide_Hill,			//Höhenverlauftopologie
-        m_pperlin);						//Perlin-noise-instanz
+    m_pblob1 = new CBlob(0.5f, 0.5f, 0.5f, 0.5f, TERRAIN_HEIGHT, eBlobShapeGround_Radial, eBlobShapeSide_Hill, m_pperlin);
+    m_pblobBack = new CBlob(0.5f, 0.5f, 0.5f, 0.5f, TERRAIN_HEIGHT, eBlobShapeGround_Radial, eBlobShapeSide_Hill, m_pperlinBack);
 
       //Blob einem Blaupausen-terrain hinzufügen
     m_gTerrainOri.AddBlob(m_pblob_rest);
     m_gTerrainOri.AddBlob(m_pblob1);
     m_gTerrainOriBack.AddBlob(m_pblob_rest);
-    m_gTerrainOriBack.AddBlob(m_pblob1);
+    m_gTerrainOriBack.AddBlob(m_pblobBack);
 
     //Vertex-Daten aus blaupausen-terrain erzeugen
     m_gTerrainOri.CreateField(
@@ -240,7 +237,8 @@ Island::Island()
 
 Island::~Island() {
     delete m_pperlin;
+    delete m_pperlinBack;
     delete m_pblob1;
-    delete m_pblob2;
+    delete m_pblobBack;
     delete m_pblob_rest;
 }
