@@ -40,7 +40,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		m_iTurtleStartLongitude = 26;
 		m_iTurtleStartLattitude = 26;
 		m_fTurtleStartLength = 2.0f + (m_fAgeStopped - 50.0f) / 150.0f*0.5f;
-		m_fTurtleStartRadius = 0.4f + (m_fAgeStopped - 50.0f) / 150.0f*0.4f;
+		m_fTurtleStartRadius = 0.4f + (m_fAgeStopped - 50.0f) / 150.0f*0.4f*0.75f;
 		m_fSwakeRandom = 0.01f;
 	}
 	else if (m_fAgeStopped > 20.0f)
@@ -49,7 +49,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		m_iTurtleStartLongitude = 22;
 		m_iTurtleStartLattitude = 22;
 		m_fTurtleStartLength = 1.5f + (m_fAgeStopped - 20.0f) / 30.0f*0.5f;
-		m_fTurtleStartRadius = 0.2f + (m_fAgeStopped - 20.0f) / 30.0f*0.2f;
+		m_fTurtleStartRadius = 0.2f + (m_fAgeStopped - 20.0f) / 30.0f*0.2f*0.75f;
 		m_fSwakeRandom = 0.005f;
 	}
 	else if (m_fAgeStopped > 10.0f)
@@ -58,7 +58,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		m_iTurtleStartLongitude = 18;
 		m_iTurtleStartLattitude = 18;
 		m_fTurtleStartLength = 1.0f + (m_fAgeStopped - 10.0f) / 10.0f*0.5f;
-		m_fTurtleStartRadius = 0.1f + (m_fAgeStopped - 10.0f) / 10.0f*0.1f;
+		m_fTurtleStartRadius = 0.1f + (m_fAgeStopped - 10.0f) / 10.0f*0.1f*0.75f;
 		m_fSwakeRandom = 0.005f;
 	}
 	else if (m_fAgeStopped > 5.0f)
@@ -67,7 +67,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		m_iTurtleStartLongitude = 12;
 		m_iTurtleStartLattitude = 10;
 		m_fTurtleStartLength = 0.8f + (m_fAgeStopped - 5.0f) / 5.0f*0.2f;
-		m_fTurtleStartRadius = 0.05f + (m_fAgeStopped - 5.0f) / 5.0f*0.05f;
+		m_fTurtleStartRadius = 0.05f + (m_fAgeStopped - 5.0f) / 5.0f*0.05f*0.75f;
 		m_fSwakeRandom = 0.002f;
 	}
 	else if (m_fAgeStopped > 2.0f)
@@ -76,7 +76,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		m_iTurtleStartLongitude = 12;
 		m_iTurtleStartLattitude = 10;
 		m_fTurtleStartLength = 0.5f + (m_fAgeStopped - 2.0f) / 3.0f*0.3f;
-		m_fTurtleStartRadius = 0.02f + (m_fAgeStopped - 2.0f) / 3.0f*0.03f;
+		m_fTurtleStartRadius = 0.02f + (m_fAgeStopped - 2.0f) / 3.0f*0.03f*0.75f;
 		m_fSwakeRandom = 0.001f;
 	}
 	else if (m_fAgeStopped > 1.0f)
@@ -85,7 +85,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		m_iTurtleStartLongitude = 12;
 		m_iTurtleStartLattitude = 6;
 		m_fTurtleStartLength = 0.3f + (m_fAgeStopped - 1.0f) / 1.0f*0.2f;
-		m_fTurtleStartRadius = 0.01f + (m_fAgeStopped - 1.0f) / 1.0f*0.01f;
+		m_fTurtleStartRadius = 0.01f + (m_fAgeStopped - 1.0f) / 1.0f*0.01f*0.75f;
 		m_fSwakeRandom = 0.0005f;
 	}
 	else
@@ -94,14 +94,14 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		m_iTurtleStartLongitude = 12;
 		m_iTurtleStartLattitude = 5;
 		m_fTurtleStartLength = m_fAgeStopped * 0.3f;
-		m_fTurtleStartRadius = m_fAgeStopped * 0.01f;
+		m_fTurtleStartRadius = m_fAgeStopped * 0.01f*0.75f;
 		m_fSwakeRandom = 0.0005f;
 	}
 
 	// m_fTurtleStartRadius /= 2.0f;
 	// iIterations += 14;
 	SetDefaultAngles(PHI / 2.0f, PHI / 2.0f, PHI);				// Angabe der Rotationswinkel der Turtle (Default: 10, 10, 10)
-	SetDefaultFactorGravitation(0.05f);
+	SetDefaultFactorGravitation(0.005f);
 
 	SetSwakeRandomFactor(m_fSwakeRandom);
 	SetTurtleStartHeight(m_fTurtleStartLength);
@@ -110,30 +110,49 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 	// Erzeuge Stamm und Geäst:
 	//------------------------
 
+	// U -> Start
+	// X -> Stamm
+	// B -> Die Nadeln
+	// D -> Der Zweig, an dem die Nadeln sind (mit fester Breite und Länge)
 
-	SetAxiom("X");
-	AddRule("30:X={r>0.03,+(-23)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y]_fX}{r<0.0301,Y}");
-	AddRule("30:X={r>0.03,+(+10)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y](r0.85)(l0.9)_fX}{r<0.0301,Y}");
-	AddRule("30:X={r>0.03,+(+36)(r0.85)(l0.9)_f[(r0.55)(^70)Y][(r0.55)(+180)(^70)Y][(r0.55)(-90)(^70)Y][(r0.55)(+90)(^70)Y](r0.85)(l0.9)_fX}{r<0.0301,Y}");
-	AddRule("10:X={r>0.03,+(r0.85)(l0.9)_fX[(r0.55)(+180)(^70)Y]}{r<0.0301,Y}");
-	AddRule("15:Y={r>0.05,+(r0.75)(l0.85)_(<2)f(r0.75)(l0.85)_f[+(>25)(r0.75)Y]Y}{r<0.0501,A}");
-	AddRule("20:Y={r>0.05,+(r0.75)(l0.85)_(>4)f[+(<30)(r0.75)Y][+(>35)(r0.75)Y]Y}{r<0.0501,A}");
-	AddRule("20:Y={r>0.05,+(r0.75)(l0.85)_(<7)f[+(<42)(r0.75)Y][+(>35)(r0.75)(^15)Y]Y}{r<0.0501,A}");
-	AddRule("20:Y={r>0.05,+(r0.75)(l0.85)_(>6)f[+(<19)(^15)(r0.75)Y][+(v50)(r0.75)Y]Y}{r<0.0501,A}");
-	AddRule("20:Y={r>0.05,+(r0.75)(l0.85)_(<6)f[+(^31)(r0.75)Y]Y}{r<0.0501,A}");
-	AddRule("5:Y={r>0.05,}{r<0.0301,}");
-	AddRule("C={b<99,A}{b=99,}");
-	AddRule("33:A={r>0.03,(r0.55)(l0.6)f[(>20)(r0.75)(^15)fC]C}{r<0.031,B}");
-	AddRule("33:A={r>0.03,(r0.55)(l0.6)f[(>29)(r0.75)(v15)fC]C}{r<0.031,B}");
-	AddRule("34:A={r>0.03,(r0.55)(l0.6)fC}{r<0.031,B}");
+	SetAxiom("U");
+	// Falls Baum relativ alt, zeichne einen Stamm, der 
+	AddRule("U={r>0.6,(r0.85)(l0.8)_fU}{r<0.601,X}");
 
-	//AddRule("B=°(l0.6)[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]f[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]f[<l(+60)<l(+60)<l(+60)<l(+60)<l(+60)<l]");
-	//test mit fruits (a)
-	//AddRule("B=(l0.6)[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]f[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]f[<a(+60)<a(+60)<a(+60)<a(+60)<a(+60)<a]");
-	// test mit nadeln (n)
-	//AddRule("B=(l0.6)[<n(+60)<n(+60)<n(+60)<n(+60)<n(+60)<n]f[<n(+60)<n(+60)<n(+60)<n(+60)<n(+60)<n]f[<n(+60)<n(+60)<n(+60)<n(+60)<n(+60)<n]");
-	//AddRule("B=(l0.1)(+10)f[<n][>n][vn][^n]B");
-	AddRule("B=(l0.1)(+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n](+10)f[(l10.0)^n][(l10.0)<n][(l10.0)vn][(l10.0)>n]");
+	// Stamm
+	AddRule("X={r>0.04,(r0.85)(l0.95)_f[(r0.25)(^70)E][(r0.25)(+45)(^70)E][(r0.25)(+90)(^70)E][(r0.25)(+135)(^70)E][(r0.25)(+180)(^70)E][(r0.25)(-45)(^70)E][(r0.25)(-90)(^70)E][(r0.25)(-135)(^70)E](+10)X}{r<0.0401,D}");
+
+	// Reset turtle length & zeichne ein mini kleines Stück Ast, damit der sichtbare Ast dann gleich schön dünn anfängt
+	AddRule("50:E=(r0.6)(l0.1)f(l15.5)J");
+	AddRule("50:E=");
+
+	// Äste 
+	AddRule("20:J={r>0.008,&(r0.75)(l0.79)_(v10)(<2)f[(>35)(r0.75)J]J}{r<0.00801,D}");
+	AddRule("20:J={r>0.008,&(r0.75)(l0.75)_(v10)(>4)f[(<42)(r0.75)J][(v32)(r0.75)J]J}{r<0.00801,D}");
+	AddRule("20:J={r>0.008,&(r0.75)(l0.69)_(v10)(<7)f[(<42)(r0.75)J][(v32)(r0.75)J]J}{r<0.00801,D}");
+	AddRule("20:J={r>0.008,&(r0.75)(l0.75)_(v10)(>6)f[(<39)(r0.75)J]J}{r<0.00801,D}");
+	AddRule("20:J={r>0.008,&(r0.75)(l0.75)_(v10)(<6)f[(<42)(r0.75)J][(^38)(r0.75)J]J}{r<0.00801,D}");
+
+	// Die Nadel-Äste
+	AddRule("D={r>0.004,(+10)[B](r0.99)(L0.01)fD}{r<0.00401,}");
+
+	// Die Nadeln
+	AddRule("B=(R0.09)(L0.09)[^n][<n][vn][>n]");
+
+	//// funktionierender Speicherstand 2.6. 21:35 für Äste
+
+	/*AddRule("50:E=(r0.5)(l0.1)f(l15.5)J");
+	AddRule("50:E=");
+	AddRule("20:J={r>0.01,&(r0.75)(l0.79)_(v10)(<2)f[(>35)(r0.75)J]J}{r<0.0101,D}");
+	AddRule("20:J={r>0.01,&(r0.75)(l0.75)_(v10)(>4)f[(<42)(r0.75)J][(v32)(r0.75)J]J}{r<0.0101,D}");
+	AddRule("20:J={r>0.01,&(r0.75)(l0.69)_(v10)(<7)f[(<42)(r0.75)J][(v32)(r0.75)J]J}{r<0.0101,D}");
+	AddRule("20:J={r>0.01,&(r0.75)(l0.75)_(v10)(>6)f[(<39)(r0.75)J]J}{r<0.0101,D}");
+	AddRule("20:J={r>0.01,&(r0.75)(l0.75)_(v10)(<6)f[(<42)(r0.75)J][(^38)(r0.75)J]J}{r<0.0101,D}");*/
+
+
+
+
+
 
 	m_iIterations += 23;
 
@@ -183,22 +202,6 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 		return;
 	}
 	CopyThis(*pzgTemplate);
-	/*
-	m_fAge = pzgTemplate->m_fAge;
-	m_fAgeStopped = pzgTemplate->m_fAgeStopped;
-	m_frTimeOfYear = pzgTemplate->m_frTimeOfYear;
-	m_bHasLeaves = pzgTemplate->m_bHasLeaves;
-
-	m_fRootCutHeight = pzgTemplate->m_fRootCutHeight;
-	m_random.m_uRand = pzgTemplate->m_random.m_uRand;
-
-	m_fSwakeRandom = pzgTemplate->m_fSwakeRandom;
-	m_iIterations = pzgTemplate->m_iIterations;
-	m_fTurtleStartRadius = pzgTemplate->m_fTurtleStartRadius;
-	m_fTurtleStartLength = pzgTemplate->m_fTurtleStartLength;
-	m_iTurtleStartLongitude = pzgTemplate->m_iTurtleStartLongitude;
-	m_iTurtleStartLattitude = pzgTemplate->m_iTurtleStartLattitude;
-	*/
 
 
 	if (pzgTemplate->m_iToKill <= 0)
@@ -242,7 +245,7 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 		}
 
 		SetMaxNeedleBending(0.08f);
-		SetMaxNeedleFolding(1.3f);
+		SetMaxNeedleFolding(0.3f);
 		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0f);
 		SetGeoLeaf(&m_zgLeafMain);
 
@@ -296,23 +299,23 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
 		SetGeoLeaf(&m_zgLeafMain);
 		CHMat mScale;
-		mScale.Scale(3.5f);
+		mScale.Scale(1.5f*(float)uLoD);
 		m_zgLeafMain.Transform(mScale);
-		SetLeafSkipFactor(30);
+		SetLeafSkipFactor(20 * uLoD);
 	}
 
 	m_zmLeaf.MakeTextureDiffuse("textures\\darkgreen_image.jpg");
 	m_zmLeaf.SetSpecularStrength(0.01f);
 
-	float faLeafColoring = 0.0f;
-	float frColorScaling = 1.0f;
-	if (frTimeShifted >= 0.7f) // Ab Anfang September
-	{
-		faLeafColoring = (frTimeShifted - 0.6f) / -0.15f*THIRDPI;
-		m_zmLeaf.RotateHue(faLeafColoring);
-		frColorScaling = 1.0f - (frTimeShifted - 0.7f) / 0.3f;
-		m_zmLeaf.ScaleDelta(frColorScaling);
-	}
+	//float faLeafColoring = 0.0f;
+	//float frColorScaling = 1.0f;
+	//if (frTimeShifted >= 0.7f) // Ab Anfang September
+	//{
+	//	faLeafColoring = (frTimeShifted - 0.6f) / -0.15f*THIRDPI;
+	//	m_zmLeaf.RotateHue(faLeafColoring);
+	//	frColorScaling = 1.0f - (frTimeShifted - 0.7f) / 0.3f;
+	//	m_zmLeaf.ScaleDelta(frColorScaling);
+	//}
 
 	SetMaterialLeaf(&m_zmLeaf);
 
@@ -320,6 +323,7 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 	m_zmBark.MakeTextureDiffuse("textures\\bark.png");
 	m_zmBark.MakeTextureBump("textures\\bark_n.png");
 	m_zmBark.MakeTextureHeight("textures\\bark_h.png");
+	m_zmBark.MakeTextureSpecular("textures\\bark_s.png");
 	//m_zmBark.SetSpecularSharpness(100.0f);
 	//m_zmBark.SetTextureSpecularBlack();
 	m_zmBark.SetTextureSpecularAsDiffuse();

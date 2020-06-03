@@ -1,3 +1,4 @@
+#pragma once
 #include "Vektoria\Root.h"
 using namespace Vektoria;
 
@@ -5,6 +6,7 @@ class Nadelbaum :
 	public CGeoBio
 {
 public:
+
 	Nadelbaum();
 	~Nadelbaum();
 	float GetOptimalLoDMax(float fAge, unsigned int uLoD);
