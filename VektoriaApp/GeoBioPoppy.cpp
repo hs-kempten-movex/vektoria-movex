@@ -36,7 +36,7 @@ namespace Vektoria
 		// Stängel hat ca. 2mm - 3mm Radius an der Basis, wenn erwachsen:
 		if (m_fAgeStopped > 0.1f)
 		{
-			m_iIterations = 19;
+			m_iIterations = 30; // war 19
 			m_iTurtleStartLongitude = 20;
 			m_iTurtleStartLattitude = 28;
 			//		m_fTurtleStartLength = 0.06f + (m_fAgeStopped - 0.01f) *0.01f;
@@ -49,14 +49,15 @@ namespace Vektoria
 		}
 		else
 		{
-			m_iIterations = 18;
+			m_iIterations = 30; // war 18
 			m_iTurtleStartLongitude = 15;
 			m_iTurtleStartLattitude = 23;
 			m_fTurtleStartLength = 0.06f * (m_fAgeStopped*10.0f);
 			m_fTurtleStartRadius = 0.002f * (m_fAgeStopped*10.0f);
 		}
 
-		SetDefaultAngles(HALFPI, HALFPI, HALFPI);
+		//SetDefaultAngles(HALFPI, HALFPI, HALFPI);
+		SetDefaultAngles(QUARTERPI, QUARTERPI, QUARTERPI);
 		SetDefaultFactorGravitation(0.5f);
 		SetTurtleStartHeight(m_fTurtleStartLength);
 		SetTurtleStartRadius(m_fTurtleStartRadius);
@@ -68,10 +69,10 @@ namespace Vektoria
 		SetAxiom("A");
 
 		// anfängliche Verzweigungen
-		AddRule("20:A=(l0.1)fL(l10)[(^24)fX][(v19)fX]");
-		AddRule("20:A=(l0.1)fL(l10)[(<20)fX][(>23)fX][°°(^43)fX]");
-		AddRule("30:A=(l0.1)fL(l10)[(<23)fX](+10)[°°(>43)fX][fX]");
-		AddRule("30:A=(l0.1)fL(l10)[(<20)fX][(>23)fX][°°(v43)fX]");
+		AddRule("20:A=(l0.1)f[U](l10)[(^24)fX][(v19)fX]");
+		AddRule("20:A=(l0.1)f[U](l10)[(<20)fX][(>23)fX][°°(^43)fX]");
+		AddRule("30:A=(l0.1)f[U](l10)[(<23)fX](+10)[°°(>43)fX][fX]");
+		AddRule("30:A=(l0.1)f[U](l10)[(<20)fX][(>23)fX][°°(v43)fX]");
 
 		// Blumenstiel bis er 0.01 Durchmesser erreicht 
 		AddRule("20:X={r>0.01,(^2)+(r0.8)(l0.9)fX}{r<0.0101,fY}");
@@ -80,23 +81,25 @@ namespace Vektoria
 		AddRule("30:X={r>0.01,(>22)+(r0.9)(l0.9)fX}{r<0.0101,Y}");
 
 		// Blätter in unterschiedlicher Anzahl
-		AddRule("10:L=+[(l20.0)(<35)l][(l20.0)(>35)l][(l20.0)(^35)l][(l20.0)(v35)l]");
-		AddRule("10:L=+[(l20.0)(<35)l][(l20.0)(>35)l][(l20.0)(^35)l][(l20.0)(v35)l](+40)[(l20.0)(<35)l][(l20.0)(>35)l][(l20.0)(^35)l][(l20.0)(v35)l]");
-		AddRule("10:L=+[(l20.0)(<35)l][(l20.0)(>35)l]");
-		AddRule("10:L=+[(l20.0)(>35)l][(l20.0)(^35)l][(l20.0)(v35)l]");
-		AddRule("10:L=+[(l20.0)(<35)l][(l20.0)(v35)l]");
-		AddRule("10:L=+[(l20.0)(<35)l]");
-		AddRule("10:L=+[(l20.0)(v35)l]");
-		AddRule("10:L=+[(l20.0)(>35)l]");
-		AddRule("10:L=+[(l20.0)(^35)l]");
-		AddRule("10:L=+[(l20.0)(<35)l][(l20.0)(>35)l][(l20.0)(^35)l][(l20.0)(v35)l]");
+		AddRule("10:U=+(R1.5)(L1.5)[<0l][>0l][^0l][v0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[<0l][>0l][^0l][v0l](+40)[<0l][>0l][^0l][v0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[<0l][>0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[>0l][^0l][v0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[<0l][v0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[<0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[v0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[>0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[^0l]");
+		AddRule("10:U=+(R1.5)(L1.5)[<0l][>0l][^0l][v0l]");
+
+
 
 		// Die Blüte mit Staubblättern:
 
 		// mit 4 Blättern
-		AddRule("50:Y=(r10.0)(l0.5)[<b][^b][>b][vb][(<20.2)c][(^18.4)c][(>20.4)c][(v22.4)c](+40.0)[(<10.2)c][(^11.4)c][(>14.4)c][(v12.4)c]");
+		AddRule("50:Y=&(R1.0)(L1.5)[(<78)0b][(^75)0b][(>71)0b][(v69)0b](R0.3)(L0.3)[(<20.2)c][(^18.4)c][(>20.4)c][(v22.4)c](+40.0)[(<10.2)c][(^11.4)c][(>14.4)c][(v12.4)c]");
 		// oder mit 8
-		AddRule("50:Y=(r10.0)(l0.5)[<b][^b][>b][vb](+45)[<b][^b][>b][vb][(<20.2)c][(^18.4)c][(>20.4)c][(v22.4)c](+40.0)[(<10.2)c][(^11.4)c][(>14.4)c][(v12.4)c]");
+		AddRule("50:Y=&(R1.0)(L1.5)[(<78)0b][(^75)0b][(>71)0b][(v69)0b]+[(<63)0b][(^60)0b][(>57)0b][(v54)0b](R0.3)(L0.3)[(<20.2)c][(^18.4)c][(>20.4)c][(v22.4)c](+40.0)[(<10.2)c][(^11.4)c][(>14.4)c][(v12.4)c]");
 
 
 
@@ -291,10 +294,10 @@ namespace Vektoria
 		avOuter[85] = CHVector(0.015f, 0.0f, 0.02f, 1.0f);
 		avOuter[86] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
 
-		for (int i = 0; i < 87; i++)
-			m_zgLeafMain.AddOuter(&avOuter[i]);
+		/*for (int i = 0; i < 87; i++)
+			m_zgLeafMain.AddOuter(&avOuter[i]);*/
 
-		/*if (uLoD == 0)
+		if (uLoD == 0)
 		{
 			for (int i = 0; i < 87; i++)
 				m_zgLeafMain.AddOuter(&avOuter[i]);
@@ -321,19 +324,19 @@ namespace Vektoria
 			m_zgLeafMain.AddOuter(&avOuter[7]);
 			m_zgLeafMain.AddOuter(&avOuter[39]);
 			m_zgLeafMain.AddOuter(&avOuter[86]);
-		}*/
+		}
 
 		SetMaxLeafBending(0.1f);
 		SetMaxLeafFolding(0.5f);
-		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0001f);
+		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
 		SetGeoLeaf(&m_zgLeafMain);
 
-		CHMat mScale;
+		/*CHMat mScale;
 		mScale.Scale(1.5f);
-		m_zgLeafMain.Transform(mScale);
+		m_zgLeafMain.Transform(mScale);*/
 
 
-		m_zmLeaf.MakeTextureBillboard("textures\\poppyleaf.png");
+		m_zmLeaf.MakeTextureDiffuse("textures\\poppyleaf.png");
 		m_zmLeaf.MakeTextureBump("textures\\poppyleaf_n.png");
 		m_zmLeaf.MakeTextureHeight("textures\\poppyleaf_h.png");
 		m_zmLeaf.MakeTextureSpecular("textures\\poppyleaf_o.png");
@@ -400,40 +403,46 @@ namespace Vektoria
 
 			for (int i = 0; i < 16; i++)
 				m_zgBlossomMain.AddOuter(&avOuter[i]);
-			SetMaxBlossomBending(-0.05f);
-			SetMaxBlossomFolding(0.05f);
-			m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.002f);
+			SetMaxBlossomBending(-0.25f);
+			SetMaxBlossomFolding(0.15f);
+			m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.001f);
 			SetGeoBlossom(&m_zgBlossomMain);
 
-			CHMat mScalebluete;
+			/*CHMat mScalebluete;
 			mScalebluete.Scale(6.0f);
-			m_zgBlossomMain.Transform(mScalebluete);
+			m_zgBlossomMain.Transform(mScalebluete);*/
 
 		}
 		else
 		{
-			CHVector avOuter[9];
-			//Stiel:
+			CHVector avOuter[7];
+
 			avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
-			avOuter[1] = CHVector(0.020f, 0.0f, 1.0f, 1.0f);
-			avOuter[2] = CHVector(0.015f, 0.0f, 0.90f, 1.0f);
-
-			//Ausbuchtung:
-			avOuter[3] = CHVector(0.04f, 0.0f, 0.90f, 1.0f);
-			avOuter[4] = CHVector(0.3f, 0.0f, 0.8f, 1.0f);
-			avOuter[5] = CHVector(0.45f, 0.0f, 0.6f, 1.0f);
-			avOuter[6] = CHVector(0.45f, 0.0f, 0.4f, 1.0f);
-			avOuter[7] = CHVector(0.27f, 0.0f, 0.2f, 1.0f);
-			avOuter[8] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
-			for (int i = 0; i < 9; i++)
-				m_zgLeafMain.AddOuter(&avOuter[i]);
+			avOuter[1] = CHVector(0.02f, 0.0f, 1.0f, 1.0f);
+			avOuter[2] = CHVector(0.2f, 0.0f, 0.92f, 1.0f);
+			avOuter[3] = CHVector(0.35f, 0.0f, 0.82f, 1.0f);
+			avOuter[4] = CHVector(0.365f, 0.0f, 0.62f, 1.0f);
+			avOuter[5] = CHVector(0.29f, 0.0f, 0.51f, 1.0f);
+			avOuter[6] = CHVector(0.0f, 0.0f, 0.46f, 1.0f);
 
 
-			m_zgLeafMain.Init(m_zgLeafMain.m_pmaterial, true, true);
-			SetGeoLeaf(&m_zgLeafMain);
+			for (int i = 0; i < 7; i++)
+				m_zgBlossomMain.AddOuter(&avOuter[i]);
+
+
+			SetMaxBlossomBending(-0.25f);
+			SetMaxBlossomFolding(0.15f);
+			m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.001f);
+			SetGeoBlossom(&m_zgBlossomMain);
+
+			CHMat mScalebluete;
+			mScalebluete.Scale((float)uLoD);
+			m_zgBlossomMain.Transform(mScalebluete);
+
+			SetLeafSkipFactor(uLoD);
 		}
 
-		m_zmBlossom.MakeTextureDiffuse("textures\\PoppyBlossom.png");
+		//m_zmBlossom.MakeTextureDiffuse("textures\\poppyblossomred.png");
 		m_zmBlossom.MakeTextureBump("textures\\PoppyBlossom_n.png");
 		m_zmBlossom.MakeTextureHeight("textures\\PoppyBlossom_h.png");
 		m_zmBlossom.MakeTextureSpecular("textures\\PoppyBlossom_o.png");
@@ -444,36 +453,34 @@ namespace Vektoria
 		//Zufällige Farbe der Blütenblätter -> Weiß (selten), Lavendel (selten), gelb, orange-rot, rot (am häufigsten)
 		// funktioniert nicht ganz, Donnerstag fragen
 
-		//CRandom Colorscaling;
-		//float fColorscaling = Colorscaling.RandFr();
-		//if (fColorscaling < 0.101) 
-		//{
-		//	// Setze Farbe auf Lavendel (selten)(221.0f, 160.0f, 221.0f)
-		//	CColor color(0.86667f, 0.62745f, 0.86667f);
-		//	m_zmBlossom.TranslateDelta(color);
-		//}
-		//else if (fColorscaling < 0.201) 
-		//{
-		//	// Setze Farbe auf Weiß (selten)
-		//	CColor color(1.0f, 0.98039f, 0.98039f);
-		//	m_zmBlossom.TranslateDelta(color);
-		//}
-		//else if (fColorscaling < 0.401) 
-		//{
-		//	// Setze Farbe auf gelb
-		//	CColor color(0.94118f, 0.90196f, 0.54902f);
-		//	m_zmBlossom.TranslateDelta(color);
-		//}
-		//else if (fColorscaling < 0.801) 
-		//{
-		//	// Belasse Material in der Standardfarbe (rot)
-		//}
-		//else {
-		//	// Setze Farbe auf Orange-rot
-		//	CColor color(0.91373f, 0.58824f, 0.47843f);
-		//	m_zmBlossom.TranslateDelta(color);
-		//}
-		//m_zmBlossom.ScaleDelta(1.0f + Colorscaling.RandFr());
+		CRandom Colorscaling;
+		Colorscaling.SRand(time(NULL));
+		float fColorscaling = Colorscaling.RandFr();
+		//float fColorscaling = 0.05f;
+		if (fColorscaling < 0.101)
+		{
+			// Setze Farbe auf Lavendel (selten)(221.0f, 160.0f, 221.0f)
+			m_zmBlossom.MakeTextureDiffuse("textures\\poppyblossomrose.png");
+		}
+		else if (fColorscaling < 0.201)
+		{
+			// Setze Farbe auf Weiß (selten)
+			m_zmBlossom.MakeTextureDiffuse("textures\\poppyblossomwhite.png");
+		}
+		else if (fColorscaling < 0.401)
+		{
+			// Setze Farbe auf gelb
+			m_zmBlossom.MakeTextureDiffuse("textures\\poppyblossomyellow.png");
+		}
+		else if (fColorscaling < 0.801)
+		{
+			m_zmBlossom.MakeTextureDiffuse("textures\\poppyblossomred.png");
+		}
+		else {
+			// Setze Farbe auf Orange-rot
+			m_zmBlossom.MakeTextureDiffuse("textures\\poppyblossomorange.png");
+		}
+
 
 
 		m_zgBlossomMain.SetMaterial(&m_zmBlossom);
@@ -597,3 +604,5 @@ namespace Vektoria
 
 
 }
+
+
