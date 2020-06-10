@@ -36,13 +36,16 @@
     <ClInclude Include="Nadelbaum.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="wald.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Butterfly.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="GeoBioPoppy.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ForestCluster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,13 +68,16 @@
     <ClCompile Include="Nadelbaum.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="wald.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Butterfly.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="GeoBioPoppy.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ForestCluster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

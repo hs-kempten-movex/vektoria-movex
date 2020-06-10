@@ -53,7 +53,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	InitPlayer();
 
 	// WALD HIER //
-	island.m_pIsland1.AddPlacement(&wald);
+  m_forest = new Forest(&island.m_gTerrainOri);
+	island.m_pIsland1.AddPlacement(m_forest);
 }
 
 void CGame::InitPlayer()

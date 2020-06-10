@@ -25,7 +25,7 @@
 #include "KeyboardControl.h"
 #include "GeoBioPoppy.h"
 #include "Butterfly.h"
-#include "wald.h"
+#include "Forest.h"
 
 using namespace Vektoria;
 
@@ -62,7 +62,7 @@ private:
 	CMaterial m_zmBlossom;																		// Material für Mohnblume
 	Butterfly m_zpButterfly;
 
-	Wald wald = Wald(&island.m_gTerrainOri);;
+  Forest* m_forest;
 
 	CGeos CollisionObjects;
 	CGeoTerrains CollsisionTerrains;
