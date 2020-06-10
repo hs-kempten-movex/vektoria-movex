@@ -1,6 +1,5 @@
 #include "Forest.h"
 #include "Island.h"
-#include <iostream>
 
 #define CBTREE_SEED 30285
 
@@ -12,20 +11,25 @@ using namespace Vektoria;
 
 Forest::Forest(CGeoTerrain * terrain)
 {
-    m_CBTreeLoD1.SetRandomSeed(CBTREE_SEED);
-    m_CBTreeLoD1.Iterate(150.0f, 0.2f, 0.0f);
-    m_CBTreeLoD1.Init(&m_CBTreeLoD1, 0);
-    m_CBTreeLoD1.DeIterate();
-    
-    m_CBTreeLoD2.SetRandomSeed(CBTREE_SEED);
-    m_CBTreeLoD2.Iterate(150.0f, 0.2f, 0.0f);
-    m_CBTreeLoD2.Init(&m_CBTreeLoD2, 1);
-    m_CBTreeLoD2.DeIterate();
+    std::vector<std::thread> threads;
+    std::mutex mutex;
 
-    m_CBTreeLoD3.SetRandomSeed(CBTREE_SEED);
-    m_CBTreeLoD3.Iterate(150.0f, 0.2f, 0.0f);
-    m_CBTreeLoD3.Init(&m_CBTreeLoD3, 2);
-    m_CBTreeLoD3.DeIterate();
+    threads.push_back(std::thread(CBTreeInit, &m_CBTreeLoD1, 0));
+    threads.push_back(std::thread(CBTreeInit, &m_CBTreeLoD2, 1));
+    threads.push_back(std::thread(CBTreeInit, &m_CBTreeLoD3, 2));
+
+    for (int i = -TERRAIN_SIZE/2; i < TERRAIN_SIZE; i+= CLUSTER_SIZE * 2)
+    {
+        for (int j = -TERRAIN_SIZE / 2; j < TERRAIN_SIZE; j += CLUSTER_SIZE * 2)
+        {
+            threads.push_back(std::thread(ClusterInit, terrain, CHVector(i, 0, j), &m_forestClusters, &mutex));
+        }
+    }
+
+    for (auto& thread : threads)
+    {
+        thread.join();
+    }
 
     //TODO find better values
     m_CBTreePlacementLoD1.AddGeo(&m_CBTreeLoD1);
@@ -45,15 +49,14 @@ Forest::Forest(CGeoTerrain * terrain)
     m_poopy.Init(&m_poopy, 0);
     m_poopy.DeIterate();
 
-    for (int i = -TERRAIN_SIZE/2; i < TERRAIN_SIZE; i+= CLUSTER_SIZE * 2)
+    for (auto& cluster : m_forestClusters)
     {
-        for (int j = -TERRAIN_SIZE / 2; j < TERRAIN_SIZE; j += CLUSTER_SIZE * 2)
+        AddPlacement(cluster);
+        for (auto& plantPlacement : cluster->GetPlantPlacements())
         {
-            ForestCluster* newCluster = new ForestCluster(&m_CBTreePlacement, TREES_PER_CLUSTER, terrain, CHVector(i, 0, j), CLUSTER_SIZE);
-            m_forestClusters.push_back(newCluster);
-            AddPlacement(newCluster);
+            plantPlacement->AddPlacement(&m_CBTreePlacement);
         }
-    }   
+    }
 }
 
 Forest::~Forest()
@@ -62,4 +65,20 @@ Forest::~Forest()
     {
         delete cluster;
     }
+}
+
+void Forest::CBTreeInit(CherryBlossomTree* tree, unsigned int lod)
+{
+    tree->SetRandomSeed(CBTREE_SEED);
+    tree->Iterate(150.0f, 0.2f, 0.0f);
+    tree->Init(tree, lod);
+    tree->DeIterate();
+}
+
+void Forest::ClusterInit(CGeoTerrain* terrain, CHVector position, std::vector<ForestCluster*>* clusters, std::mutex* mutex)
+{
+    ForestCluster* newCluster = new ForestCluster(TREES_PER_CLUSTER, terrain, position, CLUSTER_SIZE);
+    mutex->lock();
+    clusters->push_back(newCluster);
+    mutex->unlock();
 }

@@ -5,7 +5,7 @@
 #define TREE_LINE_UPPER 1000.f
 
 
-ForestCluster::ForestCluster(CPlacement* plant, uint8_t numPlants, CGeoTerrain* terrain, CHVector position, float size)
+ForestCluster::ForestCluster(uint8_t numPlants, CGeoTerrain* terrain, CHVector position, float size)
 {
     Translate(position);
 
@@ -15,10 +15,10 @@ ForestCluster::ForestCluster(CPlacement* plant, uint8_t numPlants, CGeoTerrain* 
         if (plantPosition != CHVector())
         {
             CPlacement* plantPlacement = new CPlacement();
-            plantPlacement->AddPlacement(plant);
             plantPlacement->RotateYDelta(UM_FRAND()*TWOPI);
             plantPlacement->TranslateDelta(plantPosition - position);
 
+            m_plantPlacements.push_back(plantPlacement);
             AddPlacement(plantPlacement);
         }
     }
