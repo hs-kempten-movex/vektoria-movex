@@ -1,4 +1,3 @@
-
 #include "CherryBlossomTree.h"
 
 CherryBlossomTree::CherryBlossomTree()
@@ -115,10 +114,14 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 	if (m_bHasLeaves)
 	{
 		SetAxiom("K");
-		AddRule("33:K={r>0.8,(r0.8)(^24)(l0.93)fK}{r<0.7,X}");
-		AddRule("33:K={r>0.8,(r0.8)(>25)(l0.93)fK}{r<0.7,X}");
-		AddRule("34:K={r>0.8,(r0.8)(<22)(l0.93)fK}{r<0.7,X}");
-		AddRule("35:X={r>0.004,+(l0.93)(r0.95)(_0.8)(>19)f(r0.95)(>19)f[(l0.9)(<14)(r0.9)X][(l0.95)(r0.5)(>15)X]}{r<0.0041,Y}");
+		AddRule("17:K={r>0.8,(r0.8)(^24)(l0.93)fK}{r<0.801,X}");
+		AddRule("17:K={r>0.8,(r0.8)(>25)(l0.93)fK}{r<0.801,X}");
+		AddRule("17:K={r>0.8,(r0.8)(<22)(l0.93)fK}{r<0.801,X}");
+		AddRule("17:K={r>0.8,(r0.8)(<22)(l0.93)fK}{r<0.801,X}");
+		AddRule("32:K=°{r>0.8,(r0.8)(l0.93)fK}{r<0.801,X}");
+
+
+		AddRule("35:X={r>0.004,°+(l0.93)(r0.95)(_0.8)(>19)f(r0.95)(>19)f[(l0.9)(<14)(r0.9)X][(l0.95)(r0.5)(>15)X]}{r<0.0041,Y}");
 		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(<15)f(r0.95)(<13)f[(l0.85)(r0.8)(^15)f(^17)X][(l0.89)(v12)(r0.8)f(r0.8)f(v10)(r0.8)X]}{r<0.0041,Y}");
 		AddRule("15:X={r>0.004,+(l0.93)(r0.95)(_0.8)(v12)f(r0.95)(v12)f[(l0.97)(r0.8)(<15)(^15)(v8)X]}{r<0.0041,Y}");
 		AddRule("15:X={r>0.004,+(r0.95)(_0.8)(>13)f[(l0.97)(^10)(r0.92)X][(l0.52)(r0.5)(<17)X]}{r<0.0041,Y}");
@@ -158,11 +161,11 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 
 	}
 
-	m_iIterations += 23;
+	m_iIterations += 10;
 
 	CGeoLSystem::Iterate(m_iIterations, m_acAxiom);
 
-	m_iIterations -= 23; // Wegen Wurzel wieder zurückstellen!
+	m_iIterations -= 10; // Wegen Wurzel wieder zurückstellen!
 
 	// ---------------
 	// Erzeuge Wurzel:
@@ -522,9 +525,15 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 		m_zmBlossom.MakeTextureDiffuse("textures\\roseblossomfrontback.png");
 		m_zgBlossomMain.SetMaterial(&m_zmBlossom);
 	}
-	m_zmBark.LoadPreset("BarkBirch");
-	SetMaterial(&m_zmBark);
+	//m_zmBark.LoadPreset("BarkBirch");
+	m_zmBark.MakeTextureDiffuse("textures\\Bark_09_3K_Base_Color.png");
+	m_zmBark.MakeTextureBump("textures\\Bark_09_3K_Normal.png");
+	m_zmBark.MakeTextureHeight("textures\\Bark_09_3K_Height.png");
+	m_zmBark.MakeTextureSpecular("textures\\Bark_09_3K_Roughness.png");
 
+	SetMaterial(&m_zmBark);
+	m_zmBark.SetDisplacementOn();
+	m_zmBark.SetDisplacementStrength(0.03f);
 
 	SetSwakeRandomFactor(m_fSwakeRandom);
 	SetTurtleStartHeight(m_fTurtleStartLength);
