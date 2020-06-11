@@ -1,35 +1,18 @@
 #include "Forest.h"
 #include "Island.h"
+#include "ThreadPool.h"
 
 #define CBTREE_SEED 30285
 
-#define CLUSTER_SIZE 500
+#define CLUSTER_SIZE 250
 #define TREES_PER_CLUSTER 20
 
 using namespace Vektoria;
 
 
-Forest::Forest(CGeoTerrain * terrain)
+Forest::Forest(CGeoTerrain* terrain)
 {
-    std::vector<std::thread> threads;
-    std::mutex mutex;
-
-    threads.push_back(std::thread(CBTreeInit, &m_CBTreeLoD1, 0));
-    threads.push_back(std::thread(CBTreeInit, &m_CBTreeLoD2, 1));
-    threads.push_back(std::thread(CBTreeInit, &m_CBTreeLoD3, 2));
-
-    for (int i = -TERRAIN_SIZE/2; i < TERRAIN_SIZE; i+= CLUSTER_SIZE * 2)
-    {
-        for (int j = -TERRAIN_SIZE / 2; j < TERRAIN_SIZE; j += CLUSTER_SIZE * 2)
-        {
-            threads.push_back(std::thread(ClusterInit, terrain, CHVector(i, 0, j), &m_forestClusters, &mutex));
-        }
-    }
-
-    for (auto& thread : threads)
-    {
-        thread.join();
-    }
+    InitGeos(terrain);
 
     //TODO find better values
     m_CBTreePlacementLoD1.AddGeo(&m_CBTreeLoD1);
@@ -64,6 +47,23 @@ Forest::~Forest()
     for (auto& cluster : m_forestClusters)
     {
         delete cluster;
+    }
+}
+
+void Forest::InitGeos(CGeoTerrain* terrain)
+{
+    ThreadPool threadPool;
+    threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD1, 1);
+    threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD2, 2);
+    threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD3, 3);
+
+    std::mutex mutex;
+    for (int i = -TERRAIN_SIZE / 2; i < TERRAIN_SIZE; i += CLUSTER_SIZE * 2)
+    {
+        for (int j = -TERRAIN_SIZE / 2; j < TERRAIN_SIZE; j += CLUSTER_SIZE * 2)
+        {
+            threadPool.EnqueueTask(ClusterInit, terrain, CHVector(i, 0, j), &m_forestClusters, &mutex);
+        }
     }
 }
 

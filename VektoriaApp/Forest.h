@@ -3,8 +3,6 @@
 #include "GeoBioPoppy.h"
 #include "CherryBlossomTree.h"
 #include "ForestCluster.h"
-#include <thread>
-#include <mutex>
 
 using namespace Vektoria;
 
@@ -29,6 +27,8 @@ private:
 	  GeoBioPoppy m_poopy;
 
     std::vector<ForestCluster*> m_forestClusters;
+
+    void InitGeos(CGeoTerrain* terrain);
 
     static void CBTreeInit(CherryBlossomTree* tree, unsigned int lod);
     static void ClusterInit(CGeoTerrain* terrain, CHVector position, std::vector<ForestCluster*>* clusters, std::mutex* mutex);
