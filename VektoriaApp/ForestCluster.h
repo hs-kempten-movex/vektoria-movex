@@ -8,14 +8,19 @@ class ForestCluster :
     public CPlacement
 {
 public:
-    ForestCluster(uint8_t numPlants, CGeoTerrain* terrain, CHVector position, float size);
+    ForestCluster(CGeoTerrain* terrain, CHVector position, float size);
 
-    std::vector<CPlacement*>& GetPlantPlacements()
+    void AddPlacementsForSpecies(uint8_t numPlants, float minHeight, float maxHeight, float minSlope = 0.0f, float maxSlope = HALFPI);
+
+    std::vector<std::vector<CPlacement*>>& GetPlantPlacements()
     {
         return m_plantPlacements;
     };
 
 private:
-    std::vector<CPlacement*> m_plantPlacements;
+    float m_size;
+    CGeoTerrain* m_terrain;
+
+    std::vector<std::vector<CPlacement*>> m_plantPlacements;
 };
 
