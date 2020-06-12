@@ -362,10 +362,10 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 		mScale.Scale(fLeafScaling);
 		m_zgLeafMain.Transform(mScale);
 
-		m_zmLeaf.MakeTextureDiffuse("textures\\RosebloomRealLeaf.png");
-		m_zmLeaf.MakeTextureBump("textures\\RosebloomRealLeaf_n.png");
-		m_zmLeaf.MakeTextureHeight("textures\\RosebloomRealLeaf_h.png");
-		m_zmLeaf.MakeTextureSpecular("textures\\RosebloomRealLeaf_s.png");
+		m_zmLeaf.MakeTextureDiffuse("..\\VektoriaApp\\textures\\RosebloomRealLeaf.png");
+		m_zmLeaf.MakeTextureBump("..\\VektoriaApp\\textures\\RosebloomRealLeaf_n.png");
+		m_zmLeaf.MakeTextureHeight("..\\VektoriaApp\\textures\\RosebloomRealLeaf_h.png");
+		m_zmLeaf.MakeTextureSpecular("..VektoriaApp\\\\textures\\RosebloomRealLeaf_s.png");
 
 		m_zmLeaf.SetSpecularStrength(0.01f);
 
@@ -524,14 +524,14 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 
 		}
 
-		m_zmBlossom.MakeTextureDiffuse("textures\\roseblossomfrontback.png");
+		m_zmBlossom.MakeTextureDiffuse("..\\VektoriaApp\\textures\\roseblossomfrontback.png");
 		m_zgBlossomMain.SetMaterial(&m_zmBlossom);
 	}
 	//m_zmBark.LoadPreset("BarkBirch");
-	m_zmBark.MakeTextureDiffuse("textures\\Bark_09_3K_Base_Color.png");
-	m_zmBark.MakeTextureBump("textures\\Bark_09_3K_Normal.png");
-	m_zmBark.MakeTextureHeight("textures\\Bark_09_3K_Height.png");
-	m_zmBark.MakeTextureSpecular("textures\\Bark_09_3K_Roughness.png");
+	m_zmBark.MakeTextureDiffuse("..\\VektoriaApp\\textures\\Bark_09_3K_Base_Color.png");
+	m_zmBark.MakeTextureBump("..\\VektoriaApp\\textures\\Bark_09_3K_Normal.png");
+	m_zmBark.MakeTextureHeight("..\\VektoriaApp\\textures\\Bark_09_3K_Height.png");
+	m_zmBark.MakeTextureSpecular("..\\VektoriaApp\\textures\\Bark_09_3K_Roughness.png");
 
 	SetMaterial(&m_zmBark);
 	m_zmBark.SetDisplacementOn();
