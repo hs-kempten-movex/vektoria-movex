@@ -1,5 +1,7 @@
 #include "Butterfly.h"
 
+using namespace PlayerNS;
+
 Butterfly::Butterfly()
 {
 	torso = objLoader.LoadGeo("models\\ButterflyTorso.obj", true);

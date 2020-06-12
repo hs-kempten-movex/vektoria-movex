@@ -22,8 +22,8 @@
 
 #include "Vektoria\Root.h"
 #include "Island.h"
-#include "KeyboardControl.h"
-#include "Butterfly.h"
+#include "Player/KeyboardControl.h"
+#include "Player/Butterfly.h"
 #include "Forest/Forest.h"
 
 using namespace Vektoria;
@@ -45,7 +45,7 @@ public:
 	CViewport m_viewport;
 	CCamera m_camera;
 	CPlacement m_zpCamera;
-	KeyboardControl m_keyboard;
+	PlayerNS::KeyboardControl m_keyboard;
 
 	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash);	// Wird zu Begin einmal aufgerufen
 	void Tick(float fTime, float fTimeDelta);													// Wird während der Laufzeit bei jedem Bildaufbau aufgerufen
@@ -55,7 +55,7 @@ public:
 	void InitPlayer();
 private:
 	Island island;
-	Butterfly m_zpButterfly;
+  PlayerNS::Butterfly m_zpButterfly;
 
   ForestNS::Forest* m_forest;
 

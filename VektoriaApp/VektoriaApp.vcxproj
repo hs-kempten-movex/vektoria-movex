@@ -148,7 +148,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Butterfly.h" />
     <ClInclude Include="Forest\CherryBlossomTree.h" />
     <ClInclude Include="Forest\Forest.h" />
     <ClInclude Include="Forest\ForestCluster.h" />
@@ -156,13 +155,13 @@
     <ClInclude Include="Forest\Nadelbaum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Island.h" />
-    <ClInclude Include="KeyboardControl.h" />
+    <ClInclude Include="Player\Butterfly.h" />
+    <ClInclude Include="Player\KeyboardControl.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ThreadPool.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Butterfly.cpp" />
     <ClCompile Include="Forest\CherryBlossomTree.cpp" />
     <ClCompile Include="Forest\Forest.cpp" />
     <ClCompile Include="Forest\ForestCluster.cpp" />
@@ -170,7 +169,8 @@
     <ClCompile Include="Forest\Nadelbaum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Island.cpp" />
-    <ClCompile Include="KeyboardControl.cpp" />
+    <ClCompile Include="Player\Butterfly.cpp" />
+    <ClCompile Include="Player\KeyboardControl.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>
   <ItemGroup>

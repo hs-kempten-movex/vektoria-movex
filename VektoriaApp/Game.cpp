@@ -1,6 +1,5 @@
 
 #include "Game.h"
-#include <iostream>
 
 CGame::CGame(void)
 {

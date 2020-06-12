@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\Forest">
+      <UniqueIdentifier>{a68c2741-161f-4a6f-994c-338107b56333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Forest">
+      <UniqueIdentifier>{d5a5d7ad-2da5-49f5-8a36-e986093cb779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Player">
+      <UniqueIdentifier>{0df06ef9-d2c9-4672-970b-5b72a3414d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Player">
+      <UniqueIdentifier>{27ea090f-577e-45e3-8399-2aac8ece9417}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -27,29 +39,29 @@
     <ClInclude Include="Island.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="KeyboardControl.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Butterfly.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="ThreadPool.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Forest\CherryBlossomTree.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Forest\Forest.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Forest\ForestCluster.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Forest\GeoBioPoppy.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Forest</Filter>
     </ClInclude>
     <ClInclude Include="Forest\Nadelbaum.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\ForestCluster.h">
+      <Filter>Headerdateien\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\CherryBlossomTree.h">
+      <Filter>Headerdateien\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\GeoBioPoppy.h">
+      <Filter>Headerdateien\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Butterfly.h">
+      <Filter>Headerdateien\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\KeyboardControl.h">
+      <Filter>Headerdateien\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -62,26 +74,26 @@
     <ClCompile Include="Island.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="KeyboardControl.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Butterfly.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Forest\CherryBlossomTree.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Forest</Filter>
     </ClCompile>
     <ClCompile Include="Forest\Forest.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Forest</Filter>
     </ClCompile>
     <ClCompile Include="Forest\ForestCluster.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Forest</Filter>
     </ClCompile>
     <ClCompile Include="Forest\GeoBioPoppy.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Forest</Filter>
     </ClCompile>
     <ClCompile Include="Forest\Nadelbaum.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Forest</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Butterfly.cpp">
+      <Filter>Quelldateien\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\KeyboardControl.cpp">
+      <Filter>Quelldateien\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
