@@ -15,6 +15,8 @@ namespace Vektoria
 
 	void GeoBioPoppy::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 	{
+		Colorscaling.SRand(time(NULL));
+		fColorscaling = Colorscaling.RandFr();
 		m_fAge = fAge;
 		m_frTimeOfYear = frTimeOfYear;
 		m_fRootCutHeight = fRootCutHeight;

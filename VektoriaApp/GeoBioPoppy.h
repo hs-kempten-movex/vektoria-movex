@@ -84,5 +84,10 @@ namespace Vektoria
 		///<summary> Material des Staubblattes </summary>
 		CMaterial m_zmStamen;
 
+
+		// rand float
+		CRandom Colorscaling;
+
+		float fColorscaling;
 	};
 }
