@@ -1,6 +1,5 @@
 
 #include "Game.h"
-#include <iostream>
 
 CGame::CGame(void)
 {
@@ -22,7 +21,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_frame.AddDeviceKeyboard(&m_keyboard);
 	m_frame.AddDeviceMouse(&m_keyboard);
 	m_root.AddScene(&m_scene);
-	m_root.AddMaterial(&m_zmBlossom);
 	
 	//Himmel mit SOnne, Mond und Sterne
 	m_scene.SetSkyOn(&m_keyboard.pitch);
@@ -33,9 +31,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_scene.AddPlacement(&island.m_pIsland2);
 	m_scene.AddPlacement(&island.m_pIsland3);
 	m_scene.AddPlacement(&island.m_pIsland4);
-	island.m_pIsland1.AddPlacement(&m_zpLSystem);
-	island.m_pIsland1.AddPlacement(&m_zpBlume);
-	m_zpLSystem.TranslateX(500.0f);
   
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
@@ -45,15 +40,12 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	true,									// BVH-Schattenfrustumcasting an!
 	m_scene.GetSkyLightPlacement());		 // Info für das OBVHSFC
 
-	// Blume Test 
-	GeoBioPoppy *BlumeAlla = new GeoBioPoppy();
-	m_zpBlume.AddGeo(BlumeAlla);
-	m_zpBlume.TranslateX(490.0f);
 
 	InitPlayer();
 
 	// WALD HIER //
-	island.m_pIsland1.AddPlacement(&wald);
+  m_forest = new ForestNS::Forest(&island.m_gTerrainOri);
+	island.m_pIsland1.AddPlacement(m_forest);
 }
 
 void CGame::InitPlayer()
@@ -73,7 +65,7 @@ void CGame::InitPlayer()
     m_keyboard.pitch.AddPlacement(&m_zpButterfly);
     m_keyboard.pitch.AddPlacement(&m_zpCamera);
 
-    m_zpCamera.TranslateDelta(0.0f, 20.0f, 100.0f);
+    m_zpCamera.TranslateDelta(0.0f, 6.0f, 30.0f);
     m_zpCamera.AddCamera(&m_camera);
 }
 

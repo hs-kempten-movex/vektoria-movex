@@ -1,5 +1,7 @@
 #include "Butterfly.h"
 
+using namespace PlayerNS;
+
 Butterfly::Butterfly()
 {
 	torso = objLoader.LoadGeo("models\\ButterflyTorso.obj", true);
@@ -15,6 +17,7 @@ Butterfly::Butterfly()
 	this->AddPlacement(&zp_WingsR);
 	this->RotateY(HALFPI);
 	this->RotateXDelta(-HALFPI);
+  this->ScaleDelta(0.1);
 
 	zp_Torso.AddGeo(torso);
 	zp_WingsL.AddGeo(wingsL);

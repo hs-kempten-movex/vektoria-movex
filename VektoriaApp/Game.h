@@ -22,10 +22,9 @@
 
 #include "Vektoria\Root.h"
 #include "Island.h"
-#include "KeyboardControl.h"
-#include "GeoBioPoppy.h"
-#include "Butterfly.h"
-#include "wald.h"
+#include "Player/KeyboardControl.h"
+#include "Player/Butterfly.h"
+#include "Forest/Forest.h"
 
 using namespace Vektoria;
 
@@ -46,7 +45,7 @@ public:
 	CViewport m_viewport;
 	CCamera m_camera;
 	CPlacement m_zpCamera;
-	KeyboardControl m_keyboard;
+	PlayerNS::KeyboardControl m_keyboard;
 
 	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash);	// Wird zu Begin einmal aufgerufen
 	void Tick(float fTime, float fTimeDelta);													// Wird während der Laufzeit bei jedem Bildaufbau aufgerufen
@@ -56,13 +55,9 @@ public:
 	void InitPlayer();
 private:
 	Island island;
+  PlayerNS::Butterfly m_zpButterfly;
 
-	CPlacement m_zpLSystem;
-	CPlacement m_zpBlume;
-	CMaterial m_zmBlossom;																		// Material für Mohnblume
-	Butterfly m_zpButterfly;
-
-	Wald wald = Wald(&island.m_gTerrainOri);;
+  ForestNS::Forest* m_forest;
 
 	CGeos CollisionObjects;
 	CGeoTerrains CollsisionTerrains;

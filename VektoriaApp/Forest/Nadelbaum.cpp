@@ -1,5 +1,7 @@
 #include "Nadelbaum.h"
 
+using namespace ForestNS;
+
 Nadelbaum::Nadelbaum()
 {
 

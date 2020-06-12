@@ -1,5 +1,6 @@
 #include "KeyboardControl.h"
-#include <iostream>
+
+using namespace PlayerNS;
 
 KeyboardControl::KeyboardControl(){
     translation.AddPlacement(&yaw);
