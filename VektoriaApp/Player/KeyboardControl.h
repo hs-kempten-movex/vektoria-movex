@@ -18,7 +18,19 @@ namespace PlayerNS
 
         void Init(CGeos* collisionObjects, CGeoTerrains* collisionTerrains);
 
-        void Tick(float fTimeDelta);
+        virtual void Tick(float time, float fTimeDelta);
+
+        CPlacement* GetPitch()
+        {
+            return &pitch;
+        }
+
+        CPlacement* GetTranslation()
+        {
+            return &translation;
+        }
+
+    protected:
 
         CPlacement translation;
         CPlacement yaw;

@@ -14,16 +14,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// Hier die Initialisierung Deiner Vektoria-Objekte einfügen:
 	m_root.Init(psplash);
 	m_frame.Init(hwnd, procOS);
-	m_viewport.InitFull(&m_camera);
-	m_viewport.SetHazeOn();
 	m_root.AddFrame(&m_frame);
-	m_frame.AddViewport(&m_viewport);
-	m_frame.AddDeviceKeyboard(&m_keyboard);
-	m_frame.AddDeviceMouse(&m_keyboard);
 	m_root.AddScene(&m_scene);
 	
 	//Himmel mit SOnne, Mond und Sterne
-	m_scene.SetSkyOn(&m_keyboard.pitch);
 	m_scene.SetSkyFlowOn(120);
 
 	//Placements
@@ -35,49 +29,42 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
 	m_scene.SetFrustumCullingOn();
-	m_camera.Init(HALFPI,					// 45° Kameraöffnungswinkel
-	0.3, 170000.0f,							// 30cm bis 170 km Sicht
-	true,									// BVH-Schattenfrustumcasting an!
-	m_scene.GetSkyLightPlacement());		 // Info für das OBVHSFC
 
+  //TODO check how sky works with multiple cameras. It shoud be set on the camera placement instead of the island placement
+  m_scene.SetSkyOn(&island.m_pIsland1);
 
-	InitPlayer();
+	InitPlayers();
 
 	// WALD HIER //
   m_forest = new ForestNS::Forest(&island.m_gTerrainOri);
 	island.m_pIsland1.AddPlacement(m_forest);
 }
 
-void CGame::InitPlayer()
+void CGame::InitPlayers()
 {
     CollsisionTerrains.Add(&island.m_gTerrainOri);
     CollsisionTerrains.Add(&island.m_gWater);
 
-    m_keyboard.Init(&CollisionObjects, &CollsisionTerrains);
+    for (auto& player : m_players)
+    {
+        player.Init(m_scene.GetSkyLightPlacement(), &CollisionObjects, &CollsisionTerrains);
+        m_frame.AddViewport(player.GetViewport());
+        m_frame.AddDeviceKeyboard(&player);
+        m_frame.AddDeviceMouse(&player);
 
-    m_keyboard.pitch.SetMoveRange(CAABB(
-        CHVector(-50000.0f, 4.0f, -50000.0f, 1.0f),
-        CHVector(+50000.0f, 20000.0f, +50000.0f, 1.0f)));
-
-    island.m_pIsland1.AddPlacement(&m_keyboard.translation);
-    m_keyboard.translation.Translate(0.0f, 300.0f, 200.0f);
-
-    m_keyboard.pitch.AddPlacement(&m_zpButterfly);
-    m_keyboard.pitch.AddPlacement(&m_zpCamera);
-
-    m_zpCamera.TranslateDelta(0.0f, 6.0f, 30.0f);
-    m_zpCamera.AddCamera(&m_camera);
+        m_scene.AddPlacement(player.GetTranslation());
+    }
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
 {
-	// Hier die Echtzeit-Veränderungen einfügen:
-	CHitPoint hitpointGround;
-	CHitPoint hitpointCollision;
-	m_keyboard.Tick(fTimeDelta);
-	m_root.Tick(fTimeDelta);
+    // Hier die Echtzeit-Veränderungen einfügen:
+    m_root.Tick(fTimeDelta);
 
-  m_zpButterfly.Tick(fTime, fTimeDelta);
+    for (auto& player : m_players)
+    {
+        player.Tick(fTime, fTimeDelta);
+    }
 }
 
 void CGame::Fini()

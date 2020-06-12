@@ -16,9 +16,9 @@ void KeyboardControl::Init(CGeos* collisionObjects, CGeoTerrains* collisionTerra
     this->collisionTerrains = collisionTerrains;
 }
 
-void KeyboardControl::Tick(float fTimeDalta) {
+void KeyboardControl::Tick(float time, float fTimeDelta) {
     rotate();
-    move(fTimeDalta);
+    move(fTimeDelta);
 }
 
 void KeyboardControl::rotate() {

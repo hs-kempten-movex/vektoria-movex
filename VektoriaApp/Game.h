@@ -22,9 +22,9 @@
 
 #include "Vektoria\Root.h"
 #include "Island.h"
-#include "Player/KeyboardControl.h"
-#include "Player/Butterfly.h"
+#include "Player/Player.h"
 #include "Forest/Forest.h"
+#include <array>
 
 using namespace Vektoria;
 
@@ -36,28 +36,25 @@ public:
 
 	CRoot m_root;
 	CScene m_scene;
-
-	CLightParallel m_light;
-	CGeoSphere m_Kugel;
-	CPlacement m_pkugel;
-
 	CFrame m_frame;
-	CViewport m_viewport;
-	CCamera m_camera;
-	CPlacement m_zpCamera;
-	PlayerNS::KeyboardControl m_keyboard;
 
 	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash);	// Wird zu Begin einmal aufgerufen
 	void Tick(float fTime, float fTimeDelta);													// Wird während der Laufzeit bei jedem Bildaufbau aufgerufen
 	void Fini();																				// Wird am Ende einmal aufgerufen
 
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
-	void InitPlayer();
+	void InitPlayers();
 private:
+
 	Island island;
-  PlayerNS::Butterfly m_zpButterfly;
 
   ForestNS::Forest* m_forest;
+
+  std::array<PlayerNS::Player, 1> m_players
+  {
+      PlayerNS::Player(1, m_players.size(), CHVector(0.0f, 300.0f, 200.0f))
+      //PlayerNS::Player(2, m_players.size())
+  };
 
 	CGeos CollisionObjects;
 	CGeoTerrains CollsisionTerrains;
