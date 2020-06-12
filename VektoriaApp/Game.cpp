@@ -66,7 +66,7 @@ void CGame::InitPlayer()
     m_keyboard.pitch.AddPlacement(&m_zpButterfly);
     m_keyboard.pitch.AddPlacement(&m_zpCamera);
 
-    m_zpCamera.TranslateDelta(0.0f, 20.0f, 100.0f);
+    m_zpCamera.TranslateDelta(0.0f, 6.0f, 30.0f);
     m_zpCamera.AddCamera(&m_camera);
 }
 
