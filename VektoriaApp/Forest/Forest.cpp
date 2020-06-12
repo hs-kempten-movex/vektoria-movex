@@ -10,16 +10,16 @@
 
 using namespace Vektoria;
 using namespace ForestNS;
-
+//TODO dejans bäume holen und einfügen
 Forest::Forest(CGeoTerrain* terrain)
 {
     InitGeos(terrain);
 
     //TODO find better values
     m_CBTreePlacementLoD1.AddGeo(&m_CBTreeLoD1);
-    m_CBTreePlacementLoD1.SetLoD(0.0f, 250.0f);
+    m_CBTreePlacementLoD1.SetLoD(0.0f, 400.0f);
     m_CBTreePlacementLoD2.AddGeo(&m_CBTreeLoD2);
-    m_CBTreePlacementLoD2.SetLoD(250.0f, 750.0f);
+    m_CBTreePlacementLoD2.SetLoD(400.0f, 750.0f);
     m_CBTreePlacementLoD3.AddGeo(&m_CBTreeLoD3);
     m_CBTreePlacementLoD3.SetLoD(750.0f, 1500.0f);
 
@@ -38,7 +38,7 @@ Forest::Forest(CGeoTerrain* terrain)
     m_plants[1].AddPlacement(&m_PoppyPlacementLoD1);
     m_plants[1].AddPlacement(&m_PoppyPlacementLoD2);
     m_plants[1].AddPlacement(&m_PoppyPlacementLoD3);
-    m_plants[1].Scale(3.0f);
+    m_plants[1].Scale(1.5f);
 
     for (auto& cluster : m_forestClusters)
     {
@@ -64,7 +64,7 @@ Forest::~Forest()
 
 void Forest::InitGeos(CGeoTerrain* terrain)
 {
-    ThreadPool threadPool;
+    ThreadPool threadPool(4);
     threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD1, 1);
     threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD2, 2);
     threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD3, 3);
@@ -101,9 +101,10 @@ void Forest::PoppyInit(GeoBioPoppy* poppy, unsigned int lod)
 
 void Forest::ClusterInit(CGeoTerrain* terrain, CHVector position, std::vector<ForestCluster*>* clusters, std::mutex* mutex)
 {
+
     ForestCluster* newCluster = new ForestCluster(terrain, position, CLUSTER_SIZE);
-    newCluster->AddPlacementsForSpecies(TREES_PER_CLUSTER, 0.0, 1000.0f);
-    newCluster->AddPlacementsForSpecies(TREES_PER_CLUSTER, 10.0, 750.0f);
+    newCluster->AddPlacementsForSpecies(TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI); //cherrytrees höhe wo sie wachsen dürfen, abhang etc
+    newCluster->AddPlacementsForSpecies(TREES_PER_CLUSTER, 10.0, 130.0f); //poppies
     mutex->lock();
     clusters->push_back(newCluster);
     mutex->unlock();
