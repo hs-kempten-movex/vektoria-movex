@@ -4,6 +4,7 @@
 #define TREE_LINE_LOWER 0.0f
 #define TREE_LINE_UPPER 1000.f
 
+using namespace ForestNS;
 
 ForestCluster::ForestCluster(CGeoTerrain* terrain, CHVector position, float size) :
     m_terrain{terrain},

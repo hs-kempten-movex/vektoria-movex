@@ -149,29 +149,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Butterfly.h" />
-    <ClInclude Include="CherryBlossomTree.h" />
-    <ClInclude Include="ForestCluster.h" />
+    <ClInclude Include="Forest\CherryBlossomTree.h" />
+    <ClInclude Include="Forest\Forest.h" />
+    <ClInclude Include="Forest\ForestCluster.h" />
+    <ClInclude Include="Forest\GeoBioPoppy.h" />
+    <ClInclude Include="Forest\Nadelbaum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Island.h" />
     <ClInclude Include="KeyboardControl.h" />
-    <ClInclude Include="Nadelbaum.h" />
-    <ClInclude Include="GeoBioPoppy.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Forest.h" />
     <ClInclude Include="ThreadPool.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Butterfly.cpp" />
-    <ClCompile Include="CherryBlossomTree.cpp" />
-    <ClCompile Include="ForestCluster.cpp" />
+    <ClCompile Include="Forest\CherryBlossomTree.cpp" />
+    <ClCompile Include="Forest\Forest.cpp" />
+    <ClCompile Include="Forest\ForestCluster.cpp" />
+    <ClCompile Include="Forest\GeoBioPoppy.cpp" />
+    <ClCompile Include="Forest\Nadelbaum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="KeyboardControl.cpp" />
-    <ClCompile Include="Nadelbaum.cpp" />
-    <ClCompile Include="GeoBioPoppy.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
-    <ClCompile Include="Forest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\VektoriaTest.ico" />

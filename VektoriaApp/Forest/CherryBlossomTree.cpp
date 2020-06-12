@@ -1,5 +1,7 @@
 #include "CherryBlossomTree.h"
 
+using namespace ForestNS;
+
 CherryBlossomTree::CherryBlossomTree()
 {
 

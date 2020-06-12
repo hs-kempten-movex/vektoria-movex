@@ -1,6 +1,6 @@
 #include "Forest.h"
-#include "Island.h"
-#include "ThreadPool.h"
+#include "../Island.h"
+#include "../ThreadPool.h"
 
 #define CBTREE_SEED 30285
 #define POPPY_SEED 44444
@@ -9,7 +9,7 @@
 #define TREES_PER_CLUSTER 20
 
 using namespace Vektoria;
-
+using namespace ForestNS;
 
 Forest::Forest(CGeoTerrain* terrain)
 {

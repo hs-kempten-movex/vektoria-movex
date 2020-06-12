@@ -23,9 +23,8 @@
 #include "Vektoria\Root.h"
 #include "Island.h"
 #include "KeyboardControl.h"
-#include "GeoBioPoppy.h"
 #include "Butterfly.h"
-#include "Forest.h"
+#include "Forest/Forest.h"
 
 using namespace Vektoria;
 
@@ -56,13 +55,9 @@ public:
 	void InitPlayer();
 private:
 	Island island;
-
-	CPlacement m_zpLSystem;
-	CPlacement m_zpBlume;
-	CMaterial m_zmBlossom;																		// Material für Mohnblume
 	Butterfly m_zpButterfly;
 
-  Forest* m_forest;
+  ForestNS::Forest* m_forest;
 
 	CGeos CollisionObjects;
 	CGeoTerrains CollsisionTerrains;

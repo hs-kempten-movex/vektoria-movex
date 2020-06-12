@@ -22,7 +22,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_frame.AddDeviceKeyboard(&m_keyboard);
 	m_frame.AddDeviceMouse(&m_keyboard);
 	m_root.AddScene(&m_scene);
-	m_root.AddMaterial(&m_zmBlossom);
 	
 	//Himmel mit SOnne, Mond und Sterne
 	m_scene.SetSkyOn(&m_keyboard.pitch);
@@ -33,9 +32,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_scene.AddPlacement(&island.m_pIsland2);
 	m_scene.AddPlacement(&island.m_pIsland3);
 	m_scene.AddPlacement(&island.m_pIsland4);
-	island.m_pIsland1.AddPlacement(&m_zpLSystem);
-	island.m_pIsland1.AddPlacement(&m_zpBlume);
-	m_zpLSystem.TranslateX(500.0f);
   
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
@@ -45,15 +41,11 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	true,									// BVH-Schattenfrustumcasting an!
 	m_scene.GetSkyLightPlacement());		 // Info für das OBVHSFC
 
-	// Blume Test 
-	GeoBioPoppy *BlumeAlla = new GeoBioPoppy();
-	m_zpBlume.AddGeo(BlumeAlla);
-	m_zpBlume.TranslateX(490.0f);
 
 	InitPlayer();
 
 	// WALD HIER //
-  m_forest = new Forest(&island.m_gTerrainOri);
+  m_forest = new ForestNS::Forest(&island.m_gTerrainOri);
 	island.m_pIsland1.AddPlacement(m_forest);
 }
 

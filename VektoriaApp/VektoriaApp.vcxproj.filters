@@ -27,28 +27,28 @@
     <ClInclude Include="Island.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="CherryBlossomTree.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="KeyboardControl.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Nadelbaum.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Butterfly.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="GeoBioPoppy.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="ForestCluster.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Forest.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="ThreadPool.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\CherryBlossomTree.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\Forest.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\ForestCluster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\GeoBioPoppy.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\Nadelbaum.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,25 +62,25 @@
     <ClCompile Include="Island.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="CherryBlossomTree.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="KeyboardControl.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Nadelbaum.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Butterfly.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="GeoBioPoppy.cpp">
+    <ClCompile Include="Forest\CherryBlossomTree.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="ForestCluster.cpp">
+    <ClCompile Include="Forest\Forest.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Forest.cpp">
+    <ClCompile Include="Forest\ForestCluster.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest\GeoBioPoppy.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest\Nadelbaum.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
