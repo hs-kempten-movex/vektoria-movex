@@ -2,6 +2,8 @@
 #include "Vektoria\Root.h"
 #include <vector>
 
+//#define DEBUG_FORESTCLUSTER
+
 using namespace Vektoria;
 
 namespace ForestNS
@@ -24,5 +26,10 @@ namespace ForestNS
         CGeoTerrain* m_terrain;
 
         std::vector<std::vector<CPlacement*>> m_plantPlacements;
+
+#ifdef DEBUG_FORESTCLUSTER
+        CGeoCylinder m_debugCylinder;
+        CMaterial m_debugCylinderMaterial;
+#endif // DEBUG_FORESTCLUSTER
     };
 }

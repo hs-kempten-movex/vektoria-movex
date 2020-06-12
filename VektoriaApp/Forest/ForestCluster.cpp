@@ -11,6 +11,14 @@ ForestCluster::ForestCluster(CGeoTerrain* terrain, CHVector position, float size
     m_size{size}
 {
     Translate(position);
+
+#ifdef DEBUG_FORESTCLUSTER
+    m_debugCylinderMaterial.Init();
+    m_debugCylinderMaterial.SetTransparencyOn();
+    m_debugCylinderMaterial.SetTransparency(0.2);
+    m_debugCylinder.Init(size, size, 100, &m_debugCylinderMaterial);
+    AddGeo(&m_debugCylinder);
+#endif // DEBUG_FORESTCLUSTER
 }
 
 void ForestCluster::AddPlacementsForSpecies(uint8_t numPlants, float minHeight, float maxHeight, float minSlope, float maxSlope)
@@ -28,6 +36,11 @@ void ForestCluster::AddPlacementsForSpecies(uint8_t numPlants, float minHeight, 
 
             plantPlacements.push_back(plantPlacement);
             AddPlacement(plantPlacement);
+        }
+        else
+        {
+            //no position found
+            break;
         }
     }
 
