@@ -157,6 +157,7 @@
     <ClInclude Include="Island.h" />
     <ClInclude Include="Player\Butterfly.h" />
     <ClInclude Include="Player\Controller.h" />
+    <ClInclude Include="Player\KinematicPlacement.h" />
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="Player\Butterfly.cpp" />
     <ClCompile Include="Player\Controller.cpp" />
+    <ClCompile Include="Player\KinematicPlacement.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>

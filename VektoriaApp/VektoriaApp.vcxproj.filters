@@ -66,6 +66,9 @@
     <ClInclude Include="Player\Controller.h">
       <Filter>Headerdateien\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Player\KinematicPlacement.h">
+      <Filter>Headerdateien\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -99,6 +102,9 @@
       <Filter>Quelldateien\Player</Filter>
     </ClCompile>
     <ClCompile Include="Player\Controller.cpp">
+      <Filter>Quelldateien\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\KinematicPlacement.cpp">
       <Filter>Quelldateien\Player</Filter>
     </ClCompile>
   </ItemGroup>
