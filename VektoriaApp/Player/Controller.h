@@ -3,18 +3,17 @@
 
 using namespace Vektoria;
 
-#define KEYBOARD_SENSITIVITY 100
-#define MOUSE_SENSITIVITY 1
+#define CONTROLLER_SENSITIVITY 100
+#define CONTROLLER_DRIFT_THRESHOLD 0.25
 
 namespace PlayerNS
 {
-    class KeyboardControl :
-        public CDeviceKeyboard,
-        public CDeviceMouse
+    class Controller :
+        public CDeviceGameController
     {
     public:
-        KeyboardControl();
-        ~KeyboardControl();
+        Controller();
+        ~Controller();
 
         void Init(CGeos* collisionObjects, CGeoTerrains* collisionTerrains);
 
@@ -37,7 +36,7 @@ namespace PlayerNS
         CPlacement pitch;
 
     private:
-        void rotate();
+        void rotate(float fTimeDalta);
         void move(float fTimeDelta);
 
         CGeos* collisionObjects;

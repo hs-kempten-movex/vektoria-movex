@@ -1,6 +1,6 @@
 #pragma once
 #include "Butterfly.h"
-#include "KeyboardControl.h"
+#include "Controller.h"
 #include "Vektoria\Root.h"
 
 using namespace Vektoria;
@@ -8,7 +8,7 @@ using namespace Vektoria;
 namespace PlayerNS
 {
     class Player :
-        public KeyboardControl
+        public Controller
     {
     public:
         Player(uint8_t id, uint8_t playerCount, CHVector spawnPosition);

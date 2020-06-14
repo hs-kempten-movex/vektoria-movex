@@ -60,10 +60,10 @@
     <ClInclude Include="Player\Butterfly.h">
       <Filter>Headerdateien\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Player\KeyboardControl.h">
+    <ClInclude Include="Player\Player.h">
       <Filter>Headerdateien\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Player\Player.h">
+    <ClInclude Include="Player\Controller.h">
       <Filter>Headerdateien\Player</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,10 +95,10 @@
     <ClCompile Include="Player\Butterfly.cpp">
       <Filter>Quelldateien\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Player\KeyboardControl.cpp">
+    <ClCompile Include="Player\Player.cpp">
       <Filter>Quelldateien\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Player\Player.cpp">
+    <ClCompile Include="Player\Controller.cpp">
       <Filter>Quelldateien\Player</Filter>
     </ClCompile>
   </ItemGroup>

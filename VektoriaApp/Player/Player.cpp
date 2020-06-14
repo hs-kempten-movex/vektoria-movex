@@ -18,7 +18,7 @@ Player::Player(uint8_t id, uint8_t playerCount, CHVector spawnPosition) :
 void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CGeoTerrains* CollsisionTerrains)
 {
     // initialize controller
-    KeyboardControl::Init(CollisionObjects, CollsisionTerrains);
+    Controller::Init(CollisionObjects, CollsisionTerrains);
 
     // if just one player, init fullscreen
     if (m_playerCount == 1)
@@ -56,6 +56,6 @@ void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CG
 
 void Player::Tick(float fTime, float fTimeDelta)
 {
-    KeyboardControl::Tick(fTime, fTimeDelta);
+    Controller::Tick(fTime, fTimeDelta);
     m_butterfly.Tick(fTime, fTimeDelta);
 }

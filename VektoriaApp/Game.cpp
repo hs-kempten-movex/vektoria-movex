@@ -49,8 +49,7 @@ void CGame::InitPlayers()
     {
         player.Init(m_scene.GetSkyLightPlacement(), &CollisionObjects, &CollsisionTerrains);
         m_frame.AddViewport(player.GetViewport());
-        m_frame.AddDeviceKeyboard(&player);
-        m_frame.AddDeviceMouse(&player);
+        m_frame.AddDeviceGameController(&player);
 
         m_scene.AddPlacement(player.GetTranslation());
     }
