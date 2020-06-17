@@ -1,20 +1,22 @@
 #pragma once
 #include "Vektoria\Root.h"
+#include "KinematicPlacement.h"
 
 using namespace Vektoria;
 
-#define KEYBOARD_SENSITIVITY 100
-#define MOUSE_SENSITIVITY 1
+#define CONTROLLER_SENSITIVITY 100.0f
+#define CONTROLLER_DRIFT_THRESHOLD 0.25f
+#define MAX_VELOCITY 100.0f
+#define BACKWARDS_ACCELERATION_MULTIPLIER 0.75f
 
 namespace PlayerNS
 {
-    class KeyboardControl :
-        public CDeviceKeyboard,
-        public CDeviceMouse
+    class Controller :
+        public CDeviceGameController
     {
     public:
-        KeyboardControl();
-        ~KeyboardControl();
+        Controller();
+        ~Controller();
 
         void Init(CGeos* collisionObjects, CGeoTerrains* collisionTerrains);
 
@@ -30,17 +32,15 @@ namespace PlayerNS
             return &translation;
         }
 
+
     protected:
 
-        CPlacement translation;
+        KinematicPlacement translation = KinematicPlacement(MAX_VELOCITY);
         CPlacement yaw;
         CPlacement pitch;
 
     private:
-        void rotate();
+        void rotate(float fTimeDalta);
         void move(float fTimeDelta);
-
-        CGeos* collisionObjects;
-        CGeoTerrains* collisionTerrains;
     };
 }
