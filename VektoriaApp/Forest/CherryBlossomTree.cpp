@@ -430,11 +430,17 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 				SetMaxBlossomBending(-0.01f);
 				SetMaxBlossomFolding(0.01f);
 
-				m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.002f);
+				m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.00001f);
 				SetGeoBlossom(&m_zgBlossomMain);
 				CHMat blossomscaling;
-				blossomscaling.Scale(2.0f);
+				//blossomscaling.Scale(2.0f);
+				blossomscaling.Scale(4.0f);
+
 				m_zgBlossomMain.Transform(blossomscaling);
+
+
+				SetBlossomSkipFactor(4);
+
 
 			}
 			else if (uLoD < 2) {
@@ -456,6 +462,14 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 
 				m_zgBlossomMain.Init(&m_zmBlossom, true, true, 0.0f, 0.0f, 0.002f);
 				SetGeoBlossom(&m_zgBlossomMain);
+				CHMat blossomscaling;
+
+				blossomscaling.Scale(6.0f);
+
+				m_zgBlossomMain.Transform(blossomscaling);
+
+
+				SetBlossomSkipFactor(6);
 			}
 			else
 			{
@@ -479,10 +493,10 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 				SetGeoBlossom(&m_zgBlossomMain);
 
 				CHMat blossomscaling;
-				blossomscaling.Scale((float)uLoD * 2);
+				blossomscaling.Scale((float)uLoD * 3.5);
 				m_zgBlossomMain.Transform(blossomscaling);
 
-				SetBlossomSkipFactor(uLoD * 2);
+				SetBlossomSkipFactor(uLoD * 3);
 
 			}
 
