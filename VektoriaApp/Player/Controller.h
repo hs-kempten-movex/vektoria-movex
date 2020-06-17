@@ -7,12 +7,14 @@ using namespace Vektoria;
 #define CONTROLLER_SENSITIVITY 100.0f
 #define CONTROLLER_DRIFT_THRESHOLD 0.25f
 #define MAX_VELOCITY 100.0f
+#define MAX_HEIGHT 10.0f
 #define BACKWARDS_ACCELERATION_MULTIPLIER 0.75f
 
 namespace PlayerNS
 {
     class Controller :
-        public CDeviceGameController
+        public CDeviceGameController,
+        public KinematicPlacement
     {
     public:
         Controller();
@@ -22,25 +24,25 @@ namespace PlayerNS
 
         virtual void Tick(float time, float fTimeDelta);
 
-        CPlacement* GetPitch()
+        CHVector GetFront()
         {
-            return &pitch;
+            return m_front;
         }
 
-        CPlacement* GetTranslation()
+        CHVector GetRight()
         {
-            return &translation;
+            return m_right;
         }
-
 
     protected:
-
-        KinematicPlacement translation = KinematicPlacement(MAX_VELOCITY);
         CPlacement yaw;
         CPlacement pitch;
 
     private:
         void rotate(float fTimeDalta);
         void move(float fTimeDelta);
+
+        CHVector m_front;
+        CHVector m_right;
     };
 }

@@ -17,17 +17,25 @@ namespace PlayerNS
 
         void Tick(float fTime, float fTimeDelta);
 
-    private:
-        CGeo* torso;
-        CGeo* wingsL;
-        CGeo* wingsR;
+        void SetGlide(bool glide)
+        {
+            m_glide = glide;
+        }
 
-        CFileWavefront objLoader;
-        CPlacement zp_Torso, zp_WingsL, zp_WingsR;
+    private:
+        CGeo* m_torso;
+        CGeo* m_wingsL; 
+        CGeo* m_wingsR;
+
+        CPlacement m_zpTorso;
+        CPlacement m_zpWingsL;
+        CPlacement m_zpWingsR;
 
         CMaterial m_zmWings;
 
-        float wingRotation;
-        float wingRotationDirection = -1.0f;
+        float m_wingRotation;
+        float m_wingRotationDirection = -1.0f;
+
+        bool m_glide;
     };
 }

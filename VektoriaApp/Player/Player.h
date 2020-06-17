@@ -3,6 +3,8 @@
 #include "Controller.h"
 #include "Vektoria\Root.h"
 
+#define GLIDE_THRESHOLD 0.2f
+
 using namespace Vektoria;
 
 namespace PlayerNS

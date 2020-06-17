@@ -9,15 +9,12 @@ namespace PlayerNS
         public CPlacement
     {
     public:
-        KinematicPlacement(float maxVelocity);
-        KinematicPlacement(float maxVelocity, CGeos* collisionObjects, CGeoTerrains* collisionTerrains);
+        KinematicPlacement(float maxVelocity, float maxHeight);
+        KinematicPlacement(float maxVelocity, float maxHeight, CGeos* collisionObjects, CGeoTerrains* collisionTerrains);
 
         void Tick(float fTime, float fTimeDelta);
 
-        void SetAcceleration(CHVector acceleration)
-        {
-            m_acceleration = acceleration;
-        }
+        void SetAcceleration(CHVector acceleration);
 
         void SetCollisionObjects(CGeos* collisionObjects)
         {
@@ -29,11 +26,17 @@ namespace PlayerNS
             m_collisionTerrains = collisionTerrains;
         }
 
+        CHVector GetVelocity()
+        {
+            return m_velocity;
+        }
+
     private:
         CGeos* m_collsioinObjects;
         CGeoTerrains* m_collisionTerrains;
 
         float m_maxVelocity;
+        float m_maxHeight;
         float m_dampening = 0.99;
 
         CHVector m_velocity;
