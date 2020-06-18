@@ -17,14 +17,26 @@ namespace ForestNS
 
         Forest(CGeoTerrain* terrain);
         ~Forest();
-    private:
 
+        void Init(CGeoTerrain *terrain);
+
+        std::vector<CGeo*> GetCollisionObjects()
+        {
+            return std::vector<CGeo*>{
+                &m_CBTreeCollision
+            };
+        }
+
+    private:
         CherryBlossomTree m_CBTreeLoD1;
         CherryBlossomTree m_CBTreeLoD2;
         CherryBlossomTree m_CBTreeLoD3;
+        CherryBlossomTree m_CBTreeCollision;
+
         CPlacement m_CBTreePlacementLoD1;
         CPlacement m_CBTreePlacementLoD2;
         CPlacement m_CBTreePlacementLoD3;
+        CPlacement m_CbTreePlacementCollision;
 
         GeoBioPoppy m_PoppyLoD1;
         GeoBioPoppy m_PoppyLoD2;
@@ -38,7 +50,7 @@ namespace ForestNS
 
         void InitGeos(CGeoTerrain* terrain);
 
-        static void CBTreeInit(CherryBlossomTree* tree, unsigned int lod);
+        static void CBTreeInit(CherryBlossomTree* tree, float frTimeOfYear, unsigned int lod);
         static void PoppyInit(GeoBioPoppy* poppy, unsigned int lod);
         static void ClusterInit(CGeoTerrain* terrain, CHVector position, std::vector<ForestCluster*>* clusters, std::mutex* mutex);
     };
