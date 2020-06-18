@@ -75,15 +75,18 @@ Island::Island()
     m_pperlinBack = new CPerlin(422, 1.75f, 16, 0.5f, 12.0f, 0.0f, 0.0f, ePerlinInterpol_Linear, false);
 
       //Texturen laden für wasser und land
-    m_mWater.LoadPreset("Water");
-    m_mWater.MakeTextureEnvironment("textures\\ENF_Water.png");
-    m_mWater.SetAni(8, 8, 7);
-    m_mWater.Translate(CColor(0.0f, 0.2f, 0.8f));
-    m_mWater.SetTransparency(0.4f);
+    //m_mWater.LoadPreset("Water");
+    //m_mWater.MakeTextureEnvironment("textures\\ENF_Water.png");
+    m_mWater.MakeTextureDiffuse("textures\\Water_albedo.jpg");
+    //m_mWater.MakeTextureBump("textures\\Water_Normal.jpg");
+    m_mWater.SetBumpStrength(2.0);
     m_mWater.MakeTextureHaze("textures\\waterHaze.jpg");
+    m_mWater.SetAni(23, 23, 7);
+    //m_mWater.Translate(CColor(0.0f, 0.2f, 0.8f));
+    m_mWater.SetTransparency(0.4f);
     m_mWater.SetPostprocessingOn();
     m_mWater.SetHazeOn();
-    m_mWater.SetHazeStrength(1.5);
+    m_mWater.SetHazeStrength(3.0);
 
     //m_mSand.LoadPreset("Sand");
     m_mSand.MakeTextureDiffuse("textures\\Sand2_basecolor.png");
