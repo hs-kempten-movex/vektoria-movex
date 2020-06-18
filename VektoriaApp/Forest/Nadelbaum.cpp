@@ -156,11 +156,11 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 
 
 
-	m_iIterations += 23;
+	m_iIterations += 10;
 
 	CGeoLSystem::Iterate(m_iIterations, m_acAxiom);
 
-	m_iIterations -= 23; // Wegen Wurzel wieder zurückstellen!
+	m_iIterations -= 10; // Wegen Wurzel wieder zurückstellen!
 
 	// ---------------
 	// Erzeuge Wurzel:

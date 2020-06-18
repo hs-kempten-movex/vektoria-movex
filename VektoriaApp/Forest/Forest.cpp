@@ -59,7 +59,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_plants[1].AddPlacement(&m_PoppyPlacementLoD3);
     m_plants[1].Scale(1.5f);
 
-    m_NBTreePlacementLoD1.AddGeo(&m_CBTreeLoD1);
+    m_NBTreePlacementLoD1.AddGeo(&m_NBTreeLoD1);
     m_NBTreePlacementLoD1.SetLoD(0.0f, 400.0f);
     /*m_NBTreePlacementLoD2.AddGeo(&m_CBTreeLoD2);
     m_NBTreePlacementLoD2.SetLoD(400.0f, 750.0f);*/
