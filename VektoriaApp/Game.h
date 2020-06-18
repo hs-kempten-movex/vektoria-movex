@@ -27,6 +27,7 @@
 #include <array>
 
 using namespace Vektoria;
+using namespace ForestNS;
 
 class CGame
 {

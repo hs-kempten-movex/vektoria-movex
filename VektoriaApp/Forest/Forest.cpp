@@ -3,6 +3,7 @@
 #include "../ThreadPool.h"
 
 #define CBTREE_SEED 30285
+#define NBTREE_SEED 29486
 #define POPPY_SEED 44444
 
 #define CLUSTER_SIZE 250
@@ -58,6 +59,15 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_plants[1].AddPlacement(&m_PoppyPlacementLoD3);
     m_plants[1].Scale(1.5f);
 
+    m_NBTreePlacementLoD1.AddGeo(&m_CBTreeLoD1);
+    m_NBTreePlacementLoD1.SetLoD(0.0f, 400.0f);
+    /*m_NBTreePlacementLoD2.AddGeo(&m_CBTreeLoD2);
+    m_NBTreePlacementLoD2.SetLoD(400.0f, 750.0f);*/
+
+    m_plants[2].AddPlacement(&m_NBTreePlacementLoD1);
+    /*m_plants[2].AddPlacement(&m_NBTreePlacementLoD2);*/
+    m_plants[2].Scale(3.0f);
+
     for (auto& cluster : m_forestClusters)
     {
         AddPlacement(cluster);
@@ -82,6 +92,8 @@ void Forest::InitGeos(CGeoTerrain* terrain)
     threadPool.EnqueueTask(PoppyInit, &m_PoppyLoD1, 0);
     threadPool.EnqueueTask(PoppyInit, &m_PoppyLoD2, 1);
     threadPool.EnqueueTask(PoppyInit, &m_PoppyLoD3, 2);
+    threadPool.EnqueueTask(NBTreeInit, &m_NBTreeLoD1, 0.2f, 1);
+    /*threadPool.EnqueueTask(NBTreeInit, &m_NBTreeLoD2, 0.2f, 2);*/
 
 
     std::mutex mutex;
@@ -110,12 +122,21 @@ void Forest::PoppyInit(GeoBioPoppy* poppy, unsigned int lod)
     poppy->DeIterate();
 }
 
+void Forest::NBTreeInit(Nadelbaum* tree, float frTimeOfYear, unsigned int lod)
+{
+    tree->SetRandomSeed(NBTREE_SEED);
+    tree->Iterate(300.0f, frTimeOfYear, 0.0f);
+    tree->Init(tree, lod);
+    tree->DeIterate();
+}
+
 void Forest::ClusterInit(CGeoTerrain* terrain, CHVector position, std::vector<ForestCluster*>* clusters, std::mutex* mutex)
 {
 
     ForestCluster* newCluster = new ForestCluster(terrain, position, CLUSTER_SIZE);
     newCluster->AddPlacementsForSpecies(TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI); //cherrytrees höhe wo sie wachsen dürfen, abhang etc
     newCluster->AddPlacementsForSpecies(TREES_PER_CLUSTER, 10.0, 130.0f); //poppies
+    newCluster->AddPlacementsForSpecies(TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI); // Nadelbaum
     mutex->lock();
     clusters->push_back(newCluster);
     mutex->unlock();

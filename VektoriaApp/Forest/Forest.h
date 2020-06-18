@@ -2,6 +2,7 @@
 #include "Vektoria\Root.h"
 #include "GeoBioPoppy.h"
 #include "CherryBlossomTree.h"
+#include "Nadelbaum.h"
 #include "ForestCluster.h"
 #include <array>
 
@@ -45,13 +46,20 @@ namespace ForestNS
         CPlacement m_PoppyPlacementLoD2;
         CPlacement m_PoppyPlacementLoD3;
 
+        Nadelbaum m_NBTreeLoD1;
+        /*Nadelbaum m_NBTreeLoD2;*/
+
+        CPlacement m_NBTreePlacementLoD1;
+        /*CPlacement m_NBTreePlacementLoD2;*/
+
         std::vector<ForestCluster*> m_forestClusters;
-        std::array<CPlacement, 2> m_plants;
+        std::array<CPlacement, 3> m_plants;
 
         void InitGeos(CGeoTerrain* terrain);
 
         static void CBTreeInit(CherryBlossomTree* tree, float frTimeOfYear, unsigned int lod);
         static void PoppyInit(GeoBioPoppy* poppy, unsigned int lod);
+        static void NBTreeInit(Nadelbaum* tree, float frTimeOfYear, unsigned int lod);
         static void ClusterInit(CGeoTerrain* terrain, CHVector position, std::vector<ForestCluster*>* clusters, std::mutex* mutex);
     };
 }
