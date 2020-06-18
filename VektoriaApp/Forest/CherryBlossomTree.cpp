@@ -123,19 +123,19 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 		AddRule("32:K=°{r>0.8,(r0.8)(l0.93)fK}{r<0.801,X}");
 
 
-		AddRule("35:X={r>0.004,°+(l0.93)(r0.95)_(>19)f(r0.95)_(>19)f[(l0.9)(<14)(r0.9)X][(l0.95)(r0.5)(>15)X]}{r<0.0041,Y}");
-		AddRule("15:X={r>0.004,+(l0.93)(r0.95)_(<15)f(r0.95)_(<13)f[(l0.85)(r0.8)_(^15)f(^17)X][(l0.89)(v12)(r0.8)_f(r0.8)f(v10)(r0.8)X]}{r<0.0041,Y}");
-		AddRule("15:X={r>0.004,+(l0.93)(r0.95)_(v12)f(r0.95)_(v12)f[(l0.97)(r0.8)(<15)(^15)(v8)X]}{r<0.0041,Y}");
-		AddRule("15:X={r>0.004,+(r0.95)_(>13)f[(l0.97)(^10)(r0.92)X][(l0.52)(r0.5)(<17)X]}{r<0.0041,Y}");
-		AddRule("10:X={r>0.004,+(r0.95)_(^15)f[(l0.85)(r0.8)_(^15)f(^17)X][(l0.89)_(v12)(r0.8)f(r0.8)_f(v10)(r0.8)X]}{r<0.0041,Y}");
-		AddRule("10:X={r>0.004,+(r0.95)_(<11)f[(l0.97)(<10)(r0.92)X][(l0.52)(r0.5)(^13)X]}{r<0.0041,Y}");
+		AddRule("35:X={r>0.004,°+(l0.93)(r0.95)__(>19)f(r0.95)__(>19)f[(l0.9)(<14)(r0.9)X][(l0.95)(r0.5)(>15)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(l0.93)(r0.95)__(<15)f(r0.95)__(<13)f[(l0.85)(r0.8)__(^15)f(^17)X][(l0.89)(v12)(r0.8)__f(r0.8)f(v10)(r0.8)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(l0.93)(r0.95)__(v12)f(r0.95)__(v12)f[(l0.97)(r0.8)(<15)(^15)(v8)X]}{r<0.0041,Y}");
+		AddRule("15:X={r>0.004,+(r0.95)__(>13)f[(l0.97)(^10)(r0.92)X][(l0.52)(r0.5)(<17)X]}{r<0.0041,Y}");
+		AddRule("10:X={r>0.004,+(r0.95)__(^15)f[(l0.85)(r0.8)__(^15)f(^17)X][(l0.89)__(v12)(r0.8)f(r0.8)_f(v10)(r0.8)X]}{r<0.0041,Y}");
+		AddRule("10:X={r>0.004,+(r0.95)__(<11)f[(l0.97)(<10)(r0.92)X][(l0.52)(r0.5)(^13)X]}{r<0.0041,Y}");
 
 
 
 		// Ist in Blütezeit? 
 		if (m_bIsBlossoming) {
 			// Äste mit Blüten zeichnen
-			AddRule("Y={r>0.003,(l0.7)(r0.9)_+f[_(<54)fB]_+f[_(>54)fB]_+f[_(v54)fB]_+f[_(^54)fB]fY}{r<0.0031,}");
+			AddRule("Y={r>0.003,(l0.7)(r0.9)__+f[__(<54)fB]__+f[__(>54)fB]_+f[__(v54)fB]_+f[__(^54)fB]fY}{r<0.0031,}");
 			// Blüten zeichnen 
 			AddRule("B=(L0.05)(R0.05)[<0b][^0b][>0b][v0b](r0.5)(l0.7)[(<20.2)0c][(^18.4)0c][(>20.4)0c][(v22.4)0c](+40.0)[(<10.2)0c][(^11.4)0c][(>14.4)0c][(v12.4)0c]");
 		}
@@ -565,8 +565,8 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 		}
 		if (uLoD == 9) // LOD nur für Hitbox
 		{
-			m_iTurtleStartLattitude = 8;
-			m_iTurtleStartLongitude = 4;
+			m_iTurtleStartLattitude = 4;
+			m_iTurtleStartLongitude = 8;
 			m_bHasLeaves = false;
 			m_bIsBlossoming = false;
 
