@@ -29,14 +29,14 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
 {
     InitGeos(terrain);
 
-    //TODO find better values
     m_CBTreePlacementLoD1.AddGeo(&m_CBTreeLoD1);
-    m_CBTreePlacementLoD1.SetLoD(0.0f, 400.0f);
+    m_CBTreePlacementLoD1.SetLoD(0.0f, 100.0f);
     m_CBTreePlacementLoD2.AddGeo(&m_CBTreeLoD2);
-    m_CBTreePlacementLoD2.SetLoD(400.0f, 750.0f);
+    m_CBTreePlacementLoD2.SetLoD(100.0f, 500.0f);
     m_CBTreePlacementLoD3.AddGeo(&m_CBTreeLoD3);
-    m_CBTreePlacementLoD3.SetLoD(750.0f, 1500.0f);
-    m_CbTreePlacementCollision.AddGeo(&m_CBTreeCollision);
+    m_CBTreePlacementLoD3.SetLoD(500.0f, 1000.0f);
+    m_CBTreePlacementLoD4.AddGeo(&m_CBTreeLoD4);
+    m_CBTreePlacementLoD4.SetLoD(1000.0f, 1500.0f);
     //m_CbTreePlacementCollision.SetLoD(0.0, 50.0f); // Seems like this causes exceptions with collision detections
     m_CbTreePlacementCollision.SetDrawingOff(); // Dont show collision objects
     m_CbTreePlacementCollision.Scale(1.1f);
@@ -44,6 +44,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_plants[0].AddPlacement(&m_CBTreePlacementLoD1);
     m_plants[0].AddPlacement(&m_CBTreePlacementLoD2);
     m_plants[0].AddPlacement(&m_CBTreePlacementLoD3);
+    m_plants[0].AddPlacement(&m_CBTreePlacementLoD4);
     m_plants[0].AddPlacement(&m_CbTreePlacementCollision);
     m_plants[0].Scale(3.0f);
 
@@ -88,6 +89,7 @@ void Forest::InitGeos(CGeoTerrain* terrain)
     threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD1, 0.2f, 1);
     threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD2, 0.2f, 2);
     threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD3, 0.2f, 3);
+    threadPool.EnqueueTask(CBTreeInit, &m_CBTreeLoD4, 0.2f, 4);
     threadPool.EnqueueTask(CBTreeInit, &m_CBTreeCollision, 0.8f, 9);
     threadPool.EnqueueTask(PoppyInit, &m_PoppyLoD1, 0);
     threadPool.EnqueueTask(PoppyInit, &m_PoppyLoD2, 1);

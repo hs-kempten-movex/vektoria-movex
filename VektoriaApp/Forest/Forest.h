@@ -32,11 +32,13 @@ namespace ForestNS
         CherryBlossomTree m_CBTreeLoD1;
         CherryBlossomTree m_CBTreeLoD2;
         CherryBlossomTree m_CBTreeLoD3;
+        CherryBlossomTree m_CBTreeLoD4;
         CherryBlossomTree m_CBTreeCollision;
 
         CPlacement m_CBTreePlacementLoD1;
         CPlacement m_CBTreePlacementLoD2;
         CPlacement m_CBTreePlacementLoD3;
+        CPlacement m_CBTreePlacementLoD4;
         CPlacement m_CbTreePlacementCollision;
 
         GeoBioPoppy m_PoppyLoD1;
