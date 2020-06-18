@@ -5,7 +5,7 @@ using namespace PlayerNS;
 KinematicPlacement::KinematicPlacement(float maxVelocity, float maxHeight) :
     m_maxVelocity{ maxVelocity },
     m_maxHeight{ maxHeight },
-    m_collsioinObjects{ nullptr },
+    m_collisionObjects{ nullptr },
     m_collisionTerrains{ nullptr }
 
 {
@@ -14,7 +14,7 @@ KinematicPlacement::KinematicPlacement(float maxVelocity, float maxHeight) :
 KinematicPlacement::KinematicPlacement(float maxVelocity, float maxHeight, CGeos* collisionObjects, CGeoTerrains* collisionTerrains) :
     m_maxVelocity { maxVelocity },
     m_maxHeight{ maxHeight },
-    m_collsioinObjects{ collisionObjects },
+    m_collisionObjects{ collisionObjects },
     m_collisionTerrains{ collisionTerrains }
 {
 }
@@ -61,13 +61,13 @@ void KinematicPlacement::Tick(float fTime, float fTimeDelta)
         }
     }
 
-    if (m_collsioinObjects != nullptr)
+    if (m_collisionObjects != nullptr)
     {
         CRay intersectionRay = CRay(GetPos(), translationVector, QUASI_ZERO, translationVector.Length());
-        CHitPoint ObjectHitPoint;
-        m_collsioinObjects->Intersects(intersectionRay, ObjectHitPoint);
+        CHitPoint objectHitPoint;
+        m_collisionObjects->Intersects(intersectionRay, objectHitPoint);
 
-        if (ObjectHitPoint.m_bExistent) 
+        if (objectHitPoint.m_bExistent) 
         {
             m_velocity = CHVector();
             return;

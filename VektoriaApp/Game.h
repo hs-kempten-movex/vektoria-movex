@@ -48,7 +48,7 @@ private:
 
 	Island island;
 
-  ForestNS::Forest* m_forest;
+  ForestNS::Forest m_forest;
 
   std::array<PlayerNS::Player, 1> m_players
   {

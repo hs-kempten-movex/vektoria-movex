@@ -32,16 +32,22 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
   //TODO check how sky works with multiple cameras. It shoud be set on the camera placement instead of the island placement
   m_scene.SetSkyOn(&island.m_pIsland1);
+  m_scene.SetSkyShadowDepth(250.0f);
+
+  // WALD HIER //
+  m_forest.Init(&island.m_gTerrainOri);
+  island.m_pIsland1.AddPlacement(&m_forest);
 
 	InitPlayers();
-
-	// WALD HIER //
-  m_forest = new ForestNS::Forest(&island.m_gTerrainOri);
-	island.m_pIsland1.AddPlacement(m_forest);
 }
 
 void CGame::InitPlayers()
 {
+    for (auto& collisionTree : m_forest.GetCollisionObjects())
+    {
+        CollisionObjects.Add(collisionTree);
+    }
+
     CollsisionTerrains.Add(&island.m_gTerrainOri);
     CollsisionTerrains.Add(&island.m_gWater);
 

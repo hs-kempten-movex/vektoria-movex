@@ -18,7 +18,7 @@ namespace PlayerNS
 
         void SetCollisionObjects(CGeos* collisionObjects)
         {
-            m_collsioinObjects = m_collsioinObjects;
+            m_collisionObjects = collisionObjects;
         }
 
         void SetCollisionTerrains(CGeoTerrains* collisionTerrains)
@@ -32,7 +32,7 @@ namespace PlayerNS
         }
 
     private:
-        CGeos* m_collsioinObjects;
+        CGeos* m_collisionObjects;
         CGeoTerrains* m_collisionTerrains;
 
         float m_maxVelocity;
