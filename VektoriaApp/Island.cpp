@@ -76,6 +76,7 @@ Island::Island()
 
       //Texturen laden für wasser und land
     m_mWater.LoadPreset("Water");
+    m_mWater.MakeTextureEnvironment("textures\\ENF_Water.png");
     m_mWater.SetAni(8, 8, 7);
     m_mWater.Translate(CColor(0.0f, 0.2f, 0.8f));
     m_mWater.SetTransparency(0.4f);
