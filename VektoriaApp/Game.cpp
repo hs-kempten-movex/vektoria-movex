@@ -51,7 +51,7 @@ void CGame::InitPlayers()
         m_frame.AddViewport(player.GetViewport());
         m_frame.AddDeviceGameController(&player);
 
-        m_scene.AddPlacement(player.GetTranslation());
+        m_scene.AddPlacement(&player);
     }
 }
 
