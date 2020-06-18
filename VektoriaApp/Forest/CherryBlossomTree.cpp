@@ -279,7 +279,7 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 
 			SetMaxLeafBending(0.02f);
 			SetMaxLeafFolding(0.02f);
-			m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
+			m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.00001f);
 			SetGeoLeaf(&m_zgLeafMain);
 
 			/*CHMat scaling;
@@ -362,24 +362,13 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 		mScale.Scale(fLeafScaling);
 		m_zgLeafMain.Transform(mScale);
 
-		m_zmLeaf.MakeTextureDiffuse("..\\VektoriaApp\\textures\\RosebloomRealLeaf.png");
-		m_zmLeaf.MakeTextureBump("..\\VektoriaApp\\textures\\RosebloomRealLeaf_n.png");
-		m_zmLeaf.MakeTextureHeight("..\\VektoriaApp\\textures\\RosebloomRealLeaf_h.png");
-		m_zmLeaf.MakeTextureSpecular("..VektoriaApp\\\\textures\\RosebloomRealLeaf_s.png");
+		m_zmLeaf.MakeTextureDiffuse("textures\\RosebloomRealLeaf.png");
+		m_zmLeaf.MakeTextureBump("textures\\RosebloomRealLeaf_n.png");
+		m_zmLeaf.MakeTextureHeight("textures\\RosebloomRealLeaf_h.png");
+		m_zmLeaf.MakeTextureSpecular("textures\\RosebloomRealLeaf_s.png");
 
 		m_zmLeaf.SetSpecularStrength(0.01f);
 
-		/*
-
-		// Nicht löschen!
-		m_zmLeaf.MakeTextureDiffuse(".\\..\\..\\Lib\\Materials\\LeafBirch\\LeafBirchD.jpg");
-		m_zmLeaf.MakeTextureSpecular(".\\..\\..\\Lib\\Materials\\LeafBirch\\LeafBirchS.jpg");
-		m_zmLeaf.MakeTextureBump(".\\..\\..\\Lib\\Materials\\LeafBirch\\LeafBirchB.jpg");
-		m_zmLeaf.MakeTextureThickness(".\\..\\..\\Lib\\Materials\\LeafBirch\\LeafBirchT.jpg", CColor(0.3, 1.0, 0.3));
-		m_zmLeaf.SetSpecularSharpness(100.0f);
-		m_zmLeaf.SetLightScatteringOn();
-		m_zmLeaf.SavePreset("LeafBirch");
-		*/
 		float faLeafColoring = 0.0f;
 		float frColorScaling = 1.0f;
 		if (frTimeShifted >= 0.7f) // Ab Anfang September
@@ -391,19 +380,6 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 		}
 
 		SetMaterialLeaf(&m_zmLeaf);
-
-
-
-		/*m_zmLeaf.MakeTextureDiffuse(".\..\..\Lib\Materials\LeafBirch\LeafBirchD.jpg");
-		m_zmLeaf.MakeTextureThickness(".\..\..\Lib\Materials\LeafBirch\LeafBirchH.jpg", CColor(0.3f, 1.0f, 0.2f));
-		m_zmLeaf.MakeTextureSpecular(".\..\..\Lib\Materials\LeafBirch\LeafBirchS.jpg");
-		m_zmLeaf.MakeTextureBump(".\..\..\Lib\Materials\LeafBirch\LeafBirchB.jpg");
-		m_zmLeaf.SetLightScatteringOn();
-
-		m_zmLeaf.SetRimLightStrength(0.1f);
-		m_zmLeaf.SetSubSurfaceColor(CColor(0.3, 1.0f, 0.3f));
-		m_zmLeaf.SavePreset("LeafBirch");*/
-
 
 		// Blütenblatt
 		if (m_bIsBlossoming) {
@@ -501,8 +477,8 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 			}
 
 			// Zufälliges Hellermachen der Textur
-			CRandom Colorscaling;
-			m_zmBlossom.ScaleDelta(1.0f + Colorscaling.RandFr());
+			/*CRandom Colorscaling;
+			m_zmBlossom.ScaleDelta(0.5f + Colorscaling.RandFr());*/
 
 			/*CHMat blossomscaling;
 			blossomscaling.Scale(2.5f);
@@ -538,14 +514,19 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 
 		}
 
-		m_zmBlossom.MakeTextureDiffuse("..\\VektoriaApp\\textures\\roseblossomfrontback.png");
+		m_zmBlossom.MakeTextureDiffuse("textures\\roseblossomfrontback.png");
+		m_zmBlossom.MakeTextureSpecular("textures\\roseblossomfrontback_o.png");
+		m_zmBlossom.MakeTextureHeight("textures\\roseblossomfrontback_h.png");
+		m_zmBlossom.MakeTextureBump("textures\\roseblossomfrontback_n.png");
+
+		m_zmBlossom.SetSpecularStrength(0.2f);
 		m_zgBlossomMain.SetMaterial(&m_zmBlossom);
 	}
 	//m_zmBark.LoadPreset("BarkBirch");
-	m_zmBark.MakeTextureDiffuse("..\\VektoriaApp\\textures\\Bark_09_3K_Base_Color.png");
-	m_zmBark.MakeTextureBump("..\\VektoriaApp\\textures\\Bark_09_3K_Normal.png");
-	m_zmBark.MakeTextureHeight("..\\VektoriaApp\\textures\\Bark_09_3K_Height.png");
-	m_zmBark.MakeTextureSpecular("..\\VektoriaApp\\textures\\Bark_09_3K_Roughness.png");
+	m_zmBark.MakeTextureDiffuse("textures\\Bark_09_3K_Base_Color.png");
+	m_zmBark.MakeTextureBump("textures\\Bark_09_3K_Normal.png");
+	m_zmBark.MakeTextureHeight("textures\\Bark_09_3K_Height.png");
+	m_zmBark.MakeTextureSpecular("textures\\Bark_09_3K_Roughness.png");
 
 	SetMaterial(&m_zmBark);
 	m_zmBark.SetDisplacementOn();
@@ -582,8 +563,17 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 			m_iTurtleStartLongitude = 0;
 			m_iTurtleStartLattitude = 0;
 		}
+		if (uLoD == 9) // LOD nur für Hitbox
+		{
+			m_iTurtleStartLattitude = 8;
+			m_iTurtleStartLongitude = 4;
+			m_bHasLeaves = false;
+			m_bIsBlossoming = false;
+
+		}
 		SetTurtleEndLongitude(0);
 		SetTurtleEndLattitude(0);
+
 		if (m_bHasLeaves)
 		{
 			CHMat mLoD;
