@@ -37,6 +37,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_CBTreePlacementLoD3.SetLoD(500.0f, 1000.0f);
     m_CBTreePlacementLoD4.AddGeo(&m_CBTreeLoD4);
     m_CBTreePlacementLoD4.SetLoD(1000.0f, 1500.0f);
+    m_CbTreePlacementCollision.AddGeo(&m_CBTreeCollision);
     //m_CbTreePlacementCollision.SetLoD(0.0, 50.0f); // Seems like this causes exceptions with collision detections
     m_CbTreePlacementCollision.SetDrawingOff(); // Dont show collision objects
     m_CbTreePlacementCollision.Scale(1.1f);
