@@ -246,7 +246,7 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 			m_zgLeafMain.AddOuter(&avOuter[i]);
 		}
 
-		SetMaxNeedleBending(0.08f);
+		SetMaxNeedleBending(-0.12f); // vorher: 0.08f, da standen die nadeln dann ab
 		SetMaxNeedleFolding(0.3f);
 		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0f);
 		SetGeoLeaf(&m_zgLeafMain);
@@ -255,22 +255,20 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 	}
 	else if (uLoD <= 2)
 	{
-		CHVector avOuter[6];
+		CHVector avOuter[4];
 
 
 		avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
 		avOuter[1] = CHVector(0.02f, 0.0f, 0.99f, 1.0f);
-		avOuter[2] = CHVector(0.04f, 0.0f, 0.9f, 1.0f);
-		avOuter[3] = CHVector(0.04f, 0.0f, 0.1f, 1.0f);
-		avOuter[4] = CHVector(0.02f, 0.0f, 0.01f, 1.0f);
-		avOuter[5] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
+		avOuter[2] = CHVector(0.04f, 0.0f, 0.1f, 1.0f);
+		avOuter[3] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
 
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 4; i++) {
 			m_zgLeafMain.AddOuter(&avOuter[i]);
 		}
 
-		SetMaxNeedleBending(0.08f);
+		SetMaxNeedleBending(-0.08f);
 		SetMaxNeedleFolding(1.3f);
 		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0f);
 		SetGeoLeaf(&m_zgLeafMain);
@@ -281,29 +279,28 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 	}
 	else
 	{
-		CHVector avOuter[6];
+		CHVector avOuter[4];
 
 
 		avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
 		avOuter[1] = CHVector(0.02f, 0.0f, 0.99f, 1.0f);
-		avOuter[2] = CHVector(0.04f, 0.0f, 0.9f, 1.0f);
-		avOuter[3] = CHVector(0.04f, 0.0f, 0.1f, 1.0f);
-		avOuter[4] = CHVector(0.02f, 0.0f, 0.01f, 1.0f);
-		avOuter[5] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
+		avOuter[2] = CHVector(0.04f, 0.0f, 0.1f, 1.0f);
+		avOuter[3] = CHVector(0.0f, 0.0f, 0.0f, 1.0f);
 
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 4; i++) {
 			m_zgLeafMain.AddOuter(&avOuter[i]);
 		}
 
-		SetMaxNeedleBending(0.08f);
+		SetMaxNeedleBending(-0.08f);
 		SetMaxNeedleFolding(1.3f);
 		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
 		SetGeoLeaf(&m_zgLeafMain);
 		CHMat mScale;
 		mScale.Scale(1.5f*(float)uLoD);
 		m_zgLeafMain.Transform(mScale);
-		SetLeafSkipFactor(20 * uLoD);
+		SetLeafSkipFactor(75 * uLoD);
+
 	}
 
 	m_zmLeaf.MakeTextureDiffuse("textures\\darkgreen_image.jpg");
@@ -326,11 +323,13 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 	m_zmBark.MakeTextureBump("textures\\bark_n.png");
 	m_zmBark.MakeTextureHeight("textures\\bark_h.png");
 	m_zmBark.MakeTextureSpecular("textures\\bark_s.png");
+	// setvertexdisplacement on
 	//m_zmBark.SetSpecularSharpness(100.0f);
 	//m_zmBark.SetTextureSpecularBlack();
 	m_zmBark.SetTextureSpecularAsDiffuse();
 	SetMaterial(&m_zmBark);
-
+	m_zmBark.SetDisplacementOn();
+	m_zmBark.SetDisplacementStrength(0.1f);
 
 	SetSwakeRandomFactor(m_fSwakeRandom);
 	SetTurtleStartHeight(m_fTurtleStartLength);
@@ -365,7 +364,7 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 		}
 		SetTurtleEndLongitude(0);
 		SetTurtleEndLattitude(0);
-		if (m_bHasLeaves)
+		/*if (m_bHasLeaves)
 		{
 			CHMat mLoD;
 			if (uLoD == 4)
@@ -386,7 +385,7 @@ void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
 				m_zgLeafMain.Transform(mLoD);
 				SetLeafSkipFactor(2000);
 			}
-		}
+		}*/
 
 	}
 
