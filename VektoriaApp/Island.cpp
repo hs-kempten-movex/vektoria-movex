@@ -78,10 +78,10 @@ Island::Island()
     //m_mWater.LoadPreset("Water");
     //m_mWater.MakeTextureEnvironment("textures\\ENF_Water.png");
     m_mWater.MakeTextureDiffuse("textures\\Water_albedo.jpg");
-    //m_mWater.MakeTextureBump("textures\\Water_Normal.jpg");
+    m_mWater.MakeTextureBump("textures\\Water_Normal.png");
     m_mWater.SetBumpStrength(2.0);
     m_mWater.MakeTextureHaze("textures\\waterHaze.jpg");
-    m_mWater.SetAni(23, 23, 7);
+    m_mWater.SetAni(8, 8, 7);
     //m_mWater.Translate(CColor(0.0f, 0.2f, 0.8f));
     m_mWater.SetTransparency(0.4f);
     m_mWater.SetPostprocessingOn();
