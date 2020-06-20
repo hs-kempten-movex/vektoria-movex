@@ -203,35 +203,56 @@ Island::Island()
     m_pIsland1.AddGeo(&m_gTerrainRockSnowy);
     m_pIsland1.AddGeo(&m_gTerrainMirror);
 
-    m_pIsland2.AddGeo(&m_gTerrainSandBack);
-    m_pIsland2.AddGeo(&m_gTerrainSandLessMossyBack);
-    m_pIsland2.AddGeo(&m_gTerrainSandMossyBack);
-    m_pIsland2.AddGeo(&m_gTerrainRockMossyBack);
-    m_pIsland2.AddGeo(&m_gTerrainRockBack);
-    m_pIsland2.AddGeo(&m_gTerrainRockSnowyBack);
-    m_pIsland2.AddGeo(&m_gTerrainMirrorBack);
-    m_pIsland2.RotateYDelta(1.3f);
-    m_pIsland2.TranslateDelta(3000, 0, 2500); //verschiebung in Hintergrund
+    //InselBillboards
 
-    m_pIsland3.AddGeo(&m_gTerrainSandBack);
-    m_pIsland3.AddGeo(&m_gTerrainSandLessMossyBack);
-    m_pIsland3.AddGeo(&m_gTerrainSandMossyBack);
-    m_pIsland3.AddGeo(&m_gTerrainRockMossyBack);
-    m_pIsland3.AddGeo(&m_gTerrainRockBack);
-    m_pIsland3.AddGeo(&m_gTerrainRockSnowyBack);
-    m_pIsland3.AddGeo(&m_gTerrainMirrorBack);
-    m_pIsland3.RotateYDelta(2.6f);
-    m_pIsland3.TranslateDelta(-3000, 0, 2500); //verschiebung in Hintergrund
+    m_mIslandBill.MakeTextureBillboard("textures\\Insel_Bill2.png");
+    m_mIslandBill.SetChromaKeyingOn();
+    m_gqIslandBillboard1.Init(1000.0, &m_mIslandBill, 0.0, 0.0, 1.0, 1.0);
 
-    m_pIsland4.AddGeo(&m_gTerrainSandBack);
-    m_pIsland4.AddGeo(&m_gTerrainSandLessMossyBack);
-    m_pIsland4.AddGeo(&m_gTerrainSandMossyBack);
-    m_pIsland4.AddGeo(&m_gTerrainRockMossyBack);
-    m_pIsland4.AddGeo(&m_gTerrainRockBack);
-    m_pIsland4.AddGeo(&m_gTerrainRockSnowyBack);
-    m_pIsland4.AddGeo(&m_gTerrainMirrorBack);
-    m_pIsland4.RotateYDelta(3.4f);
-    m_pIsland4.TranslateDelta(-3000, 0, -2000); //verschiebung in Hintergrund
+    m_pIsland2.AddGeo(&m_gqIslandBillboard1);
+    m_pIsland2.TranslateDelta(4000, 0, 3500);
+    m_pIsland2.SetBillboardY();
+    m_pIsland2.SetBillboardScaling(1.0f, 0.25f);
+
+    m_pIsland3.AddGeo(&m_gqIslandBillboard1);
+    m_pIsland3.TranslateDelta(-3000, 0, 2500);
+    m_pIsland3.SetBillboardY();
+    m_pIsland3.SetBillboardScaling(1.0f, 0.25f);
+
+    m_pIsland4.AddGeo(&m_gqIslandBillboard1);
+    m_pIsland4.TranslateDelta(-3000, 0, -2000);
+    m_pIsland4.SetBillboardY();
+    m_pIsland4.SetBillboardScaling(1.0f, 0.25f);
+
+    //m_pIsland2.AddGeo(&m_gTerrainSandBack);
+    //m_pIsland2.AddGeo(&m_gTerrainSandLessMossyBack);
+    //m_pIsland2.AddGeo(&m_gTerrainSandMossyBack);
+    //m_pIsland2.AddGeo(&m_gTerrainRockMossyBack);
+    //m_pIsland2.AddGeo(&m_gTerrainRockBack);
+    //m_pIsland2.AddGeo(&m_gTerrainRockSnowyBack);
+    //m_pIsland2.AddGeo(&m_gTerrainMirrorBack);
+    //m_pIsland2.RotateYDelta(1.3f);
+    //m_pIsland2.TranslateDelta(3000, 0, 2500); //verschiebung in Hintergrund
+
+    //m_pIsland3.AddGeo(&m_gTerrainSandBack);
+    //m_pIsland3.AddGeo(&m_gTerrainSandLessMossyBack);
+    //m_pIsland3.AddGeo(&m_gTerrainSandMossyBack);
+    //m_pIsland3.AddGeo(&m_gTerrainRockMossyBack);
+    //m_pIsland3.AddGeo(&m_gTerrainRockBack);
+    //m_pIsland3.AddGeo(&m_gTerrainRockSnowyBack);
+    //m_pIsland3.AddGeo(&m_gTerrainMirrorBack);
+    //m_pIsland3.RotateYDelta(2.6f);
+    //m_pIsland3.TranslateDelta(-3000, 0, 2500); //verschiebung in Hintergrund
+
+    //m_pIsland4.AddGeo(&m_gTerrainSandBack);
+    //m_pIsland4.AddGeo(&m_gTerrainSandLessMossyBack);
+    //m_pIsland4.AddGeo(&m_gTerrainSandMossyBack);
+    //m_pIsland4.AddGeo(&m_gTerrainRockMossyBack);
+    //m_pIsland4.AddGeo(&m_gTerrainRockBack);
+    //m_pIsland4.AddGeo(&m_gTerrainRockSnowyBack);
+    //m_pIsland4.AddGeo(&m_gTerrainMirrorBack);
+    //m_pIsland4.RotateYDelta(3.4f);
+    //m_pIsland4.TranslateDelta(-3000, 0, -2000); //verschiebung in Hintergrund
 
     //collision detection
     m_gTerrainOri.InitFromOther(m_gTerrainOri, NULL);

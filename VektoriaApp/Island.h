@@ -40,6 +40,10 @@ public:
     CGeoTerrain m_gTerrainRockMossy;
     CGeoTerrain m_gTerrainSandLessMossy;
 
+    //background insel billboards
+    CGeoQuad m_gqIslandBillboard1;
+    CMaterial m_mIslandBill;
+
     //Background inseln: low LoD
     CGeoTerrain m_gTerrainOriBack;
     CGeoTerrain m_gTerrainSandBack; //Sandausschnitt
