@@ -30,6 +30,11 @@ namespace PlayerNS
             return &m_zpCamera;
         }
 
+        void AddPoints(int points)
+        {
+            m_score += points;
+        }
+
     private:
         uint8_t m_id;
         uint8_t m_playerCount;

@@ -1,5 +1,6 @@
 
 #include "Game.h"
+#include "Utils/PlacementUtils.h"
 
 CGame::CGame(void)
 {

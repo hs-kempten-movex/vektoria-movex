@@ -31,6 +31,12 @@
     <Filter Include="Quelldateien\Forest\Geos">
       <UniqueIdentifier>{a53345c0-cb7c-40fc-9e94-3acaafd00b2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Utils">
+      <UniqueIdentifier>{527f7000-b806-4ba1-bccd-15bfcb5bc815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Utils">
+      <UniqueIdentifier>{e2b92f9c-bb94-4def-acd6-5073fb765fc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -84,6 +90,12 @@
     <ClInclude Include="Forest\PlantPlacement.h">
       <Filter>Headerdateien\Forest</Filter>
     </ClInclude>
+    <ClInclude Include="Collectable.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\PlacementUtils.h">
+      <Filter>Headerdateien\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -124,6 +136,12 @@
     </ClCompile>
     <ClCompile Include="Forest\Geos\Nadelbaum.cpp">
       <Filter>Quelldateien\Forest\Geos</Filter>
+    </ClCompile>
+    <ClCompile Include="Collectable.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\PlacementUtils.cpp">
+      <Filter>Quelldateien\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

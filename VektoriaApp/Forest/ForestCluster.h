@@ -14,7 +14,7 @@ namespace ForestNS
     public:
         ForestCluster(CGeoTerrain* terrain, CHVector position, float size);
 
-        void AddPlacementsForSpecies(CPlacement* plant, uint8_t numPlants, float minHeight, float maxHeight, float minSlope = 0.0f, float maxSlope = HALFPI);
+        std::vector<CPlacement*> AddPlacementsForSpecies(CPlacement* plant, uint8_t numPlants, float minHeight, float maxHeight, float minSlope = 0.0f, float maxSlope = HALFPI);
 
         std::vector<std::vector<CPlacement*>>& GetPlantPlacements()
         {

@@ -47,10 +47,14 @@ void Forest::InitCluster(CGeoTerrain* terrain)
         {
             ForestCluster* newCluster = new ForestCluster(terrain, CHVector(i, 0, j), CLUSTER_SIZE);
             newCluster->AddPlacementsForSpecies(&m_zpCherryBlossomTree, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI); //cherrytrees höhe wo sie wachsen dürfen, abhang etc
-            newCluster->AddPlacementsForSpecies(&m_zpPoppy, TREES_PER_CLUSTER, 10.0, 130.0f);
             newCluster->AddPlacementsForSpecies(&m_zpConifer, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI);
+            
+            std::vector<CPlacement*> poppyPlacements = newCluster->AddPlacementsForSpecies(&m_zpPoppy, TREES_PER_CLUSTER, 10.0, 130.0f);
+            
             AddPlacement(newCluster);
             m_forestClusters.push_back(newCluster);
+            
+            m_flowers.insert(m_flowers.end(), poppyPlacements.begin(), poppyPlacements.end());
         }
     }
 }
