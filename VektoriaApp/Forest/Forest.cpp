@@ -26,6 +26,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     UtilsNS::ThreadPool threadPool(4);
 
     m_zpCherryBlossomTree.InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
+    m_zpCherryBlossomTree.InitCollisionGeo(&threadPool);
     m_zpCherryBlossomTree.Scale(1.1f);
 
     m_zpPoppy.InitLoDs({ { {100.0f, 0}, { 500.0f, 1 }, { 1000.0f, 2 } } }, &threadPool);

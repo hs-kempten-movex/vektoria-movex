@@ -28,7 +28,7 @@ namespace ForestNS
         std::vector<CGeo*> GetCollisionObjects()
         {
             return std::vector<CGeo*>{
-                //TODO Add collision objects of trees
+                &m_zpCherryBlossomTree.GetCollisionGeo()
             };
         }
 

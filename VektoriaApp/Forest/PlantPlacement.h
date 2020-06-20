@@ -8,7 +8,7 @@ using namespace Vektoria;
 
 namespace ForestNS
 {
-    template<typename T, size_t C, bool = std::is_base_of<IPlantGeo, T>::value>
+    template<typename T, size_t LoDCount, bool = std::is_base_of<IPlantGeo, T>::value>
     class PlantPlacement
     {
     };
@@ -19,8 +19,8 @@ namespace ForestNS
         unsigned int lodIndex;
     };
 
-    template<typename T, size_t C>
-    class PlantPlacement <T, C, true> :
+    template<typename T, size_t LoDCount>
+    class PlantPlacement <T, LoDCount, true> :
         public CPlacement
     {
     public:
@@ -32,24 +32,24 @@ namespace ForestNS
         {
         }
 
-        void InitLoDs(std::array<LoDRange, C> lodRanges, UtilsNS::ThreadPool* threadPool) {
-            for (int i = 0; i < C; i++)
+        void InitLoDs(std::array<LoDRange, LoDCount> lodRanges, UtilsNS::ThreadPool* threadPool)
+        {
+            for (int i = 0; i < LoDCount; i++)
             {
-                IPlantGeo& cast = dynamic_cast<IPlantGeo&>(m_lodGeos[i]);
-                
-                m_lodPlacements[i].AddGeo(&cast);
-                m_lodPlacements[i].SetLoD((i > 0) ? lodRanges[i - 1].max : 0.0f, lodRanges[i].max);
-
-                AddPlacement(&m_lodPlacements[i]);
-
-                threadPool->EnqueueTask([](IPlantGeo* geo, unsigned int seed, float age, float timeOfYear, float rootCutHeight, unsigned int lodIndex)
-                    {
-                        geo->SetRandomSeed(seed);
-                        geo->Iterate(age, timeOfYear, rootCutHeight);
-                        geo->Init(geo, lodIndex);
-                        geo->DeIterate();
-                    }, &cast, m_seed, m_age, m_timeOfYear, m_rootCutHeight, lodRanges[i].lodIndex);
+                InitGeo(m_zpLoDs[i], m_lodGeos[i], m_timeOfYear, lodRanges[i].lodIndex, threadPool);
+                m_zpLoDs[i].SetLoD((i > 0) ? lodRanges[i - 1].max : 0.0f, lodRanges[i].max);
             }
+        }
+
+        void InitCollisionGeo(UtilsNS::ThreadPool* threadPool)
+        {
+            InitGeo(m_zpCollisionGeo, m_collisionGeo, 0.8f, 9, threadPool);
+            m_zpCollisionGeo.SetDrawingOff();
+        }
+
+        T& GetCollisionGeo()
+        {
+            return m_collisionGeo;
         }
 
     private:
@@ -58,9 +58,28 @@ namespace ForestNS
         float m_timeOfYear;
         float m_rootCutHeight;
 
-        std::array<T, C> m_lodGeos;
-        std::array<CPlacement, C> m_lodPlacements;
+        std::array<T, LoDCount> m_lodGeos;
+        std::array<CPlacement, LoDCount> m_zpLoDs;
 
+        T m_collisionGeo;
+        CPlacement m_zpCollisionGeo;
+
+        void InitGeo(CPlacement& placement, T& geo, float timeOfYear, unsigned int lodIndex, UtilsNS::ThreadPool* threadPool)
+        {
+            IPlantGeo& cast = dynamic_cast<IPlantGeo&>(geo);
+
+            placement.AddGeo(&cast);
+            AddPlacement(&placement);
+
+            threadPool->EnqueueTask([](IPlantGeo* geo, unsigned int seed, float age, float timeOfYear, float rootCutHeight, unsigned int lodIndex)
+                {
+                    geo->SetRandomSeed(seed);
+                    geo->Iterate(age, timeOfYear, rootCutHeight);
+                    geo->Init(geo, lodIndex);
+                    geo->DeIterate();
+                }, &cast, m_seed, m_age, timeOfYear, m_rootCutHeight, lodIndex
+            );
+        }
 
     };
 }
