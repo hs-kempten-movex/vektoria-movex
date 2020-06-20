@@ -51,9 +51,6 @@
     <ClInclude Include="Island.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="ThreadPool.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Forest\Forest.h">
       <Filter>Headerdateien\Forest</Filter>
     </ClInclude>
@@ -94,6 +91,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Utils\PlacementUtils.h">
+      <Filter>Headerdateien\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\ThreadPool.h">
       <Filter>Headerdateien\Utils</Filter>
     </ClInclude>
   </ItemGroup>

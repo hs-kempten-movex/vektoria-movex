@@ -165,8 +165,8 @@
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="Utils\PlacementUtils.h" />
+    <ClInclude Include="Utils\ThreadPool.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Collectable.cpp" />

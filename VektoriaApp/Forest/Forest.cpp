@@ -1,12 +1,13 @@
 #include "Forest.h"
 #include "../Island.h"
-#include "../ThreadPool.h"
+#include "../Utils/ThreadPool.h"
 
 #define CLUSTER_SIZE 250
 #define TREES_PER_CLUSTER 20
 
 using namespace Vektoria;
 using namespace ForestNS;
+using namespace UtilsNS;
 //TODO dejans bäume holen und einfügen
 Forest::Forest(CGeoTerrain* terrain)
 {

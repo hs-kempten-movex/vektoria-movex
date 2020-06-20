@@ -1,10 +1,11 @@
 #pragma once
 #include "Vektoria\Root.h"
 #include "Geos/IPlantGeo.h"
-#include "../ThreadPool.h"
+#include "../Utils/ThreadPool.h"
 #include <array>
 
 using namespace Vektoria;
+using namespace UtilsNS;
 
 namespace ForestNS
 {
