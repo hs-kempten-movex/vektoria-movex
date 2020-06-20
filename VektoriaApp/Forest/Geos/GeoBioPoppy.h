@@ -2,6 +2,8 @@
 #include "Vektoria\Root.h"
 #include "IPlantGeo.h"
 
+using namespace Vektoria;
+
 namespace ForestNS
 {
 	class GeoBioPoppy : 

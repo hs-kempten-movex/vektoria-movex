@@ -4,7 +4,13 @@
 #include "Geos/CherryBlossomTree.h"
 #include "Geos/Nadelbaum.h"
 #include "ForestCluster.h"
+#include "PlantPlacement.h"
+
 #include <array>
+
+#define CBTREE_SEED 30285
+#define CONIFER_SEED 29486
+#define POPPY_SEED 44444
 
 using namespace Vektoria;
 
@@ -24,48 +30,17 @@ namespace ForestNS
         std::vector<CGeo*> GetCollisionObjects()
         {
             return std::vector<CGeo*>{
-                &m_CBTreeCollision
+                //TODO Add collision objects of trees
             };
         }
 
     private:
-        CherryBlossomTree m_CBTreeLoD1;
-        CherryBlossomTree m_CBTreeLoD2;
-        CherryBlossomTree m_CBTreeLoD3;
-        CherryBlossomTree m_CBTreeLoD4;
-        CherryBlossomTree m_CBTreeCollision;
-
-        CPlacement m_CBTreePlacementLoD1;
-        CPlacement m_CBTreePlacementLoD2;
-        CPlacement m_CBTreePlacementLoD3;
-        CPlacement m_CBTreePlacementLoD4;
-        CPlacement m_CbTreePlacementCollision;
-
-        GeoBioPoppy m_PoppyLoD1;
-        GeoBioPoppy m_PoppyLoD2;
-        GeoBioPoppy m_PoppyLoD3;
-        CPlacement m_PoppyPlacementLoD1;
-        CPlacement m_PoppyPlacementLoD2;
-        CPlacement m_PoppyPlacementLoD3;
-
-        Nadelbaum m_NBTreeLoD1;
-        Nadelbaum m_NBTreeLoD2;
-        Nadelbaum m_NBTreeLoD3;
-        Nadelbaum m_NBTreeLoD4;
-
-        CPlacement m_NBTreePlacementLoD1;
-        CPlacement m_NBTreePlacementLoD2;
-        CPlacement m_NBTreePlacementLoD3;
-        CPlacement m_NBTreePlacementLoD4;
+        PlantPlacement<CherryBlossomTree, 4> m_zpCherryBlossomTree = PlantPlacement<CherryBlossomTree, 4>(CBTREE_SEED, 150.0f, 0.2f, 0.0f);
+        PlantPlacement<GeoBioPoppy, 3> m_zpPoppy = PlantPlacement<GeoBioPoppy, 3>(POPPY_SEED, 1.0f, 0.2f, 0.0f);
+        PlantPlacement<Nadelbaum, 4> m_zpConifer = PlantPlacement<Nadelbaum, 4>(CONIFER_SEED, 300.0f, 0.2f, 0.0f);
 
         std::vector<ForestCluster*> m_forestClusters;
-        std::array<CPlacement, 3> m_plants;
 
-        void InitGeos(CGeoTerrain* terrain);
-
-        static void CBTreeInit(CherryBlossomTree* tree, float frTimeOfYear, unsigned int lod);
-        static void PoppyInit(GeoBioPoppy* poppy, unsigned int lod);
-        static void NBTreeInit(Nadelbaum* tree, float frTimeOfYear, unsigned int lod);
-        static void ClusterInit(CGeoTerrain* terrain, CHVector position, std::vector<ForestCluster*>* clusters, std::mutex* mutex);
+        void InitCluster(CGeoTerrain* terrain);
     };
 }

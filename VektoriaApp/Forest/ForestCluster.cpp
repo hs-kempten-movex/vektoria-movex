@@ -21,7 +21,7 @@ ForestCluster::ForestCluster(CGeoTerrain* terrain, CHVector position, float size
 #endif // DEBUG_FORESTCLUSTER
 }
 
-void ForestCluster::AddPlacementsForSpecies(uint8_t numPlants, float minHeight, float maxHeight, float minSlope, float maxSlope)
+void ForestCluster::AddPlacementsForSpecies(CPlacement* plant, uint8_t numPlants, float minHeight, float maxHeight, float minSlope, float maxSlope)
 {
     std::vector<CPlacement*> plantPlacements;
 
@@ -33,6 +33,7 @@ void ForestCluster::AddPlacementsForSpecies(uint8_t numPlants, float minHeight, 
             CPlacement* plantPlacement = new CPlacement();
             plantPlacement->RotateYDelta(UM_FRAND()*TWOPI);
             plantPlacement->TranslateDelta(plantPosition - GetPos());
+            plantPlacement->AddPlacement(plant);
 
             plantPlacements.push_back(plantPlacement);
             AddPlacement(plantPlacement);

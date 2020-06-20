@@ -155,6 +155,7 @@
     <ClInclude Include="Forest\Geos\GeoBioPoppy.h" />
     <ClInclude Include="Forest\Geos\IPlantGeo.h" />
     <ClInclude Include="Forest\Geos\Nadelbaum.h" />
+    <ClInclude Include="Forest\PlantPlacement.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Island.h" />
     <ClInclude Include="Player\Butterfly.h" />

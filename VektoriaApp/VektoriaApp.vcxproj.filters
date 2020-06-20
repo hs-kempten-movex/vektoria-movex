@@ -81,6 +81,9 @@
     <ClInclude Include="Forest\Geos\Nadelbaum.h">
       <Filter>Headerdateien\Forest\Geos</Filter>
     </ClInclude>
+    <ClInclude Include="Forest\PlantPlacement.h">
+      <Filter>Headerdateien\Forest</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
