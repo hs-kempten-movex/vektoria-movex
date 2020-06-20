@@ -6,8 +6,6 @@
 #include "ForestCluster.h"
 #include "PlantPlacement.h"
 
-#include <array>
-
 #define CBTREE_SEED 30285
 #define CONIFER_SEED 29486
 #define POPPY_SEED 44444

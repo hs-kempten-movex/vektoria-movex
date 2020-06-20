@@ -35,7 +35,6 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zpConifer.Scale(3.5f);
 
     InitCluster(terrain);
-
 }
 
 
