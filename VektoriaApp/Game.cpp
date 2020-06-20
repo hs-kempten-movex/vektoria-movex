@@ -22,22 +22,22 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_scene.SetSkyFlowOn(120);
 
 	//Placements
-	m_scene.AddPlacement(&island.m_pIsland1);
-	m_scene.AddPlacement(&island.m_pIsland2);
-	m_scene.AddPlacement(&island.m_pIsland3);
-	m_scene.AddPlacement(&island.m_pIsland4);
+	m_scene.AddPlacement(&m_island.m_pIsland1);
+	m_scene.AddPlacement(&m_island.m_pIsland2);
+	m_scene.AddPlacement(&m_island.m_pIsland3);
+	m_scene.AddPlacement(&m_island.m_pIsland4);
   
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
 	m_scene.SetFrustumCullingOn();
 
   //TODO check how sky works with multiple cameras. It shoud be set on the camera placement instead of the island placement
-  m_scene.SetSkyOn(&island.m_pIsland1);
+  m_scene.SetSkyOn(&m_island.m_pIsland1);
   m_scene.SetSkyShadowDepth(250.0f);
 
   // WALD HIER //
-  m_forest.Init(&island.m_gTerrainOri);
-  island.m_pIsland1.AddPlacement(&m_forest);
+  m_forest.Init(&m_island.m_gTerrainOri);
+  m_island.m_pIsland1.AddPlacement(&m_forest);
 
 	InitPlayers();
 }
@@ -46,15 +46,15 @@ void CGame::InitPlayers()
 {
     for (auto& collisionTree : m_forest.GetCollisionObjects())
     {
-        CollisionObjects.Add(collisionTree);
+        m_collisionObjects.Add(collisionTree);
     }
 
-    CollsisionTerrains.Add(&island.m_gTerrainOri);
-    CollsisionTerrains.Add(&island.m_gWater);
+    m_collsisionTerrains.Add(&m_island.m_gTerrainOri);
+    m_collsisionTerrains.Add(&m_island.m_gWater);
 
     for (auto& player : m_players)
     {
-        player.Init(m_scene.GetSkyLightPlacement(), &CollisionObjects, &CollsisionTerrains);
+        player.Init(m_scene.GetSkyLightPlacement(), &m_collisionObjects, &m_collsisionTerrains);
         m_frame.AddViewport(player.GetViewport());
         m_frame.AddDeviceGameController(&player);
 

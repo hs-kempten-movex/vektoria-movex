@@ -18,14 +18,14 @@ namespace ForestNS
 
         std::vector<std::vector<CPlacement*>>& GetPlantPlacements()
         {
-            return m_plantPlacements;
+            return m_zpPlants;
         };
 
     private:
         float m_size;
         CGeoTerrain* m_terrain;
 
-        std::vector<std::vector<CPlacement*>> m_plantPlacements;
+        std::vector<std::vector<CPlacement*>> m_zpPlants;
 
 #ifdef DEBUG_FORESTCLUSTER
         CGeoCylinder m_debugCylinder;

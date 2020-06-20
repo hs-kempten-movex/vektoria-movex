@@ -55,7 +55,7 @@ void Forest::InitCluster(CGeoTerrain* terrain)
             AddPlacement(newCluster);
             m_forestClusters.push_back(newCluster);
             
-            m_flowers.insert(m_flowers.end(), poppyPlacements.begin(), poppyPlacements.end());
+            m_zpFlowers.insert(m_zpFlowers.end(), poppyPlacements.begin(), poppyPlacements.end());
         }
     }
 }

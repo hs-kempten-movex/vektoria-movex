@@ -47,7 +47,7 @@ public:
 	void InitPlayers();
 private:
 
-	Island island;
+	Island m_island;
 
   ForestNS::Forest m_forest;
 
@@ -57,8 +57,8 @@ private:
       //PlayerNS::Player(2, m_players.size(), CHVector(0.0f, 300.0f, -200.0f))
   };
 
-	CGeos CollisionObjects;
-	CGeoTerrains CollsisionTerrains;
+	CGeos m_collisionObjects;
+	CGeoTerrains m_collsisionTerrains;
 };
 
 

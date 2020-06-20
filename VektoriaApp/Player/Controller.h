@@ -35,8 +35,8 @@ namespace PlayerNS
         }
 
     protected:
-        CPlacement yaw;
-        CPlacement pitch;
+        CPlacement m_zpYaw;
+        CPlacement m_zpPitch;
 
     private:
         void rotate(float fTimeDalta);

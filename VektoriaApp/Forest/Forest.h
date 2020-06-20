@@ -34,7 +34,7 @@ namespace ForestNS
 
         std::vector<CPlacement*>& GetFlowers()
         {
-            return m_flowers;
+            return m_zpFlowers;
         }
 
     private:
@@ -43,7 +43,7 @@ namespace ForestNS
         PlantPlacement<Nadelbaum, 4> m_zpConifer = PlantPlacement<Nadelbaum, 4>(CONIFER_SEED, 300.0f, 0.2f, 0.0f);
 
         std::vector<ForestCluster*> m_forestClusters;
-        std::vector<CPlacement*> m_flowers;
+        std::vector<CPlacement*> m_zpFlowers;
 
         void InitCluster(CGeoTerrain* terrain);
     };

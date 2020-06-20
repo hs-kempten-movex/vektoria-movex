@@ -45,6 +45,6 @@ std::vector<CPlacement*> ForestCluster::AddPlacementsForSpecies(CPlacement* plan
         }
     }
 
-    m_plantPlacements.push_back(plantPlacements);
+    m_zpPlants.push_back(plantPlacements);
     return plantPlacements;
 }

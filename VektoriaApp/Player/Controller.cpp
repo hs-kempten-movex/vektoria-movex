@@ -5,8 +5,8 @@ using namespace PlayerNS;
 Controller::Controller() :
     KinematicPlacement(MAX_VELOCITY, MAX_HEIGHT)
 {
-    AddPlacement(&yaw);
-    yaw.AddPlacement(&pitch);
+    AddPlacement(&m_zpYaw);
+    m_zpYaw.AddPlacement(&m_zpPitch);
 }
 
 Controller::~Controller() {
@@ -30,18 +30,18 @@ void Controller::rotate(float fTimeDalta) {
     float relativeX = GetRelativeRX();
     if (abs(relativeX) > CONTROLLER_DRIFT_THRESHOLD) // prevent drifting
     {
-        yaw.RotateYDelta(-relativeX * fTimeDalta);
+        m_zpYaw.RotateYDelta(-relativeX * fTimeDalta);
     }
     float relativeY = GetRelativeRY();
     if (abs(relativeY) > CONTROLLER_DRIFT_THRESHOLD)
     {
-        pitch.RotateXDelta(-relativeY * fTimeDalta);
+        m_zpPitch.RotateXDelta(-relativeY * fTimeDalta);
     }   
 }
 
 void Controller::move(float fTimeDalta) {
-    CHVector yawDirection = yaw.GetDirection();
-    CHVector pitchDirection = pitch.GetDirection();
+    CHVector yawDirection = m_zpYaw.GetDirection();
+    CHVector pitchDirection = m_zpPitch.GetDirection();
     m_front = CHVector(yawDirection.x, pitchDirection.y, yawDirection.z).Normal();
     m_right  = yawDirection ^ CHVector(0, 1, 0);
     CHVector up = m_right ^ m_front;
