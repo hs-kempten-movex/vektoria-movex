@@ -206,7 +206,7 @@ void CherryBlossomTree::DeIterate()
 		m_pzgRoot->DeIterate();
 }
 
-void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
+void CherryBlossomTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 {
 	if (!pzgTemplate)
 	{
@@ -472,7 +472,7 @@ void CherryBlossomTree::Init(CherryBlossomTree * pzgTemplate, unsigned int uLoD)
 				SetGeoBlossom(&m_zgBlossomMain);
 
 				CHMat blossomscaling;
-				blossomscaling.Scale((float)uLoD * 3.5f);
+				blossomscaling.Scale((float)uLoD * 3.5);
 				m_zgBlossomMain.Transform(blossomscaling);
 
 				SetBlossomSkipFactor(uLoD * 3);

@@ -197,7 +197,7 @@ void Nadelbaum::DeIterate()
 }
 
 
-void Nadelbaum::Init(Nadelbaum * pzgTemplate, unsigned int uLoD)
+void Nadelbaum::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 {
 	if (!pzgTemplate)
 	{

@@ -25,6 +25,12 @@
     <Filter Include="Quelldateien\Player">
       <UniqueIdentifier>{27ea090f-577e-45e3-8399-2aac8ece9417}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Forest\Geos">
+      <UniqueIdentifier>{eb500532-ae58-4519-a3e2-8af45f8ce1a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Forest\Geos">
+      <UniqueIdentifier>{a53345c0-cb7c-40fc-9e94-3acaafd00b2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -45,16 +51,7 @@
     <ClInclude Include="Forest\Forest.h">
       <Filter>Headerdateien\Forest</Filter>
     </ClInclude>
-    <ClInclude Include="Forest\Nadelbaum.h">
-      <Filter>Headerdateien\Forest</Filter>
-    </ClInclude>
     <ClInclude Include="Forest\ForestCluster.h">
-      <Filter>Headerdateien\Forest</Filter>
-    </ClInclude>
-    <ClInclude Include="Forest\CherryBlossomTree.h">
-      <Filter>Headerdateien\Forest</Filter>
-    </ClInclude>
-    <ClInclude Include="Forest\GeoBioPoppy.h">
       <Filter>Headerdateien\Forest</Filter>
     </ClInclude>
     <ClInclude Include="Player\Butterfly.h">
@@ -69,6 +66,21 @@
     <ClInclude Include="Player\KinematicPlacement.h">
       <Filter>Headerdateien\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Forest\Geos\CherryBlossomTree.h">
+      <Filter>Headerdateien\Forest\Geos</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\Geos\GeoBioAsianTree.h">
+      <Filter>Headerdateien\Forest\Geos</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\Geos\GeoBioPoppy.h">
+      <Filter>Headerdateien\Forest\Geos</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\Geos\IPlantGeo.h">
+      <Filter>Headerdateien\Forest\Geos</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest\Geos\Nadelbaum.h">
+      <Filter>Headerdateien\Forest\Geos</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -80,19 +92,10 @@
     <ClCompile Include="Island.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Forest\CherryBlossomTree.cpp">
-      <Filter>Quelldateien\Forest</Filter>
-    </ClCompile>
     <ClCompile Include="Forest\Forest.cpp">
       <Filter>Quelldateien\Forest</Filter>
     </ClCompile>
     <ClCompile Include="Forest\ForestCluster.cpp">
-      <Filter>Quelldateien\Forest</Filter>
-    </ClCompile>
-    <ClCompile Include="Forest\GeoBioPoppy.cpp">
-      <Filter>Quelldateien\Forest</Filter>
-    </ClCompile>
-    <ClCompile Include="Forest\Nadelbaum.cpp">
       <Filter>Quelldateien\Forest</Filter>
     </ClCompile>
     <ClCompile Include="Player\Butterfly.cpp">
@@ -106,6 +109,18 @@
     </ClCompile>
     <ClCompile Include="Player\KinematicPlacement.cpp">
       <Filter>Quelldateien\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest\Geos\CherryBlossomTree.cpp">
+      <Filter>Quelldateien\Forest\Geos</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest\Geos\GeoBioAsianTree.cpp">
+      <Filter>Quelldateien\Forest\Geos</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest\Geos\GeoBioPoppy.cpp">
+      <Filter>Quelldateien\Forest\Geos</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest\Geos\Nadelbaum.cpp">
+      <Filter>Quelldateien\Forest\Geos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

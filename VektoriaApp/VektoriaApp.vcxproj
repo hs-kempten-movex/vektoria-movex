@@ -148,11 +148,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Forest\CherryBlossomTree.h" />
     <ClInclude Include="Forest\Forest.h" />
     <ClInclude Include="Forest\ForestCluster.h" />
-    <ClInclude Include="Forest\GeoBioPoppy.h" />
-    <ClInclude Include="Forest\Nadelbaum.h" />
+    <ClInclude Include="Forest\Geos\CherryBlossomTree.h" />
+    <ClInclude Include="Forest\Geos\GeoBioAsianTree.h" />
+    <ClInclude Include="Forest\Geos\GeoBioPoppy.h" />
+    <ClInclude Include="Forest\Geos\IPlantGeo.h" />
+    <ClInclude Include="Forest\Geos\Nadelbaum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Island.h" />
     <ClInclude Include="Player\Butterfly.h" />
@@ -164,11 +166,12 @@
     <ClInclude Include="ThreadPool.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Forest\CherryBlossomTree.cpp" />
     <ClCompile Include="Forest\Forest.cpp" />
     <ClCompile Include="Forest\ForestCluster.cpp" />
-    <ClCompile Include="Forest\GeoBioPoppy.cpp" />
-    <ClCompile Include="Forest\Nadelbaum.cpp" />
+    <ClCompile Include="Forest\Geos\CherryBlossomTree.cpp" />
+    <ClCompile Include="Forest\Geos\GeoBioAsianTree.cpp" />
+    <ClCompile Include="Forest\Geos\GeoBioPoppy.cpp" />
+    <ClCompile Include="Forest\Geos\Nadelbaum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="Player\Butterfly.cpp" />

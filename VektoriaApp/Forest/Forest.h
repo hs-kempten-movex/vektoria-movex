@@ -1,8 +1,8 @@
 #pragma once
 #include "Vektoria\Root.h"
-#include "GeoBioPoppy.h"
-#include "CherryBlossomTree.h"
-#include "Nadelbaum.h"
+#include "Geos/GeoBioPoppy.h"
+#include "Geos/CherryBlossomTree.h"
+#include "Geos/Nadelbaum.h"
 #include "ForestCluster.h"
 #include <array>
 
