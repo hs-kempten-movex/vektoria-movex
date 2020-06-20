@@ -2,6 +2,7 @@
 #include "Butterfly.h"
 #include "Controller.h"
 #include "Vektoria\Root.h"
+#include "Vektoria\Overlay.h"
 
 #define GLIDE_THRESHOLD 0.2f
 
@@ -38,5 +39,8 @@ namespace PlayerNS
 
         CViewport m_viewport;
         Butterfly m_butterfly;
+
+        int m_score = 0;
+        void InitScore();
     };
 }

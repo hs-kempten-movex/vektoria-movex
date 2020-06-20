@@ -62,3 +62,23 @@ void Player::Tick(float fTime, float fTimeDelta)
     m_butterfly.RotateZ(-(GetRight() * GetVelocity()) / MAX_VELOCITY);    
     m_butterfly.Tick(fTime, fTimeDelta);
 }
+
+    //in progress unbekannte vektoria features zu beseitigen
+
+void Player::InitScore()
+{
+    COverlay PointCounter = COverlay();
+    CMaterial Material = CMaterial();
+    Material.LoadPreset("NasaStars");
+    CFloatRect Size = CFloatRect(0, 0, 200, 200);
+    PointCounter.Init(&Material, Size);
+    CWritingFont Font = CWritingFont();
+    Font.LoadPreset("LucidaConsoleWhiteF");
+    CWriting Points = CWriting();
+    
+    Points.Init(Size, 20, &Font);
+    Points.PrintInt(m_score);
+    PointCounter.AddWriting(&Points);
+
+    m_viewport.AddOverlay(&PointCounter);
+}
