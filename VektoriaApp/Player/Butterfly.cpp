@@ -18,7 +18,7 @@ Butterfly::Butterfly()
     m_zpTorso.AddPlacement(&m_zpWingsR);
     m_zpTorso.RotateY(HALFPI);
     m_zpTorso.RotateXDelta(-HALFPI);
-    m_zpTorso.ScaleDelta(0.1);
+    m_zpTorso.ScaleDelta(0.1f);
 
     m_zpTorso.AddGeo(m_torso);
     m_zpWingsL.AddGeo(m_wingsL);

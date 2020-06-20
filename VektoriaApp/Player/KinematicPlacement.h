@@ -37,7 +37,7 @@ namespace PlayerNS
 
         float m_maxVelocity;
         float m_maxHeight;
-        float m_dampening = 0.99;
+        float m_dampening = 0.99f;
 
         CHVector m_velocity;
         CHVector m_acceleration;

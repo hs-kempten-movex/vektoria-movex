@@ -33,7 +33,7 @@ void KinematicPlacement::SetAcceleration(CHVector acceleration)
         }
     }
 
-    m_acceleration = acceleration + CHVector(0, -9.81, 0);
+    m_acceleration = acceleration + CHVector(0, -9.81f, 0);
 }
 
 void KinematicPlacement::Tick(float fTime, float fTimeDelta)

@@ -48,7 +48,7 @@ void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CG
         CHVector(+50000.0f, 20000.0f, +50000.0f, 1.0f)));
     
     // init and add camera
-    m_camera.Init(HALFPI, 0.3, 170000.0f, true, pzpShadowCastingLight);
+    m_camera.Init(HALFPI, 0.3f, 170000.0f, true, pzpShadowCastingLight);
     pitch.AddPlacement(&m_zpCamera);
     m_zpCamera.TranslateDelta(0.0f, 6.0f, 30.0f);
     m_zpCamera.AddCamera(&m_camera);
