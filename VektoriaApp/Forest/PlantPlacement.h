@@ -1,7 +1,7 @@
 #pragma once
 #include "Vektoria\Root.h"
 #include "Geos/IPlantGeo.h"
-#include "../Utils/ThreadPool.h"
+#include "../ThreadPool.h"
 #include <array>
 
 using namespace Vektoria;
@@ -32,7 +32,7 @@ namespace ForestNS
         {
         }
 
-        void InitLoDs(std::array<LoDRange, LoDCount> lodRanges, UtilsNS::ThreadPool* threadPool)
+        void InitLoDs(std::array<LoDRange, LoDCount> lodRanges, ThreadPool* threadPool)
         {
             for (int i = 0; i < LoDCount; i++)
             {
@@ -41,7 +41,7 @@ namespace ForestNS
             }
         }
 
-        void InitCollisionGeo(UtilsNS::ThreadPool* threadPool)
+        void InitCollisionGeo(ThreadPool* threadPool)
         {
             InitGeo(m_zpCollisionGeo, m_collisionGeo, 0.8f, 9, threadPool);
             m_zpCollisionGeo.SetDrawingOff();
@@ -64,7 +64,7 @@ namespace ForestNS
         T m_collisionGeo;
         CPlacement m_zpCollisionGeo;
 
-        void InitGeo(CPlacement& placement, T& geo, float timeOfYear, unsigned int lodIndex, UtilsNS::ThreadPool* threadPool)
+        void InitGeo(CPlacement& placement, T& geo, float timeOfYear, unsigned int lodIndex, ThreadPool* threadPool)
         {
             IPlantGeo& cast = dynamic_cast<IPlantGeo&>(geo);
 
