@@ -49,10 +49,14 @@ namespace ForestNS
         CPlacement m_PoppyPlacementLoD3;
 
         Nadelbaum m_NBTreeLoD1;
-        /*Nadelbaum m_NBTreeLoD2;*/
+        Nadelbaum m_NBTreeLoD2;
+        Nadelbaum m_NBTreeLoD3;
+        Nadelbaum m_NBTreeLoD4;
 
         CPlacement m_NBTreePlacementLoD1;
-        /*CPlacement m_NBTreePlacementLoD2;*/
+        CPlacement m_NBTreePlacementLoD2;
+        CPlacement m_NBTreePlacementLoD3;
+        CPlacement m_NBTreePlacementLoD4;
 
         std::vector<ForestCluster*> m_forestClusters;
         std::array<CPlacement, 3> m_plants;

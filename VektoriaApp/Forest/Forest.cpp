@@ -47,7 +47,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_plants[0].AddPlacement(&m_CBTreePlacementLoD3);
     m_plants[0].AddPlacement(&m_CBTreePlacementLoD4);
     m_plants[0].AddPlacement(&m_CbTreePlacementCollision);
-    m_plants[0].Scale(3.0f);
+    m_plants[0].Scale(2.0f);
 
     m_PoppyPlacementLoD1.AddGeo(&m_PoppyLoD1);
     m_PoppyPlacementLoD1.SetLoD(0.0f, 250.0f);
@@ -62,13 +62,19 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_plants[1].Scale(1.5f);
 
     m_NBTreePlacementLoD1.AddGeo(&m_NBTreeLoD1);
-    m_NBTreePlacementLoD1.SetLoD(0.0f, 400.0f);
-    /*m_NBTreePlacementLoD2.AddGeo(&m_CBTreeLoD2);
-    m_NBTreePlacementLoD2.SetLoD(400.0f, 750.0f);*/
+    m_NBTreePlacementLoD1.SetLoD(0.0f, 100.0f);
+    m_NBTreePlacementLoD2.AddGeo(&m_NBTreeLoD2);
+    m_NBTreePlacementLoD2.SetLoD(100.0f, 500.0f);
+    m_NBTreePlacementLoD3.AddGeo(&m_NBTreeLoD3);
+    m_NBTreePlacementLoD3.SetLoD(500.0f, 1000.0f);
+    m_NBTreePlacementLoD4.AddGeo(&m_NBTreeLoD4);
+    m_NBTreePlacementLoD4.SetLoD(1000.0f, 1500.0f);
 
     m_plants[2].AddPlacement(&m_NBTreePlacementLoD1);
-    /*m_plants[2].AddPlacement(&m_NBTreePlacementLoD2);*/
-    m_plants[2].Scale(3.0f);
+    m_plants[2].AddPlacement(&m_NBTreePlacementLoD2);
+    m_plants[2].AddPlacement(&m_NBTreePlacementLoD3);
+    m_plants[2].AddPlacement(&m_NBTreePlacementLoD4);
+    m_plants[2].Scale(3.5f);
 
     for (auto& cluster : m_forestClusters)
     {
@@ -96,7 +102,9 @@ void Forest::InitGeos(CGeoTerrain* terrain)
     threadPool.EnqueueTask(PoppyInit, &m_PoppyLoD2, 1);
     threadPool.EnqueueTask(PoppyInit, &m_PoppyLoD3, 2);
     threadPool.EnqueueTask(NBTreeInit, &m_NBTreeLoD1, 0.2f, 1);
-    /*threadPool.EnqueueTask(NBTreeInit, &m_NBTreeLoD2, 0.2f, 2);*/
+    threadPool.EnqueueTask(NBTreeInit, &m_NBTreeLoD2, 0.2f, 2);
+    threadPool.EnqueueTask(NBTreeInit, &m_NBTreeLoD3, 0.2f, 3);
+    threadPool.EnqueueTask(NBTreeInit, &m_NBTreeLoD4, 0.2f, 4);
 
 
     std::mutex mutex;
