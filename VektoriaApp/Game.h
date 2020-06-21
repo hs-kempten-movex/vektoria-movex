@@ -54,7 +54,7 @@ private:
 
   std::array<PlayerNS::Player, 1> m_players
   {
-      PlayerNS::Player(1, m_players.size(), CHVector(0.0f, 300.0f, 200.0f))
+      PlayerNS::Player(1, m_players.size(), CHVector(0.0f, 200.0f, 200.0f))
       //PlayerNS::Player(2, m_players.size(), CHVector(0.0f, 300.0f, -200.0f))
   };
 

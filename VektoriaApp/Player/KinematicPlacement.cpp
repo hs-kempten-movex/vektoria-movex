@@ -33,13 +33,13 @@ void KinematicPlacement::SetAcceleration(CHVector acceleration)
         }
     }
 
-    m_acceleration = acceleration + CHVector(0, -9.81f, 0);
+    m_acceleration = acceleration + CHVector(0, -0.0981f, 0);
 }
 
 void KinematicPlacement::Tick(float fTime, float fTimeDelta)
 {
     CHVector translationVector = m_velocity * fTimeDelta;
-    m_velocity += m_acceleration * fTimeDelta;
+    m_velocity += m_acceleration;
     if (m_velocity.Length() > m_maxVelocity)
     {
         m_velocity = m_velocity.Normal() * m_maxVelocity;

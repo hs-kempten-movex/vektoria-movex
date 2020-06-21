@@ -4,7 +4,7 @@
 
 using namespace Vektoria;
 
-#define CONTROLLER_SENSITIVITY 100.0f
+#define CONTROLLER_SENSITIVITY 1.0f
 #define CONTROLLER_DRIFT_THRESHOLD 0.25f
 #define MAX_VELOCITY 100.0f
 #define MAX_HEIGHT 10.0f
