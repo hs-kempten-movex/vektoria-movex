@@ -57,7 +57,7 @@ void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CG
 void Player::Tick(float fTime, float fTimeDelta)
 {
     Controller::Tick(fTime, fTimeDelta);
-
+    
     m_butterfly.SetGlide(GetVelocity().y < 0.0f && (GetFront() * GetVelocity()) / MAX_VELOCITY > GLIDE_THRESHOLD);
     m_butterfly.RotateZ(-(GetRight() * GetVelocity()) / MAX_VELOCITY);    
     m_butterfly.Tick(fTime, fTimeDelta);

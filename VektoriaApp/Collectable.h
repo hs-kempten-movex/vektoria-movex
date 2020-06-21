@@ -9,7 +9,7 @@ using namespace Vektoria;
 class Collectable
 {
 public:
-    Collectable(CPlacement* placement, float cooldown, int points);
+    void Init(CPlacement* placement, float cooldown, int points, float range);
 
     virtual void Tick(float fTime, float fTimeDelta);
 
@@ -20,10 +20,13 @@ public:
         return UtilsNS::PlacementUtils::GetGlobalPositions(m_placement);
     }
 
+    bool IsAvailableAtPosition(CHVector position);
+
 private:
     CPlacement* m_placement;
 
     int m_points;
+    float m_range;
 
     float m_cooldown;
     float m_remainingCooldown = 0.0f;

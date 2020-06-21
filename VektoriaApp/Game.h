@@ -24,6 +24,7 @@
 #include "Island.h"
 #include "Player/Player.h"
 #include "Forest/Forest.h"
+#include "Collectable.h"
 #include <array>
 
 using namespace Vektoria;
@@ -59,6 +60,8 @@ private:
 
 	CGeos m_collisionObjects;
 	CGeoTerrains m_collsisionTerrains;
+
+  std::vector<Collectable> m_collectables;
 };
 
 

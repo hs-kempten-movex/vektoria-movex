@@ -39,6 +39,14 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
   m_forest.Init(&m_island.m_gTerrainOri);
   m_island.m_pIsland1.AddPlacement(&m_forest);
 
+
+  auto flowers = m_forest.GetFlowers();
+  m_collectables = std::vector<Collectable>(flowers.size());
+  for (int i = 0; i < flowers.size(); i++)
+  {
+      m_collectables[i].Init(flowers[i], 3000.0f, 10, 50.0f);
+  }
+
 	InitPlayers();
 }
 
@@ -67,9 +75,22 @@ void CGame::Tick(float fTime, float fTimeDelta)
     // Hier die Echtzeit-Veränderungen einfügen:
     m_root.Tick(fTimeDelta);
 
+    for (auto& collectable : m_collectables)
+    {
+        collectable.Tick(fTime, fTimeDelta);
+    }
+
     for (auto& player : m_players)
     {
         player.Tick(fTime, fTimeDelta);
+
+        if (player.IsGatherButtonPressed())
+        {
+            for (auto& collectable : m_collectables)
+            {
+                collectable.Gather(&player);
+            }
+        }
     }
 }
 

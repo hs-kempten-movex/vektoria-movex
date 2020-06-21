@@ -9,6 +9,7 @@ using namespace Vektoria;
 #define MAX_VELOCITY 100.0f
 #define MAX_HEIGHT 10.0f
 #define BACKWARDS_ACCELERATION_MULTIPLIER 0.75f
+#define GATHER_BUTTON 0
 
 namespace PlayerNS
 {
@@ -32,6 +33,11 @@ namespace PlayerNS
         CHVector GetRight()
         {
             return m_right;
+        }
+
+        bool IsGatherButtonPressed()
+        {
+            return ButtonPressed(GATHER_BUTTON);
         }
 
     protected:
