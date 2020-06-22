@@ -25,6 +25,15 @@ public:
 private:
     CPlacement* m_placement;
 
+    CPlacement m_zpEmmitter;
+    CEmitter m_emitter;
+    CMaterial m_emmiterMaterial;
+    CGeoQuad m_emmiterGeo;
+
+    CMaterial m_particleMaterial;
+    CPlacement m_zpParticle;
+    CGeoQuad m_particleGeo;
+
     int m_points;
     float m_range;
 

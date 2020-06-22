@@ -35,6 +35,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
   m_scene.SetSkyOn(&m_island.m_pIsland1);
   m_scene.SetSkyShadowDepth(250.0f);
 
+  m_scene.m_pscenephysics->m_vGravity = CHVector(0, 0, 0);
+
   // WALD HIER //
   m_forest.Init(&m_island.m_gTerrainOri);
   m_island.m_pIsland1.AddPlacement(&m_forest);
@@ -44,7 +46,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
   m_collectables = std::vector<Collectable>(flowers.size());
   for (int i = 0; i < flowers.size(); i++)
   {
-      m_collectables[i].Init(flowers[i], 3000.0f, 10, 50.0f);
+      m_collectables[i].Init(flowers[i], 30.0f, 10, 10.0f);
   }
 
 	InitPlayers();
