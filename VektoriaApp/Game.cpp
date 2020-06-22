@@ -41,7 +41,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
   m_forest.Init(&m_island.m_gTerrainOri);
   m_island.m_pIsland1.AddPlacement(&m_forest);
 
-
   auto flowers = m_forest.GetFlowers();
   m_collectables = std::vector<Collectable>(flowers.size());
   for (int i = 0; i < flowers.size(); i++)

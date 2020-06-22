@@ -2,7 +2,7 @@
 #include "../Island.h"
 #include "../Utils/ThreadPool.h"
 
-#define CLUSTER_SIZE 250
+#define CLUSTER_SIZE 200
 #define TREES_PER_CLUSTER 20
 
 using namespace Vektoria;

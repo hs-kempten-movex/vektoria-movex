@@ -96,6 +96,9 @@
     <ClInclude Include="Utils\ThreadPool.h">
       <Filter>Headerdateien\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\Random.h">
+      <Filter>Headerdateien\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -141,6 +144,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Utils\PlacementUtils.cpp">
+      <Filter>Quelldateien\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Random.cpp">
       <Filter>Quelldateien\Utils</Filter>
     </ClCompile>
   </ItemGroup>

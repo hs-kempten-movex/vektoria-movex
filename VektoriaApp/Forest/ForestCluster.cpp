@@ -1,5 +1,5 @@
 #include "ForestCluster.h"
-#include <iostream>
+#include "../Utils/Random.h"
 
 #define TREE_LINE_LOWER 0.0f
 #define TREE_LINE_UPPER 1000.f
@@ -24,24 +24,25 @@ ForestCluster::ForestCluster(CGeoTerrain* terrain, CHVector position, float size
 std::vector<CPlacement*> ForestCluster::AddPlacementsForSpecies(CPlacement* plant, uint8_t numPlants, float minHeight, float maxHeight, float minSlope, float maxSlope)
 {
     std::vector<CPlacement*> plantPlacements;
+    CHVector minVec = GetPos() - CHVector(m_size, 0, m_size);
+    CHVector maxVec = GetPos() + CHVector(m_size, 0, m_size);
 
     for (uint8_t i = 0; i < numPlants; i++)
     {
-        CHVector plantPosition = m_terrain->GetRandomPos(minHeight, maxHeight, minSlope, maxSlope, GetPos(), m_size);
-        if (plantPosition != CHVector())
+        CHitPoint hitPoint;
+        CHVector randomPosition = UtilsNS::Random::Vector(minVec, maxVec);
+        randomPosition.y = m_terrain->GetHeight(randomPosition.x, randomPosition.z);
+        float slope = m_terrain->GetSlope(randomPosition.x, randomPosition.z);
+
+        if (randomPosition.y >= minHeight && randomPosition.y <= maxHeight && slope >= minSlope && slope <= maxSlope)
         {
             CPlacement* plantPlacement = new CPlacement();
             plantPlacement->RotateYDelta(UM_FRAND()*TWOPI);
-            plantPlacement->TranslateDelta(plantPosition - GetPos());
+            plantPlacement->TranslateDelta(randomPosition - GetPos());
             plantPlacement->AddPlacement(plant);
 
             plantPlacements.push_back(plantPlacement);
             AddPlacement(plantPlacement);
-        }
-        else
-        {
-            //no position found
-            break;
         }
     }
 
