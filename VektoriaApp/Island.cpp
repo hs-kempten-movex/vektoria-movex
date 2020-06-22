@@ -205,8 +205,9 @@ Island::Island()
 
     //InselBillboards
 
-    m_mIslandBill.MakeTextureBillboard("textures\\Insel_Bill2.png");
+    m_mIslandBill.MakeTextureDiffuse("textures\\Insel_Bill2.png");
     m_mIslandBill.SetChromaKeyingOn();
+    m_mIslandBill.SetTextureSpecularAsDiffuse();
     m_gqIslandBillboard1.Init(1000.0, &m_mIslandBill, 0.0, 0.0, 1.0, 1.0);
 
     m_pIsland2.AddGeo(&m_gqIslandBillboard1);
