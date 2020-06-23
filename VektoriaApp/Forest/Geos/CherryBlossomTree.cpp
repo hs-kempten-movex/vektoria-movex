@@ -182,16 +182,14 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 
 		m_pzgRoot = new CGeoLSystem();
 		m_pzgRoot->m_random.m_uRand = m_random.m_uRand;
-		m_pzgRoot->SetTurtleStartRadius(m_fTurtleStartRadius*0.5f);
-		m_pzgRoot->SetTurtleStartHeight(m_fTurtleStartLength*2.0f);
-		m_pzgRoot->SetDefaultFactorGravitation(0.12f);
-		m_pzgRoot->SetAxiom("Z");
-		m_pzgRoot->AddRule("50:Z=#(r0.80)(l0.95)[(>90)X][(+123)(>92)X][(+239)(>88)X][X]");
-		m_pzgRoot->AddRule("50:Z=#(r0.80)(l0.95)[(+10)(>85)X][(+113)(>82)X][(+219)(>98)X](>9)[X]");
-		m_pzgRoot->AddRule("5:X={r>0.03,#!+(r0.80)(l0.9)_f[!(>10)X]}{r<0.0301,}");
-		m_pzgRoot->AddRule("45:X={r>0.03,#!+(r0.80)(l0.9)_f[!<(r0.80)X][!(>15)X]}{r<0.0301,}");
-		m_pzgRoot->AddRule("25:X={r>0.03,#!+(r0.80)(l0.9)_f[!(<45)(r0.80)X][!(>9)X]}{r<0.0301,}");
-		m_pzgRoot->AddRule("25:X={r>0.03,#!+(r0.80)(l0.9)_f[!(<35)(r0.80)X][!(>25)X]}{r<0.0301,}");
+
+		m_pzgRoot->SetAxiom("'Z");
+		m_pzgRoot->AddRule("50:Z=(l0.8)[(+0)(>90)X][(+123)(>92)X][(+239)(>88)X]°(r0.80)f[X]");
+		m_pzgRoot->AddRule("50:Z=(l0.8)[(+10)(>85)X][(+113)(>82)X][(+219)(>98)X]°(r0.80)(>9)f[X]");
+		m_pzgRoot->AddRule("5:X=#+(r0.80)_f[(l0.90)(>10)X]");
+		m_pzgRoot->AddRule("45:X=#+(r0.80)_f[(l0.79)<(r0.80)X][(l0.87)(>15)X]");
+		m_pzgRoot->AddRule("25:X=#+(r0.80)_f[(l0.79)(<45)(r0.80)X][(l0.86)(>9)X]");
+		m_pzgRoot->AddRule("25:X=#+(r0.80)_f[(l0.79)(<35)(r0.80)X][(l0.85)(>25)X]");
 
 
 		m_pzgRoot->Iterate(m_iIterations, m_pzgRoot->m_acAxiom);
