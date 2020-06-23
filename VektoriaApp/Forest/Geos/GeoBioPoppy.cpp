@@ -452,10 +452,6 @@ void GeoBioPoppy::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
     //Zuf‰llige Farbe der Bl¸tenbl‰tter -> Weiﬂ (selten), Lavendel (selten), gelb, orange-rot, rot (am h‰ufigsten)
     // funktioniert nicht ganz, Donnerstag fragen
 
-    CRandom Colorscaling;
-    Colorscaling.SRand(time(NULL));
-    float fColorscaling = Colorscaling.RandFr();
-    //float fColorscaling = 0.05f;
     if (fColorscaling < 0.101)
     {
         // Setze Farbe auf Lavendel (selten)(221.0f, 160.0f, 221.0f)
