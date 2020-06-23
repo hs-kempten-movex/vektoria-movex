@@ -12,7 +12,8 @@ namespace ForestNS
 	public:
 		GeoBioPoppy();
 		~GeoBioPoppy();
-		void Iterate(float fAge, float frTimeOfYear = 0.25f, float fRootCutHeight = 0.0f) override;
+		
+		void Iterate(int iFarbe = 1);
 		void DeIterate() override;
 
 		void Init(IPlantGeo * pzgTemplate, unsigned int uLoD = 0) override;
@@ -26,5 +27,6 @@ namespace ForestNS
   	CGeoTriangleTable m_zgFruitMain;
 		CMaterial m_zmStamen;
 		float fColorscaling;
+		int m_iFarbe;
 	};
 }

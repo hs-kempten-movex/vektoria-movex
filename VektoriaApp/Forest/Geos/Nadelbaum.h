@@ -12,8 +12,8 @@ namespace ForestNS
     public:
         Nadelbaum();
         ~Nadelbaum();
-        void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight) override;
-        void DeIterate() override;
+		void Iterate(float fAge, float fRootCutHeight, bool hasNeedles = true);
+		void DeIterate() override;
         
         void Init(IPlantGeo * pzgTemplate, unsigned int uLoD = 0) override;
         float GetOptimalLoDMax(float fAge, unsigned int uLoD);
