@@ -166,7 +166,6 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Utils\PlacementUtils.h" />
-    <ClInclude Include="Utils\Random.h" />
     <ClInclude Include="Utils\ThreadPool.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,7 +183,6 @@
     <ClCompile Include="Player\KinematicPlacement.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Utils\PlacementUtils.cpp" />
-    <ClCompile Include="Utils\Random.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,16 +1,16 @@
 #include "ForestCluster.h"
-#include "../Utils/Random.h"
 
 #define TREE_LINE_LOWER 0.0f
 #define TREE_LINE_UPPER 1000.f
 
 using namespace ForestNS;
 
-ForestCluster::ForestCluster(CGeoTerrain* terrain, CHVector position, float size) :
+ForestCluster::ForestCluster(unsigned int seed, CGeoTerrain* terrain, CHVector position, float size) :
     m_terrain{terrain},
     m_size{size}
 {
     Translate(position);
+    m_random.SRand(seed);
 
 #ifdef DEBUG_FORESTCLUSTER
     m_debugCylinderMaterial.Init();
@@ -24,13 +24,9 @@ ForestCluster::ForestCluster(CGeoTerrain* terrain, CHVector position, float size
 std::vector<CPlacement*> ForestCluster::AddPlacementsForSpecies(CPlacement* plant, uint8_t numPlants, float minHeight, float maxHeight, float minSlope, float maxSlope)
 {
     std::vector<CPlacement*> plantPlacements;
-    CHVector minVec = GetPos() - CHVector(m_size, 0, m_size);
-    CHVector maxVec = GetPos() + CHVector(m_size, 0, m_size);
-
     for (uint8_t i = 0; i < numPlants; i++)
     {
-        CHitPoint hitPoint;
-        CHVector randomPosition = UtilsNS::Random::Vector(minVec, maxVec);
+        CHVector randomPosition = GetPos() + CHVector(m_random.RandFt() * m_size, 0, m_random.RandFt() * m_size);
         randomPosition.y = m_terrain->GetHeight(randomPosition.x, randomPosition.z);
         float slope = m_terrain->GetSlope(randomPosition.x, randomPosition.z);
 

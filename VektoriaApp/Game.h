@@ -26,6 +26,7 @@
 #include "Forest/Forest.h"
 #include "Collectable.h"
 #include <array>
+#include <time.h>
 
 using namespace Vektoria;
 using namespace ForestNS;
@@ -50,7 +51,7 @@ private:
 
 	Island m_island;
 
-  ForestNS::Forest m_forest;
+  Forest m_forest = Forest(time(NULL));
 
   std::array<PlayerNS::Player, 1> m_players
   {

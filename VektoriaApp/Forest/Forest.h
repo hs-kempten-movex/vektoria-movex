@@ -5,7 +5,6 @@
 #include "Geos/Nadelbaum.h"
 #include "ForestCluster.h"
 #include "PlantPlacement.h"
-#include <time.h>
 
 using namespace Vektoria;
 
@@ -15,18 +14,15 @@ namespace ForestNS
         public CPlacement
     {
     public:
-        Forest() {};
-
-        Forest(CGeoTerrain* terrain);
+        Forest(unsigned int seed);
+        Forest(unsigned int seed, CGeoTerrain* terrain);
         ~Forest();
 
         void Init(CGeoTerrain *terrain);
 
-        std::vector<CGeo*> GetCollisionObjects()
+        std::vector<CGeo*>& GetCollisionObjects()
         {
-            return std::vector<CGeo*>{
-                &m_zpCherryBlossomTree.GetCollisionGeo()
-            };
+            return m_collisionGeos;
         }
 
         std::vector<CPlacement*>& GetFlowers()
@@ -35,13 +31,17 @@ namespace ForestNS
         }
 
     private:
-        PlantPlacement<CherryBlossomTree, 4> m_zpCherryBlossomTree = PlantPlacement<CherryBlossomTree, 4>(time(NULL), 150.0f, 0.2f, 0.0f);
-        PlantPlacement<GeoBioPoppy, 3> m_zpPoppy = PlantPlacement<GeoBioPoppy, 3>(time(NULL), 1.0f, 0.2f, 0.0f);
+        std::array<PlantPlacement<CherryBlossomTree, 4>*, 4> m_zpCherryBlossomTrees;
+        std::array< PlantPlacement<GeoBioPoppy, 3>*, 4> m_zpPoppies;
+
         PlantPlacement<Nadelbaum, 4> m_zpConifer = PlantPlacement<Nadelbaum, 4>(time(NULL), 300.0f, 0.2f, 0.0f);
 
         std::vector<ForestCluster*> m_forestClusters;
         std::vector<CPlacement*> m_zpFlowers;
+        std::vector<CGeo*> m_collisionGeos;
 
         void InitCluster(CGeoTerrain* terrain);
+
+        CRandom m_random;
     };
 }
