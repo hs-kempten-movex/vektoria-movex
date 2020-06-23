@@ -25,7 +25,6 @@ namespace ForestNS
 		CGeoLeaf m_zgLeafMain;
   	CGeoTriangleTable m_zgFruitMain;
 		CMaterial m_zmStamen;
-  	CRandom Colorscaling;
 		float fColorscaling;
 	};
 }
