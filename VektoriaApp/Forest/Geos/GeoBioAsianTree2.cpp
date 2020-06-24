@@ -10,11 +10,21 @@ namespace Vektoria
 	{
 	}
 
-	void CGeoBioAsianTree2::Iterate(float fAge, float fRootCutHeight)
+	void CGeoBioAsianTree2::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		{
 			m_fAge = fAge;
 			m_fAgeStopped = fAge;
 			m_fRootCutHeight = fRootCutHeight;
+			m_frTimeOfYear = frTimeOfYear;
+
+			float frTimeShifted = m_frTimeOfYear + 0.25f;
+			if (frTimeShifted > 1.0f)
+				frTimeShifted -= 1.0f;
+			// 0= 22.Dez. 0.5=22.Juni 0.75 = 22 Sep.
+
+			if (frTimeShifted > 0.1f && frTimeShifted < 0.9f) // Außerhalb Februar bis November
+				m_bHasLeaves = true;
+
 
 			if (m_fAgeStopped > 200.0f)
 				m_fAgeStopped = 200.0f;
@@ -91,17 +101,44 @@ namespace Vektoria
 
 
 			// Stamm und Äste
+			if (m_bHasLeaves)
+			{
+				
+				// Stamm
 
-			SetAxiom("X");
-			AddRule("20:X={r>0.05,+(r0.95)_(>20)f[(l0.85)(<10)(r0.93)X]}");
-			AddRule("20:X={r>0.05,+(r0.94)_(<18)f[(l0.93)(>15)(r0.94)X]}");
-			AddRule("20:X={r>0.05,+(r0.9)_(<12)f[(l0.90)(>15)(r0.96)X]}");
-			AddRule("20:X={r>0.05,°+(r0.97)_(v8)f[(l0.96)(^15)(r0.92)X]}");
-			AddRule("20:X={r>0.05,+(r0.98)_(^15)f[(l0.82)(v15)(r0.97)X]{b>0,Y}}");
-			AddRule("50:Y=(l1.5)(r0.7)(<55)f(l0.7)(<35)f(r0.8)(l0.2)(>75)f(<10)(l0.1)&f(^45)(L0.5)(R0.5)a");
-			AddRule("50:Y=(l1.4)(r0.5)(>40)f(l0.6)(<10)f(r0.6)(l0.4)(<5)f(^10)(l0.5)f(<90)&f(^75)f(R0.4)(L0.4)a");
-			//AddRule("25:Y=(l1.5)(r0.4)(<30)f(>60)(l0.1)f(<10)(l0.1)f(^45)(l3.0)(r6.0)a");
-			//AddRule("25:Y=(r0.5)(v20)f(<5)(l1.1)(r0.6)f[(l0.9)(^60)(r0.8)f(>7)(l0.4)(r0.8)f(v30)(l0.1)f][(l0.8)(v51)(r0.7)f(<10)(l0.1)f(^45)(l10.0)(r15.0)a");
+				SetAxiom("A");
+				AddRule("20:A={r>0.05,+(r0.95)_(>20)f[(l0.85)(<10)(r0.93)A]}");
+				AddRule("20:A={r>0.05,+(r0.94)_(<18)f[(l0.93)(>15)(r0.94)A]}");
+				AddRule("20:A={r>0.05,+(r0.9)_(<12)f[(l0.90)(>15)(r0.96)A]}");
+				AddRule("20:A={r>0.05,°+(r0.97)_(v8)f[(l0.96)(^15)(r0.92)A]}");
+				AddRule("20:A={r>0.05,+(r0.98)_(^15)f[(l0.82)(v15)(r0.97)A]{b>0,B}}");
+				
+				// Äste mit Baumkrone
+
+				AddRule("50:B=(l1.5)(r0.7)(<55)f(l0.7)(<35)f(r0.8)(l0.2)(>75)f(<10)(l0.1)&f(^45)(L0.5)(R0.5)a");
+				AddRule("50:B=(l1.4)(r0.5)(>40)f(l0.6)(<10)f(r0.6)(l0.4)(<5)f(^10)(l0.5)f(<90)&f(^75)f(R0.4)(L0.4)a");
+				//AddRule("25:Y=(l1.5)(r0.4)(<30)f(>60)(l0.1)f(<10)(l0.1)f(^45)(l3.0)(r6.0)a");
+				//AddRule("25:Y=(r0.5)(v20)f(<5)(l1.1)(r0.6)f[(l0.9)(^60)(r0.8)f(>7)(l0.4)(r0.8)f(v30)(l0.1)f][(l0.8)(v51)(r0.7)f(<10)(l0.1)f(^45)(l10.0)(r15.0)a");
+			}
+			else
+			{
+				//Stamm
+
+				SetAxiom("A");
+				AddRule("20:A={r>0.05,+(r0.95)_(>20)f[(l0.85)(<10)(r0.93)A]}");
+				AddRule("20:A={r>0.05,+(r0.94)_(<18)f[(l0.93)(>15)(r0.94)A]}");
+				AddRule("20:A={r>0.05,+(r0.9)_(<12)f[(l0.90)(>15)(r0.96)A]}");
+				AddRule("20:A={r>0.05,°+(r0.97)_(v8)f[(l0.96)(^15)(r0.92)A]}");
+				AddRule("20:A={r>0.05,+(r0.98)_(^15)f[(l0.82)(v15)(r0.97)A]{b>0,B}}");
+
+				// Äste ohne Baumkrone
+
+				AddRule("50:B=(l1.5)(r0.7)(<55)f(l0.7)(<35)f(r0.8)(l0.2)(>75)f(<10)(l0.1)&f(^45)(L0.5)(R0.5)a");
+				AddRule("50:B=(l1.4)(r0.5)(>40)f(l0.6)(<10)f(r0.6)(l0.4)(<5)f(^10)(l0.5)f(<90)&f(^75)f(R0.4)(L0.4)a");
+				//AddRule("25:Y=(l1.5)(r0.4)(<30)f(>60)(l0.1)f(<10)(l0.1)f(^45)(l3.0)(r6.0)a");
+				//AddRule("25:Y=(r0.5)(v20)f(<5)(l1.1)(r0.6)f[(l0.9)(^60)(r0.8)f(>7)(l0.4)(r0.8)f(v30)(l0.1)f][(l0.8)(v51)(r0.7)f(<10)(l0.1)f(^45)(l10.0)(r15.0)a");
+			}
+
 
 			m_iIterations += 23;
 			CGeoLSystem::Iterate(m_iIterations, m_acAxiom);
@@ -147,34 +184,35 @@ namespace Vektoria
 		{
 			return;
 		}
+
+		float frTimeShifted = m_frTimeOfYear + 0.25f;
+		if (frTimeShifted > 1.0f)
+			frTimeShifted -= 1.0f;
+		// 0= 22.Dez. 0.5=22.Juni 0.75 = 22 Sep.
 		
-		if (uLoD <= 1)
+		if (m_bHasLeaves)
 		{
-			m_zgBush = m_zfwv.LoadGeoTriangleTable("models/kronelod0.obj", true);
-		}
-		else if (uLoD == 2)
-		{
-			m_zgBush = m_zfwv.LoadGeoTriangleTable("models/kronelod2.obj", true);
-		}
-		else
-		{
-			m_zgBush = m_zfwv.LoadGeoTriangleTable("models/kronelodelse.obj", true);
-		}
+			if (uLoD <= 1)
+			{
+				m_zgBush = m_zfwv.LoadGeoTriangleTable("models/kronelod0.obj", true);
+			}
+			else if (uLoD == 2)
+			{
+				m_zgBush = m_zfwv.LoadGeoTriangleTable("models/kronelod2.obj", true);
+			}
+			else
+			{
+				m_zgBush = m_zfwv.LoadGeoTriangleTable("models/kronelodelse.obj", true);
+			}
 
-		
-		SetGeoFruit(m_zgBush);
-		CHMat m;
-		m.Translate(0, -2, 0);
-		m_zgBush->Transform(m);
-		m_zmBush.MakeTextureDiffuse("textures/green.png");
-		m_zgBush->SetMaterial(&m_zmBush);
 
-		CHMat mScale;
-		mScale.Scale(2.0f);
-		m_zgLeafMain.Transform(mScale);
-		m_zmLeaf.LoadPreset("LeafBirch");
-
-		SetMaterialLeaf(&m_zmLeaf);
+			SetGeoFruit(m_zgBush);
+			CHMat m;
+			m.Translate(0, -2, 0);
+			m_zgBush->Transform(m);
+			m_zmBush.MakeTextureDiffuse("textures/green.png");
+			m_zgBush->SetMaterial(&m_zmBush);
+		}
 
 
 		m_zmBark.LoadPreset("BarkBirch");
