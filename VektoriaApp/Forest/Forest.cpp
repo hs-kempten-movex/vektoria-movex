@@ -52,8 +52,12 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zpConifer.Scale(3.5f);
 
     CFileWavefront objLoader;
-    m_Barrel = objLoader.LoadGeo("models\\Barrel.obj", true); // add material
-    m_zpBarrel.AddGeo(m_Barrel);
+    m_zgBarrel = objLoader.LoadGeo("models\\Barrel.obj", true);
+    m_zpBarrel.AddGeo(m_zgBarrel);
+    m_zpBarrel.TranslateYDelta(1.0f);
+    m_zpBarrel.RotateX(QUARTERPI);
+    m_zgBarrel->SetMaterial(& m_zmBarrel);
+    m_zmBarrel.MakeTextureDiffuse("textures\\BarrelDiffuseTex.png");
 
     InitCluster(terrain);
 }
