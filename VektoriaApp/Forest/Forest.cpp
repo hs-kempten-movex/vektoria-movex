@@ -58,6 +58,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zpBarrel.RotateX(QUARTERPI);
     m_zgBarrel->SetMaterial(& m_zmBarrel);
     m_zmBarrel.MakeTextureDiffuse("textures\\BarrelDiffuseTex.png");
+    m_zmBarrel.MakeTextureBump("textures\\BarrelNormalTex.jpg");
 
     InitCluster(terrain);
 }
