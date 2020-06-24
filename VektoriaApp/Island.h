@@ -24,6 +24,7 @@ public:
     CGeos m_gsCol, m_gsHeight; //Kollisionscontainer
 
     CPlacement m_pIsland1; //insel- wasserplacement
+    CPlacement m_pIsland_Billboards;
     CPlacement m_pIsland2; //background insel 1
     CPlacement m_pIsland3; //background insel 2
     CPlacement m_pIsland4; //background insel 3

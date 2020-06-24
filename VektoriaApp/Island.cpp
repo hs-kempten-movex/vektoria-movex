@@ -214,16 +214,23 @@ Island::Island()
     m_pIsland2.TranslateDelta(4000, 0, 3500);
     m_pIsland2.SetBillboardY();
     m_pIsland2.SetBillboardScaling(1.0f, 0.25f);
+    m_pIsland2.FixDistance(0.1);
 
     m_pIsland3.AddGeo(&m_gqIslandBillboard1);
     m_pIsland3.TranslateDelta(-3000, 0, 2500);
     m_pIsland3.SetBillboardY();
     m_pIsland3.SetBillboardScaling(1.0f, 0.25f);
+    m_pIsland3.FixDistance(0.1);
 
     m_pIsland4.AddGeo(&m_gqIslandBillboard1);
     m_pIsland4.TranslateDelta(-3000, 0, -2000);
     m_pIsland4.SetBillboardY();
     m_pIsland4.SetBillboardScaling(1.0f, 0.25f);
+    m_pIsland4.FixDistance(0.1);
+
+    m_pIsland_Billboards.AddPlacement(&m_pIsland2);
+    m_pIsland_Billboards.AddPlacement(&m_pIsland3);
+    m_pIsland_Billboards.AddPlacement(&m_pIsland4);
 
     //m_pIsland2.AddGeo(&m_gTerrainSandBack);
     //m_pIsland2.AddGeo(&m_gTerrainSandLessMossyBack);

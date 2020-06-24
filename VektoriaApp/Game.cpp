@@ -23,9 +23,9 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Placements
 	m_scene.AddPlacement(&m_island.m_pIsland1);
-	m_scene.AddPlacement(&m_island.m_pIsland2);
-	m_scene.AddPlacement(&m_island.m_pIsland3);
-	m_scene.AddPlacement(&m_island.m_pIsland4);
+	m_scene.AddPlacement(&m_island.m_pIsland_Billboards);
+	//m_scene.AddPlacement(&m_island.m_pIsland3);
+	//m_scene.AddPlacement(&m_island.m_pIsland4);
   
 	// Initialisiere die Kamera mit Outdoor-BVH-
 	// Schattenfrustumcasting (OBVHSFC) zur Beschleunigung:
