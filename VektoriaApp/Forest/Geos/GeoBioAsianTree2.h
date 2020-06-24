@@ -13,7 +13,7 @@ namespace Vektoria
 
 		~CGeoBioAsianTree2();
 
-		void Iterate(float fAge, float fRootCutHeight = 0.0f);
+		void Iterate(float fAge, float frTimeOfYear = 0.25f, float fRootCutHeight = 0.0f);
 
 		void Init(CGeoBioAsianTree2* pzgTemplate, unsigned int uLoD);
 
