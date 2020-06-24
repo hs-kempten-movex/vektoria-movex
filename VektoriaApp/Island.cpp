@@ -1,9 +1,7 @@
 #include "Island.h"
 
-Island::Island(unsigned int seed)
+Island::Island()
 {
-    m_random.SRand(seed);
-
     //Cuts:
     m_cutUnderSea.Init(
         eCutKind_Height,						//wegschneiden
@@ -64,7 +62,7 @@ Island::Island(unsigned int seed)
 
     //perlin-Noise
     m_pperlin = new CPerlin(
-        m_random.RandFr() * PERLINE_SEED_MAX,							//zufallsseed
+        420,							//zufallsseed
         1.75f,						//Amplitude
         16,							//Oktaven
         0.5f,						//Persistenz
@@ -145,7 +143,7 @@ Island::Island(unsigned int seed)
     m_pblob_rest = new CBlob(
         0.5f, 0.5f,					//Mittelpunkt des Blobs (u&v)
         0.51f, 0.51f,					//Radius des Blobs (u&v)
-        -7,							           //Höhe des Blobs
+        -7,							//Höhe des Blobs
         eBlobShapeGround_Rect,		//Grundflächentopologie
         eBlobShapeSide_All,			//Höhenverlauftopologie
         nullptr);
