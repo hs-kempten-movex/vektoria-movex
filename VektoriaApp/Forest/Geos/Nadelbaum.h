@@ -12,7 +12,7 @@ namespace ForestNS
     public:
         Nadelbaum();
         ~Nadelbaum();
-        void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight) override;
+        void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD) override;
         void DeIterate() override;
         
         void Init(IPlantGeo * pzgTemplate, unsigned int uLoD = 0) override;

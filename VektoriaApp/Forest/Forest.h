@@ -32,7 +32,7 @@ namespace ForestNS
 
     private:
         std::array<PlantPlacement<CherryBlossomTree, 4>*, 4> m_zpCherryBlossomTrees;
-        std::array< PlantPlacement<GeoBioPoppy, 3>*, 4> m_zpPoppies;
+        std::array<PlantPlacement<GeoBioPoppy, 3>*, 4> m_zpPoppies;
 
         PlantPlacement<Nadelbaum, 4> m_zpConifer = PlantPlacement<Nadelbaum, 4>(time(NULL), 300.0f, 0.2f, 0.0f);
 

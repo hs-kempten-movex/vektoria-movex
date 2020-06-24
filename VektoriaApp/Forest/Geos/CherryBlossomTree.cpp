@@ -13,7 +13,7 @@ CherryBlossomTree::~CherryBlossomTree()
 
 }
 
-void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
+void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD)
 {
 	m_fAge = fAge;
 	m_frTimeOfYear = frTimeOfYear;

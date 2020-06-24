@@ -37,14 +37,14 @@ namespace ForestNS
         {
             for (int i = 0; i < LoDCount; i++)
             {
-                InitGeo(m_zpLoDs[i], m_lodGeos[i], m_timeOfYear, lodRanges[i].lodIndex, threadPool);
+                InitGeo(m_zpLoDs[i], m_lodGeos[i], m_timeOfYear, lodRanges[i].lodIndex, true, threadPool);
                 m_zpLoDs[i].SetLoD((i > 0) ? lodRanges[i - 1].max : 0.0f, lodRanges[i].max);
             }
         }
 
         void InitCollisionGeo(ThreadPool* threadPool)
         {
-            InitGeo(m_zpCollisionGeo, m_collisionGeo, 0.8f, 9, threadPool);
+            InitGeo(m_zpCollisionGeo, m_collisionGeo, 0.8f, 9, false, threadPool);
             m_zpCollisionGeo.SetDrawingOff();
         }
 
@@ -65,20 +65,20 @@ namespace ForestNS
         T m_collisionGeo;
         CPlacement m_zpCollisionGeo;
 
-        void InitGeo(CPlacement& placement, T& geo, float timeOfYear, unsigned int lodIndex, ThreadPool* threadPool)
+        void InitGeo(CPlacement& placement, T& geo, float timeOfYear, unsigned int lodIndex, bool isLoD, ThreadPool* threadPool)
         {
             IPlantGeo& cast = dynamic_cast<IPlantGeo&>(geo);
 
             placement.AddGeo(&cast);
             AddPlacement(&placement);
 
-            threadPool->EnqueueTask([](IPlantGeo* geo, unsigned int seed, float age, float timeOfYear, float rootCutHeight, unsigned int lodIndex)
+            threadPool->EnqueueTask([](IPlantGeo* geo, unsigned int seed, float age, float timeOfYear, float rootCutHeight, unsigned int lodIndex, bool isLoD)
                 {
                     geo->SetRandomSeed(seed);
-                    geo->Iterate(age, timeOfYear, rootCutHeight);
+                    geo->Iterate(age, timeOfYear, rootCutHeight, isLoD);
                     geo->Init(geo, lodIndex);
                     geo->DeIterate();
-                }, &cast, m_seed, m_age, timeOfYear, m_rootCutHeight, lodIndex
+                }, &cast, m_seed, m_age, timeOfYear, m_rootCutHeight, lodIndex, isLoD
             );
         }
 

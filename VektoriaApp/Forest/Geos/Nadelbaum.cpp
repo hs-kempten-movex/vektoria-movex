@@ -12,7 +12,7 @@ Nadelbaum::~Nadelbaum()
 
 }
 
-void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
+void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD)
 {
 	m_fAge = fAge;
 	m_frTimeOfYear = frTimeOfYear;

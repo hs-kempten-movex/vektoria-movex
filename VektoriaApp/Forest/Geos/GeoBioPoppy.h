@@ -12,7 +12,7 @@ namespace ForestNS
 	public:
 		GeoBioPoppy();
 		~GeoBioPoppy();
-		void Iterate(float fAge, float frTimeOfYear = 0.25f, float fRootCutHeight = 0.0f) override;
+		void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD) override;
 		void DeIterate() override;
 
 		void Init(IPlantGeo * pzgTemplate, unsigned int uLoD = 0) override;

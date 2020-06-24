@@ -11,7 +11,7 @@ GeoBioPoppy::~GeoBioPoppy()
 {
 }
 
-void GeoBioPoppy::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
+void GeoBioPoppy::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD)
 {
     fColorscaling = m_random.RandFr();
     m_fAge = fAge;

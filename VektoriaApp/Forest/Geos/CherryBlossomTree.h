@@ -12,7 +12,7 @@ namespace ForestNS
     public:
         CherryBlossomTree();
         ~CherryBlossomTree();
-        void Iterate(float fAge, float frTimeOfYear = 0.25f, float fRootCutHeight = 0.0f) override;
+        void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD) override;
         void DeIterate() override;
 
         ///<summary> Erzeugt die Baumgeometrie für eine ausgewählte Level of Detail-Stufe. <para></para>
