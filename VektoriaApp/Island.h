@@ -27,6 +27,7 @@ public:
     CPlacement m_pIsland_Billboards;
     CPlacement m_pIsland2; //background insel 1
     CPlacement m_pIsland3; //background insel 2
+    CPlacement m_pIsland3Water;
     CPlacement m_pIsland4; //background insel 3
 
     CGeoTerrain m_gTerrainOri; //Gesamtes Terrain
@@ -43,7 +44,9 @@ public:
 
     //background insel billboards
     CGeoQuad m_gqIslandBillboard1;
+    CGeoQuad m_gqIslandWaterBillboard1;
     CMaterial m_mIslandBill;
+    CMaterial m_mIslandWaterBill;
 
     //Background inseln: low LoD
     CGeoTerrain m_gTerrainOriBack;
