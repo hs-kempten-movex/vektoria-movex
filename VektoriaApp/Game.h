@@ -49,7 +49,7 @@ public:
 	void InitPlayers();
 private:
 
-	Island m_island;
+	Island m_island = Island(time(NULL));
 
   Forest m_forest = Forest(time(NULL));
 

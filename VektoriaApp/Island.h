@@ -14,11 +14,12 @@ using namespace Vektoria;
 #define TERRAIN_ROCK_MAX 250
 #define TERRAIN_ROCK_SNOWY_MIN 130
 #define TERRAIN_ROCK_SNOWY_MAX 250
+#define PERLINE_SEED_MAX 1000000.0f
 
 class Island
 {
 public:
-    Island();
+    Island(unsigned int seed);
     ~Island();
 
     CGeos m_gsCol, m_gsHeight; //Kollisionscontainer
@@ -93,5 +94,7 @@ private:
     CMaterial m_mMirror;
 
     CMaterial m_mGround;
+
+    CRandom m_random;
 };
 
