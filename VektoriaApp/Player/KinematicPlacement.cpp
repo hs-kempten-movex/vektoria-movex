@@ -24,16 +24,30 @@ void KinematicPlacement::SetAcceleration(CHVector acceleration)
     if (m_collisionTerrains != nullptr)
     {
         CHVector pos = GetPos();
-        CHitPoint terrainHitPoint;
-        m_collisionTerrains->GetHitpoint(pos.x, pos.z, terrainHitPoint);
-
-        if (terrainHitPoint.m_bExistent && terrainHitPoint.m_vPos.y + m_maxHeight < pos.y)
+        if (GetMaxHeightOfCollisionTerrains(pos) + m_maxHeight < pos.y)
         {
             acceleration.y = 0.0f;
         }
     }
 
     m_acceleration = acceleration + CHVector(0, -0.0981f, 0);
+}
+
+float PlayerNS::KinematicPlacement::GetMaxHeightOfCollisionTerrains(CHVector position)
+{
+    float maxY = F_MIN;
+    for (int i = 0; i < m_collisionTerrains->m_iGeoTerrains; i++)
+    {
+        CHitPoint terrainHitPoint;
+        m_collisionTerrains->m_apgeoterrain[i]->GetHitPoint(position.x, position.z, terrainHitPoint);
+
+        if (terrainHitPoint.m_bExistent && terrainHitPoint.m_vPos.y > maxY)
+        {
+            maxY = terrainHitPoint.m_vPos.y;
+        }
+    }
+    
+    return maxY;
 }
 
 void KinematicPlacement::Tick(float fTime, float fTimeDelta)
@@ -50,10 +64,7 @@ void KinematicPlacement::Tick(float fTime, float fTimeDelta)
     if (m_collisionTerrains != nullptr)
     {
         CHVector nextPos = GetPos() + translationVector;
-        CHitPoint terrainHitPoint;
-        m_collisionTerrains->GetHitpoint(nextPos.x, nextPos.z, terrainHitPoint);
-
-        if (terrainHitPoint.m_bExistent && terrainHitPoint.m_vPos.y > nextPos.y)
+        if (GetMaxHeightOfCollisionTerrains(nextPos) > nextPos.y)
         {
             // on floor
             m_velocity = CHVector();

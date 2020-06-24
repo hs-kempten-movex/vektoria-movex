@@ -41,6 +41,8 @@ namespace PlayerNS
 
         CHVector m_velocity;
         CHVector m_acceleration;
+
+        float GetMaxHeightOfCollisionTerrains(CHVector position);
     };
 }
 
