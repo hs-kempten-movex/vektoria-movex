@@ -40,6 +40,9 @@ namespace ForestNS
         std::vector<CPlacement*> m_zpFlowers;
         std::vector<CGeo*> m_collisionGeos;
 
+        CGeo* m_Barrel;
+        CPlacement m_zpBarrel;
+
         void InitCluster(CGeoTerrain* terrain);
 
         CRandom m_random;
