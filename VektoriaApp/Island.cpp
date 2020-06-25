@@ -280,7 +280,7 @@ Island::Island()
 }
 
 int Island::Random_Seed() {
-    int m_aiSeed[SEED_ARRAY_SIZE] = { 420, 1006, 16402, 9083, 12345, 54321, 6542, 24268, 36232, 25287 };
+    int m_aiSeed[SEED_ARRAY_SIZE] = { 84066, 90083, 1006, 16402, 12345, 54321, 6542, 24268, 36232, 25287, 7563, 6435, 7431, 87643, 64413, 81345, 84345, 43254, 45378, 7531 };
     m_RandomSeed.SRand(time(NULL));
     m_iRandomSlot = m_RandomSeed.Rand() % SEED_ARRAY_SIZE;
     return m_iSeed = m_aiSeed[m_iRandomSlot];

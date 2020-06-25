@@ -15,7 +15,7 @@ using namespace Vektoria;
 #define TERRAIN_ROCK_SNOWY_MIN 130
 #define TERRAIN_ROCK_SNOWY_MAX 500
 #define PERLINE_SEED_MAX 1000000.0f
-#define SEED_ARRAY_SIZE 10
+#define SEED_ARRAY_SIZE 20
 
 class Island
 {
