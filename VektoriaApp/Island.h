@@ -15,6 +15,7 @@ using namespace Vektoria;
 #define TERRAIN_ROCK_SNOWY_MIN 130
 #define TERRAIN_ROCK_SNOWY_MAX 500
 #define PERLINE_SEED_MAX 1000000.0f
+#define SEED_ARRAY_SIZE 10
 
 class Island
 {
@@ -94,5 +95,11 @@ private:
     CMaterial m_mMirror;
 
     CMaterial m_mGround;
+
+    CRandom m_RandomSeed;
+    int Random_Seed();
+    int m_aiSeed[SEED_ARRAY_SIZE];
+    int m_iRandomSlot;
+    int m_iSeed;
 };
 

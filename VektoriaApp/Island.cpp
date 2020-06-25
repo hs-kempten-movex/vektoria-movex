@@ -62,7 +62,7 @@ Island::Island()
 
     //perlin-Noise
     m_pperlin = new CPerlin(
-        420,							//zufallsseed
+        Random_Seed(),							//zufallsseed
         1.75f,						//Amplitude
         16,							//Oktaven
         0.5f,						//Persistenz
@@ -277,6 +277,13 @@ Island::Island()
     m_gTerrainOri.InitFromOther(m_gTerrainOri, NULL);
     m_pIsland1.AddGeo(&m_gTerrainOri);
     m_gTerrainOri.SetDrawingOff();
+}
+
+int Island::Random_Seed() {
+    int m_aiSeed[SEED_ARRAY_SIZE] = { 420, 1006, 16402, 9083, 12345, 54321, 6542, 24268, 36232, 25287 };
+    m_RandomSeed.SRand(time(NULL));
+    m_iRandomSlot = m_RandomSeed.Rand() % SEED_ARRAY_SIZE;
+    return m_iSeed = m_aiSeed[m_iRandomSlot];
 }
 
 Island::~Island() {
