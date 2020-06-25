@@ -14,9 +14,10 @@ namespace PlayerNS
         public Controller
     {
     public:
-        Player(uint8_t id, uint8_t playerCount, CHVector spawnPosition);
+        Player(uint8_t id, uint8_t playerCount);
 
-        void Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CGeoTerrains* CollsisionTerrains);
+        void Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CGeoTerrains* CollsisionTerrains, unsigned int seed);
+        void Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CGeoTerrains* CollsisionTerrains, CHVector spawnPosition);
 
         virtual void Tick(float time, float fTimeDelta) override;
 

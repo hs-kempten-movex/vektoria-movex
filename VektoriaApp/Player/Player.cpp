@@ -3,22 +3,46 @@
 
 using namespace PlayerNS;
 
-Player::Player(uint8_t id, uint8_t playerCount, CHVector spawnPosition) :
+Player::Player(uint8_t id, uint8_t playerCount) :
     m_id{ id },
     m_playerCount { playerCount }
 {
     // only two player are supported
     assert(m_id == 1 || m_id == 2);
     assert(m_playerCount >= 1);
-
-    // move to spawn position
-    Translate(spawnPosition);
 }
 
-void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CGeoTerrains* CollsisionTerrains)
+void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CGeoTerrains* CollsisionTerrains, unsigned int seed)
+{
+    // seed terrain. This is necessary for GetRandomPos()
+    CollsisionTerrains->m_apgeoterrain[0]->m_random.SRand(seed);
+    CHVector spawnPosition;
+    CHitPoint objectHitPoint;
+    do {
+        // get random position
+        spawnPosition = CollsisionTerrains->m_apgeoterrain[0]->GetRandomPos();
+
+        // check if randowm position intersects with collision object
+        if (CollisionObjects != nullptr)
+        {
+            CRay intersectionRay = CRay(spawnPosition, GetDirection(), QUASI_ZERO, 1.0f);
+            CollisionObjects->Intersects(intersectionRay, objectHitPoint);
+        }
+    // repeat by intersection or if spawnPosition is in water (below 0)
+    } while (spawnPosition.y < 0 || objectHitPoint.m_bExistent);
+
+    // add max flight height and init player with spawn position
+    spawnPosition.y += MAX_HEIGHT;
+    Player::Init(pzpShadowCastingLight, CollisionObjects, CollsisionTerrains, spawnPosition);
+}
+
+void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CGeoTerrains* CollsisionTerrains, CHVector spawnPosition)
 {
     // initialize controller
     Controller::Init(CollisionObjects, CollsisionTerrains);
+
+    // move to spawn position
+    Translate(spawnPosition);
 
     // if just one player, init fullscreen
     if (m_playerCount == 1)
