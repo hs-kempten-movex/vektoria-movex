@@ -3,6 +3,7 @@
 #include "Geos/GeoBioPoppy.h"
 #include "Geos/CherryBlossomTree.h"
 #include "Geos/Nadelbaum.h"
+#include "Geos/GeoBioAsianTree.h"
 #include "ForestCluster.h"
 #include "PlantPlacement.h"
 
@@ -35,6 +36,7 @@ namespace ForestNS
         std::array<PlantPlacement<GeoBioPoppy, 3>*, 4> m_zpPoppies;
 
         PlantPlacement<Nadelbaum, 4> m_zpConifer = PlantPlacement<Nadelbaum, 4>(time(NULL), 300.0f, 0.2f, 0.0f);
+        PlantPlacement<CGeoBioAsianTree, 4> m_zpAsiaTree = PlantPlacement<CGeoBioAsianTree, 4>(time(NULL), 300.0f, 0.2f, 0.0f);
 
         std::vector<ForestCluster*> m_forestClusters;
         std::vector<CPlacement*> m_zpFlowers;

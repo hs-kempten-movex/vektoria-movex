@@ -51,6 +51,8 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zpConifer.InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
     m_zpConifer.Scale(3.5f);
 
+    m_zpAsiaTree.InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
+
     CFileWavefront objLoader;
     m_zgBarrel = objLoader.LoadGeo("models\\Barrel.obj", true);
     m_zpBarrel.AddGeo(m_zgBarrel);
@@ -78,6 +80,7 @@ void Forest::InitCluster(CGeoTerrain* terrain)
             }
 
             newCluster->AddPlacementsForSpecies(&m_zpConifer, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI);
+            newCluster->AddPlacementsForSpecies(&m_zpAsiaTree, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI);
 
             newCluster->AddPlacementsForSpecies(&m_zpBarrel, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f);
             
