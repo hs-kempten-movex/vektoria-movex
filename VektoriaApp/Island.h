@@ -48,18 +48,13 @@ public:
     //background insel billboards
     CGeoQuad m_gqIslandBillboard1;
     CGeoQuad m_gqIslandWaterBillboard1;
-    CMaterial m_mIslandBill;
-    CMaterial m_mIslandWaterBill;
+    CMaterial m_mIslandBill1;
+    CMaterial m_mIslandWaterBill1;
+    CGeoQuad m_gqIslandBillboard2;
+    CGeoQuad m_gqIslandWaterBillboard2;
+    CMaterial m_mIslandBill2;
+    CMaterial m_mIslandWaterBill2;
 
-    //Background inseln: low LoD
-    CGeoTerrain m_gTerrainOriBack;
-    CGeoTerrain m_gTerrainSandBack; //Sandausschnitt
-    CGeoTerrain m_gTerrainRockBack;
-    CGeoTerrain m_gTerrainRockSnowyBack;
-    CGeoTerrain m_gTerrainMirrorBack;
-    CGeoTerrain m_gTerrainSandMossyBack;
-    CGeoTerrain m_gTerrainRockMossyBack;
-    CGeoTerrain m_gTerrainSandLessMossyBack;
 private:
     CPerlin * m_pperlin = nullptr; //Perlin-Noise
     CPerlin * m_pperlinBack = nullptr; 

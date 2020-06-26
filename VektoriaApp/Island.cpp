@@ -29,36 +29,25 @@ Island::Island()
 
     m_gTerrainSand.AddCut(&m_cutInverseSand);
     m_gTerrainSand.AddCut(&m_cutInverseUnder15Degrees);
-    m_gTerrainSandBack.AddCut(&m_cutInverseSand);
-    m_gTerrainSandBack.AddCut(&m_cutInverseUnder15Degrees);
 
     m_gTerrainSandLessMossy.AddCut(&m_cutInverseSandLessMossy);
     m_gTerrainSandLessMossy.AddCut(&m_cutInverseUnder15Degrees);
-    m_gTerrainSandLessMossyBack.AddCut(&m_cutInverseSandLessMossy);
-    m_gTerrainSandLessMossyBack.AddCut(&m_cutInverseUnder15Degrees);
 
     m_gTerrainSandMossy.AddCut(&m_cutInverseSeaToBeach);
     m_gTerrainSandMossy.AddCut(&m_cutInverseUnder45Degrees);
-    m_gTerrainSandMossyBack.AddCut(&m_cutInverseSeaToBeach);
-    m_gTerrainSandMossyBack.AddCut(&m_cutInverseUnder45Degrees);
 
     m_gTerrainRockMossy.AddCut(&m_cutInverseRockMossy);
     m_gTerrainRockMossy.AddCut(&m_cutOver45Degrees);
-    m_gTerrainRockMossyBack.AddCut(&m_cutInverseRockMossy);
-    m_gTerrainRockMossyBack.AddCut(&m_cutOver45Degrees);
 
     m_gTerrainRock.AddCut(&m_cutInverseRock);
     m_gTerrainRock.AddCut(&m_cutInverseOver45Degrees);
-    m_gTerrainRockBack.AddCut(&m_cutInverseRock);
-    m_gTerrainRockBack.AddCut(&m_cutInverseOver45Degrees);
 
     m_gTerrainRockSnowy.AddCut(&m_cutInverseRockSnowy);
     m_gTerrainRockSnowy.AddCut(&m_cutInverseUnder45Degrees);
-    m_gTerrainRockSnowyBack.AddCut(&m_cutInverseRockSnowy);
-    m_gTerrainRockSnowyBack.AddCut(&m_cutInverseUnder45Degrees);
 
     m_gTerrainMirror.AddCut(&m_cutInverseUnderSea);
-    m_gTerrainMirrorBack.AddCut(&m_cutInverseUnderSea);
+
+    //Zufalls Seeds: { 84066, 90083, 1006, 16402, 12345, 54321, 6542, 24268, 36232, 25287, 7563, 6435, 7431, 87643, 64413, 81345, 84345, 43254, 45378, 7531 }
 
     //perlin-Noise
     m_pperlin = new CPerlin(
@@ -154,8 +143,6 @@ Island::Island()
       //Blob einem Blaupausen-terrain hinzufügen
     m_gTerrainOri.AddBlob(m_pblob_rest);
     m_gTerrainOri.AddBlob(m_pblob1);
-    m_gTerrainOriBack.AddBlob(m_pblob_rest);
-    m_gTerrainOriBack.AddBlob(m_pblobBack);
 
     //Vertex-Daten aus blaupausen-terrain erzeugen
     m_gTerrainOri.CreateField(
@@ -163,8 +150,6 @@ Island::Island()
         TERRAIN_VERTICES, TERRAIN_VERTICES,					//2000 x 2000 vertices
         0.0f, 0.0f,											//UV-textur beginnt bei (0,0)
         100.0f, 100.0f);										//geht bis (1,1)
-
-    m_gTerrainOriBack.CreateField(TERRAIN_SIZE, TERRAIN_SIZE, TERRAIN_VERTICES / LOD_DIVISOR,  TERRAIN_VERTICES / LOD_DIVISOR, 0.0f, 0.0f, 100.0f, 100.0f);
 
       //Abschnitte erstellen
     m_gTerrainSand.InitFromOther(m_gTerrainOri, &m_mSand);
@@ -174,15 +159,6 @@ Island::Island()
     m_gTerrainRock.InitFromOther(m_gTerrainOri, &m_mRock);
     m_gTerrainRockSnowy.InitFromOther(m_gTerrainOri, &m_mRockSnow);
     m_gTerrainMirror.InitFromOther(m_gTerrainOri, &m_mMirror, true);
-
-    m_gTerrainSandBack.InitFromOther(m_gTerrainOriBack, &m_mSand);
-    m_gTerrainSandLessMossyBack.InitFromOther(m_gTerrainOriBack, &m_mSandLessMossy);
-    m_gTerrainSandMossyBack.InitFromOther(m_gTerrainOriBack, &m_mSandMossy);
-    m_gTerrainRockMossyBack.InitFromOther(m_gTerrainOriBack, &m_mGround);           //eigenes materia, fehlerhaft
-    m_gTerrainRockBack.InitFromOther(m_gTerrainOriBack, &m_mRock);
-    m_gTerrainRockSnowyBack.InitFromOther(m_gTerrainOriBack, &m_mRockSnow);
-    m_gTerrainMirrorBack.InitFromOther(m_gTerrainOriBack, &m_mMirror, true);
-    
 
     //wasseroberfläche erzeugen:
     m_gWater.Init(
@@ -203,81 +179,49 @@ Island::Island()
     m_pIsland1.AddGeo(&m_gTerrainRockSnowy);
     m_pIsland1.AddGeo(&m_gTerrainMirror);
 
-    //InselBillboards
+    //InselBillboards für den Hintergrund
 
-    m_mIslandBill.MakeTextureSprite("textures\\Insel_Bill2_Land.png");
-    m_mIslandBill.SetChromaKeyingOn();
-    m_gqIslandBillboard1.Init(1000.0, &m_mIslandBill, 0.0, 0.0, 1.0, 1.0);
-    m_mIslandWaterBill.MakeTextureSprite("textures\\Insel_Bill2_Water.png");
-    m_mIslandWaterBill.SetTransparencyOn();
-    m_gqIslandWaterBillboard1.Init(1000.0, &m_mIslandWaterBill, 0.0, 0.0, 1.0, 1.0);
+    m_mIslandBill1.MakeTextureSprite("textures\\Insel_2_Bill_Land.png");
+    m_mIslandBill1.SetChromaKeyingOn();
+    m_gqIslandBillboard1.Init(1000.0, &m_mIslandBill1, 0.0, 0.0, 1.0, 1.0);
+    m_mIslandWaterBill1.MakeTextureSprite("textures\\Insel_2_Bill_Water.png");
+    m_mIslandWaterBill1.SetTransparencyOn();
+    m_gqIslandWaterBillboard1.Init(1000.0, &m_mIslandWaterBill1, 0.0, 0.0, 1.0, 1.0);
 
-    m_pIsland2.AddGeo(&m_gqIslandBillboard1);
-    m_pIsland2.TranslateDelta(4000, 120, 3500);
-    m_pIsland2.SetBillboardY();
-    m_pIsland2.SetBillboardScaling(1.0f, 0.125f);
-    m_pIsland2.FixDistance(3.0f);
+    m_mIslandBill2.MakeTextureSprite("textures\\Insel_3_Bill_Land.png");
+    m_mIslandBill2.SetChromaKeyingOn();
+    m_gqIslandBillboard2.Init(1000.0, &m_mIslandBill2, 0.0, 0.0, 1.0, 1.0);
+    m_mIslandWaterBill2.MakeTextureSprite("textures\\Insel_3_Bill_Water.png");
+    m_mIslandWaterBill2.SetTransparencyOn();
+    m_gqIslandWaterBillboard2.Init(1000.0, &m_mIslandWaterBill2, 0.0, 0.0, 1.0, 1.0);
 
     m_pIsland3.AddGeo(&m_gqIslandBillboard1);
     m_pIsland3.TranslateDelta(-3000, 120, 2500);
     m_pIsland3.SetBillboardY();
     m_pIsland3.SetBillboardScaling(1.0f, 0.125f);
     m_pIsland3.FixDistance(3.0f);
-
     m_pIsland3Water.AddGeo(&m_gqIslandWaterBillboard1);
     m_pIsland3Water.TranslateDelta(-3000, -120, 2500);
     m_pIsland3Water.SetBillboardY();
     m_pIsland3Water.SetBillboardScaling(1.0f, 0.125f);
     m_pIsland3Water.FixDistance(1000.0);
 
-    m_pIsland4.AddGeo(&m_gqIslandBillboard1);
+    m_pIsland4.AddGeo(&m_gqIslandBillboard2);
     m_pIsland4.TranslateDelta(-3000, 120, -2000);
     m_pIsland4.SetBillboardY();
     m_pIsland4.SetBillboardScaling(1.0f, 0.125f);
     m_pIsland4.FixDistance(3.0f);
-
-    m_pIsland4Water.AddGeo(&m_gqIslandWaterBillboard1);
+    m_pIsland4Water.AddGeo(&m_gqIslandWaterBillboard2);
     m_pIsland4Water.TranslateDelta(-3000, -120, -2000);
     m_pIsland4Water.SetBillboardY();
     m_pIsland4Water.SetBillboardScaling(1.0f, 0.125f);
     m_pIsland4Water.FixDistance(1000.0);
 
     //Billboards an Placements anhängen
-    //m_pIsland_Billboards.AddPlacement(&m_pIsland2);
     m_pIsland_Billboards.AddPlacement(&m_pIsland3);
     m_pIsland_Billboards.AddPlacement(&m_pIsland3Water);
     m_pIsland_Billboards.AddPlacement(&m_pIsland4);
     m_pIsland_Billboards.AddPlacement(&m_pIsland4Water);
-
-    //m_pIsland2.AddGeo(&m_gTerrainSandBack);
-    //m_pIsland2.AddGeo(&m_gTerrainSandLessMossyBack);
-    //m_pIsland2.AddGeo(&m_gTerrainSandMossyBack);
-    //m_pIsland2.AddGeo(&m_gTerrainRockMossyBack);
-    //m_pIsland2.AddGeo(&m_gTerrainRockBack);
-    //m_pIsland2.AddGeo(&m_gTerrainRockSnowyBack);
-    //m_pIsland2.AddGeo(&m_gTerrainMirrorBack);
-    //m_pIsland2.RotateYDelta(1.3f);
-    //m_pIsland2.TranslateDelta(3000, 0, 2500); //verschiebung in Hintergrund
-
-    //m_pIsland3.AddGeo(&m_gTerrainSandBack);
-    //m_pIsland3.AddGeo(&m_gTerrainSandLessMossyBack);
-    //m_pIsland3.AddGeo(&m_gTerrainSandMossyBack);
-    //m_pIsland3.AddGeo(&m_gTerrainRockMossyBack);
-    //m_pIsland3.AddGeo(&m_gTerrainRockBack);
-    //m_pIsland3.AddGeo(&m_gTerrainRockSnowyBack);
-    //m_pIsland3.AddGeo(&m_gTerrainMirrorBack);
-    //m_pIsland3.RotateYDelta(2.6f);
-    //m_pIsland3.TranslateDelta(-3000, 0, 2500); //verschiebung in Hintergrund
-
-    //m_pIsland4.AddGeo(&m_gTerrainSandBack);
-    //m_pIsland4.AddGeo(&m_gTerrainSandLessMossyBack);
-    //m_pIsland4.AddGeo(&m_gTerrainSandMossyBack);
-    //m_pIsland4.AddGeo(&m_gTerrainRockMossyBack);
-    //m_pIsland4.AddGeo(&m_gTerrainRockBack);
-    //m_pIsland4.AddGeo(&m_gTerrainRockSnowyBack);
-    //m_pIsland4.AddGeo(&m_gTerrainMirrorBack);
-    //m_pIsland4.RotateYDelta(3.4f);
-    //m_pIsland4.TranslateDelta(-3000, 0, -2000); //verschiebung in Hintergrund
 
     //collision detection
     m_gTerrainOri.InitFromOther(m_gTerrainOri, NULL);
