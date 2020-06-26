@@ -46,14 +46,14 @@ namespace PlayerNS
         CViewport m_viewport;
         Butterfly m_butterfly;
 
-        int m_score = 0;
+        int m_score = 10;
         void InitScore();
 
 		//overlay test
-		COverlay PointCounter = COverlay();
-		CMaterial Material = CMaterial();
-		CFloatRect Size = CFloatRect(1, 1, 200, 200);
-		CWritingFont Font = CWritingFont();
-		CWriting Points = CWriting();
+        COverlay m_PointOverlay;
+        CMaterial m_Material;
+        CFloatRect m_FloatRect;
+        CWritingFont* m_WritingFont;
+		CWriting m_Writing;
     };
 }

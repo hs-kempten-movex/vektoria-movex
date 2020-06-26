@@ -49,6 +49,8 @@ void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CG
     {
         assert(m_id == 1);
         m_viewport.InitFull(&m_camera);
+        /*m_viewport.AddOverlay(&m_PointOverlay);*/
+        
     } 
     else
     {
@@ -92,13 +94,18 @@ void Player::Tick(float fTime, float fTimeDelta)
 
 void Player::InitScore()
 {
-    Material.LoadPreset("NasaStars");
-    PointCounter.Init(&Material, Size);
-    Font.LoadPreset("LucidaConsoleWhiteF");
-    
-    Points.Init(Size, 20, &Font);
-    Points.PrintInt(m_score);
-    PointCounter.AddWriting(&Points);
+    /*m_Material.LoadPreset("NasaStars");*/
+    //m_PointOverlay.Init()
 
-    m_viewport.AddOverlay(&PointCounter);
+    m_WritingFont = new CWritingFont();
+    m_WritingFont->LoadPreset("LucidaConsoleBlackF");
+    m_FloatRect.Init(0.0f, 0.0f, 0.5f, 0.5f);
+    
+    m_viewport.AddWriting(&m_Writing);
+    m_Writing.Init(m_FloatRect, 3, m_WritingFont);
+    m_Writing.PrintInt(m_score);
+    m_Writing.Fini();
+    //m_PointOverlay.AddWriting(&m_Writing);
+    //m_PointOverlay.SetTransparency(1.0f);
+    //m_PointOverlay.SwitchOn();
 }
