@@ -181,10 +181,10 @@ Island::Island()
 
     //InselBillboards für den Hintergrund
 
-    m_mIslandBill1.MakeTextureSprite("textures\\Insel_2_Bill_Land.png");
+    m_mIslandBill1.MakeTextureSprite("textures\\Insel_4_Bill_Land.png");
     m_mIslandBill1.SetChromaKeyingOn();
     m_gqIslandBillboard1.Init(1000.0, &m_mIslandBill1, 0.0, 0.0, 1.0, 1.0);
-    m_mIslandWaterBill1.MakeTextureSprite("textures\\Insel_2_Bill_Water.png");
+    m_mIslandWaterBill1.MakeTextureSprite("textures\\Insel_4_Bill_Water.png");
     m_mIslandWaterBill1.SetTransparencyOn();
     m_gqIslandWaterBillboard1.Init(1000.0, &m_mIslandWaterBill1, 0.0, 0.0, 1.0, 1.0);
 
@@ -201,9 +201,9 @@ Island::Island()
     m_pIsland3.SetBillboardScaling(1.0f, 0.125f);
     m_pIsland3.FixDistance(3.0f);
     m_pIsland3Water.AddGeo(&m_gqIslandWaterBillboard1);
-    m_pIsland3Water.TranslateDelta(-3000, -120, 2500);
+    m_pIsland3Water.TranslateDelta(-3000, -100, 2500);
     m_pIsland3Water.SetBillboardY();
-    m_pIsland3Water.SetBillboardScaling(1.0f, 0.125f);
+    m_pIsland3Water.SetBillboardScaling(1.0f, 0.1f);
     m_pIsland3Water.FixDistance(1000.0);
 
     m_pIsland4.AddGeo(&m_gqIslandBillboard2);
@@ -212,9 +212,9 @@ Island::Island()
     m_pIsland4.SetBillboardScaling(1.0f, 0.125f);
     m_pIsland4.FixDistance(3.0f);
     m_pIsland4Water.AddGeo(&m_gqIslandWaterBillboard2);
-    m_pIsland4Water.TranslateDelta(-3000, -120, -2000);
+    m_pIsland4Water.TranslateDelta(-3000, -100, -2000);
     m_pIsland4Water.SetBillboardY();
-    m_pIsland4Water.SetBillboardScaling(1.0f, 0.125f);
+    m_pIsland4Water.SetBillboardScaling(1.0f, 0.1f);
     m_pIsland4Water.FixDistance(1000.0);
 
     //Billboards an Placements anhängen
