@@ -83,7 +83,7 @@ Island::Island()
     m_mWater.MakeTextureHaze("textures\\waterHaze.jpg");
     m_mWater.SetAni(8, 8, 7);
     //m_mWater.Translate(CColor(0.0f, 0.2f, 0.8f));
-    m_mWater.SetTransparency(0.4f);
+    m_mWater.SetTransparency(0.7f);
     m_mWater.SetPostprocessingOn();
     m_mWater.SetHazeOn();
     m_mWater.SetHazeStrength(3.0);
@@ -205,13 +205,11 @@ Island::Island()
 
     //InselBillboards
 
-    m_mIslandBill.MakeTextureDiffuse("textures\\Insel_Bill2_Land.png");
+    m_mIslandBill.MakeTextureSprite("textures\\Insel_Bill2_Land.png");
     m_mIslandBill.SetChromaKeyingOn();
-    m_mIslandBill.SetTextureSpecularAsDiffuse();
     m_gqIslandBillboard1.Init(1000.0, &m_mIslandBill, 0.0, 0.0, 1.0, 1.0);
-    m_mIslandWaterBill.MakeTextureBillboard("textures\\Insel_Bill2_Water.png");
-    m_mIslandWaterBill.SetChromaKeyingOn();
-    m_mIslandWaterBill.SetTextureSpecularAsDiffuse();
+    m_mIslandWaterBill.MakeTextureSprite("textures\\Insel_Bill2_Water.png");
+    m_mIslandWaterBill.SetTransparencyOn();
     m_gqIslandWaterBillboard1.Init(1000.0, &m_mIslandWaterBill, 0.0, 0.0, 1.0, 1.0);
 
     m_pIsland2.AddGeo(&m_gqIslandBillboard1);
@@ -230,18 +228,26 @@ Island::Island()
     m_pIsland3Water.TranslateDelta(-3000, -120, 2500);
     m_pIsland3Water.SetBillboardY();
     m_pIsland3Water.SetBillboardScaling(1.0f, 0.125f);
-    m_pIsland3Water.FixDistance(-3.0);
+    m_pIsland3Water.FixDistance(1000.0);
 
     m_pIsland4.AddGeo(&m_gqIslandBillboard1);
     m_pIsland4.TranslateDelta(-3000, 120, -2000);
     m_pIsland4.SetBillboardY();
     m_pIsland4.SetBillboardScaling(1.0f, 0.125f);
     m_pIsland4.FixDistance(3.0f);
+
+    m_pIsland4Water.AddGeo(&m_gqIslandWaterBillboard1);
+    m_pIsland4Water.TranslateDelta(-3000, -120, -2000);
+    m_pIsland4Water.SetBillboardY();
+    m_pIsland4Water.SetBillboardScaling(1.0f, 0.125f);
+    m_pIsland4Water.FixDistance(1000.0);
+
     //Billboards an Placements anhängen
-    m_pIsland_Billboards.AddPlacement(&m_pIsland2);
+    //m_pIsland_Billboards.AddPlacement(&m_pIsland2);
     m_pIsland_Billboards.AddPlacement(&m_pIsland3);
     m_pIsland_Billboards.AddPlacement(&m_pIsland3Water);
     m_pIsland_Billboards.AddPlacement(&m_pIsland4);
+    m_pIsland_Billboards.AddPlacement(&m_pIsland4Water);
 
     //m_pIsland2.AddGeo(&m_gTerrainSandBack);
     //m_pIsland2.AddGeo(&m_gTerrainSandLessMossyBack);

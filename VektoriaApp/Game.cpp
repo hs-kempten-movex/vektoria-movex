@@ -63,7 +63,7 @@ void CGame::InitPlayers()
 
     for (auto& player : m_players)
     {
-        player.Init(m_scene.GetSkyLightPlacement(), &m_collisionObjects, &m_collsisionTerrains);
+        player.Init(m_scene.GetSkyLightPlacement(), &m_collisionObjects, &m_collsisionTerrains, time(NULL));
         m_frame.AddViewport(player.GetViewport());
         m_frame.AddDeviceGameController(&player);
 

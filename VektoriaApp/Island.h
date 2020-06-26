@@ -31,6 +31,7 @@ public:
     CPlacement m_pIsland3; //background insel 2
     CPlacement m_pIsland3Water;
     CPlacement m_pIsland4; //background insel 3
+    CPlacement m_pIsland4Water;
 
     CGeoTerrain m_gTerrainOri; //Gesamtes Terrain
     CGeoTerrain m_gWater; //wasserausschnitt
