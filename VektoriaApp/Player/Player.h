@@ -47,5 +47,12 @@ namespace PlayerNS
 
         int m_score = 0;
         void InitScore();
+
+		//overlay test
+		COverlay PointCounter = COverlay();
+		CMaterial Material = CMaterial();
+		CFloatRect Size = CFloatRect(1, 1, 200, 200);
+		CWritingFont Font = CWritingFont();
+		CWriting Points = CWriting();
     };
 }

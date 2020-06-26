@@ -32,6 +32,7 @@ void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CG
         if (m_id == 1)
         {
             m_viewport.InitHalfLeft(&m_camera);
+
         }
         else if (m_id == 2)
         {
@@ -67,14 +68,9 @@ void Player::Tick(float fTime, float fTimeDelta)
 
 void Player::InitScore()
 {
-    COverlay PointCounter = COverlay();
-    CMaterial Material = CMaterial();
     Material.LoadPreset("NasaStars");
-    CFloatRect Size = CFloatRect(0, 0, 200, 200);
     PointCounter.Init(&Material, Size);
-    CWritingFont Font = CWritingFont();
     Font.LoadPreset("LucidaConsoleWhiteF");
-    CWriting Points = CWriting();
     
     Points.Init(Size, 20, &Font);
     Points.PrintInt(m_score);
