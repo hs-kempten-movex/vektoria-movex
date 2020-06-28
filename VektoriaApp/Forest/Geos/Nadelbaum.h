@@ -24,5 +24,6 @@ namespace ForestNS
         CGeoLeaf m_zgLeafMain;
         CGeoLeaf m_zgBlossomMain;
         CGeoLeaf m_zgStamenMain;
+		bool m_bIsHitbox = false;
     };
 }

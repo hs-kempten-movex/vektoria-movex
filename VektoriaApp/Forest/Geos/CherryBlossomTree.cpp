@@ -27,6 +27,12 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 	if (frTimeShifted > 0.1f && frTimeShifted < 0.9f) // Außerhalb Februar bis November
 		m_bHasLeaves = true;
 
+	if (isLoD == false)
+	{
+		m_bHasLeaves = false;
+		m_bIsHitbox = true;
+	}
+
 	if (frTimeShifted > 0.249f && frTimeShifted < 0.499f) // Im Frühling (Frühlingstagungnachtgleiche - Sommersonnwende)
 		m_bIsBlossoming = true;
 
@@ -183,13 +189,13 @@ void CherryBlossomTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHe
 		m_pzgRoot = new CGeoLSystem();
 		m_pzgRoot->m_random.m_uRand = m_random.m_uRand;
 
-		m_pzgRoot->SetAxiom("'Z");
-		m_pzgRoot->AddRule("50:Z=(l0.8)[(+0)(>90)X][(+123)(>92)X][(+239)(>88)X]°(r0.80)f[X]");
-		m_pzgRoot->AddRule("50:Z=(l0.8)[(+10)(>85)X][(+113)(>82)X][(+219)(>98)X]°(r0.80)(>9)f[X]");
-		m_pzgRoot->AddRule("5:X=#+(r0.80)_f[(l0.90)(>10)X]");
-		m_pzgRoot->AddRule("45:X=#+(r0.80)_f[(l0.79)<(r0.80)X][(l0.87)(>15)X]");
-		m_pzgRoot->AddRule("25:X=#+(r0.80)_f[(l0.79)(<45)(r0.80)X][(l0.86)(>9)X]");
-		m_pzgRoot->AddRule("25:X=#+(r0.80)_f[(l0.79)(<35)(r0.80)X][(l0.85)(>25)X]");
+		m_pzgRoot->SetAxiom("Z");
+		m_pzgRoot->AddRule("50:Z=#(r0.80)(l0.95)[(>90)X][(+123)(>92)X][(+239)(>88)X][X]");
+		m_pzgRoot->AddRule("50:Z=#(r0.80)(l0.95)[(+10)(>85)X][(+113)(>82)X][(+219)(>98)X](>9)[X]");
+		m_pzgRoot->AddRule("5:X={r>0.007,#!+(r0.80)(l0.9)_f[!(>10)X]}{r<0.00701,}");
+		m_pzgRoot->AddRule("45:X={r>0.007,#!+(r0.80)(l0.9)_f[!<(r0.80)X][!(>15)X]}{r<0.00701,}");
+		m_pzgRoot->AddRule("25:X={r>0.007,#!+(r0.80)(l0.9)_f[!(<45)(r0.80)X][!(>9)X]}{r<0.00701,}");
+		m_pzgRoot->AddRule("25:X={r>0.007,#!+(r0.80)(l0.9)_f[!(<35)(r0.80)X][!(>25)X]}{r<0.00701,}");
 
 
 		m_pzgRoot->Iterate(m_iIterations, m_pzgRoot->m_acAxiom);
@@ -213,23 +219,7 @@ void CherryBlossomTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 		return;
 	}
 	CopyThis(*pzgTemplate);
-	/*
-	m_fAge = pzgTemplate->m_fAge;
-	m_fAgeStopped = pzgTemplate->m_fAgeStopped;
-	m_frTimeOfYear = pzgTemplate->m_frTimeOfYear;
-	m_bHasLeaves = pzgTemplate->m_bHasLeaves;
-
-	m_fRootCutHeight = pzgTemplate->m_fRootCutHeight;
-	m_random.m_uRand = pzgTemplate->m_random.m_uRand;
-
-	m_fSwakeRandom = pzgTemplate->m_fSwakeRandom;
-	m_iIterations = pzgTemplate->m_iIterations;
-	m_fTurtleStartRadius = pzgTemplate->m_fTurtleStartRadius;
-	m_fTurtleStartLength = pzgTemplate->m_fTurtleStartLength;
-	m_iTurtleStartLongitude = pzgTemplate->m_iTurtleStartLongitude;
-	m_iTurtleStartLattitude = pzgTemplate->m_iTurtleStartLattitude;
-	*/
-
+	
 
 	if (pzgTemplate->m_iToKill <= 0)
 	{
@@ -541,6 +531,7 @@ void CherryBlossomTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 	SetDefaultAngles(PHI / 2.0f, PHI / 2.0f, PHI);				// Angabe der Rotationswinkel der Turtle (Default: 10, 10, 10)
 	SetDefaultFactorGravitation(0.5f);
 
+
 	if (uLoD == 1)
 	{
 		m_iTurtleStartLongitude /= 2;
@@ -565,14 +556,6 @@ void CherryBlossomTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 		{
 			m_iTurtleStartLongitude = 0;
 			m_iTurtleStartLattitude = 0;
-		}
-		if (uLoD == 9) // LOD nur für Hitbox
-		{
-			m_iTurtleStartLattitude = 4;
-			m_iTurtleStartLongitude = 8;
-			m_bHasLeaves = false;
-			m_bIsBlossoming = false;
-
 		}
 		SetTurtleEndLongitude(0);
 		SetTurtleEndLattitude(0);
@@ -601,6 +584,10 @@ void CherryBlossomTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 		}
 
 	}
+	if (m_bIsHitbox == true) {
+		m_iTurtleStartLattitude = 4;
+		m_iTurtleStartLongitude = 8;
+	}
 	if (m_iTurtleStartLattitude == 1)
 		m_iTurtleStartLattitude = 2;
 	if (m_iTurtleStartLattitude == 0 && m_iTurtleStartLongitude > 0)
@@ -624,7 +611,7 @@ void CherryBlossomTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 		m_pzgRoot->m_random.m_uRand = pzgTemplate->m_pzgRoot->m_random.m_uRand;
 
 		m_pzgRoot->SetDefaultAngles(80.0f, 80.0f, PHI);				// Angabe der Rotationswinkel der Turtle (Default: 10, 10, 10)
-		m_pzgRoot->SetDefaultFactorGravitation(0.1f);
+		m_pzgRoot->SetDefaultFactorGravitation(0.12f);
 
 		m_pzgRoot->SetMaterial(&m_zmBark);		// Schrittweise Reduzierung der Segmentlänge (Default: 1.0)
 		m_pzgRoot->SetTurtleStartDir(CHVector(0.0f, -1.0f, 0.0f, 0.0f));
@@ -633,12 +620,10 @@ void CherryBlossomTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 		m_pzgRoot->SetRootCutHeight(m_fRootCutHeight);
 		m_pzgRoot->SetTextureRepeat(-1.0f, 1.0f);
 		m_pzgRoot->SetSwakeRandomFactor(m_fSwakeRandom);
-		m_pzgRoot->SetTurtleStartHeight(m_fTurtleStartLength);
 		m_pzgRoot->SetTurtleStartRadius(m_fTurtleStartRadius);
+		m_pzgRoot->SetTurtleStartHeight(m_fTurtleStartLength*2.0f);
 		m_pzgRoot->SetTurtleStartLongitude(m_iTurtleStartLongitude);
 		m_pzgRoot->SetTurtleStartLattitude(m_iTurtleStartLattitude);
-		m_pzgRoot->SetDefaultAngles(80.0f, 80.0f, PHI);				// Angabe der Rotationswinkel der Turtle (Default: 10, 10, 10)
-		m_pzgRoot->SetDefaultFactorGravitation(0.1f);
 
 		m_pzgRoot->Interprete(acTurtleOrdersRoot);
 

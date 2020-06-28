@@ -96,6 +96,9 @@
     <ClInclude Include="Utils\ThreadPool.h">
       <Filter>Headerdateien\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="GeoBioJapanischerSchildfarn.h">
+      <Filter>Headerdateien\Forest\Geos</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="Utils\PlacementUtils.cpp">
       <Filter>Quelldateien\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="GeoBioJapanischerSchildfarn.cpp">
+      <Filter>Quelldateien\Forest\Geos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

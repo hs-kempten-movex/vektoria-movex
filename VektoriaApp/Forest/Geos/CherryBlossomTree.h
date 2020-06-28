@@ -36,5 +36,6 @@ namespace ForestNS
         CGeoLeaf m_zgBlossomMain;
         CGeoLeaf m_zgStamenMain;
         CMaterial m_zmFruit;
+		bool m_bIsHitbox;
     };
 }
