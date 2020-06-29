@@ -291,7 +291,7 @@ namespace Vektoria
 		// 0.0f Dez/Jan, 0.25 März/April, 0.5 Jun/Jul, 0.75 Sep/Okt
 		float fLeafScaling = 0.0f;
 		if (frTimeShifted >= 0.1f && frTimeShifted <= 0.8f) // Von Februar bis November
-			fLeafScaling = 1.6f * (frTimeShifted - 0.1f) / 0.7f;
+			fLeafScaling = 4.5f * (frTimeShifted - 0.1f) / 0.7f;
 
 		CHMat mScale;
 		mScale.Scale(fLeafScaling);
@@ -318,7 +318,7 @@ namespace Vektoria
 		SetTurtleStartHeight(m_fTurtleStartLength);
 		SetTurtleStartRadius(m_fTurtleStartRadius);
 
-		SetLeafSkipFactor(20);
+		SetLeafSkipFactor(5);
 
 
 		if (uLoD == 1)
