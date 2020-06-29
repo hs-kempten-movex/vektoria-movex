@@ -58,6 +58,9 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zpConifer.InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
     m_zpConifer.Scale(3.5f);
 
+    m_zpConifer.InitCollisionGeo(&threadPool);
+    m_collisionGeos.push_back(&m_zpConifer.GetCollisionGeo());
+
     CFileWavefront objLoader;
     m_zgBarrel = objLoader.LoadGeo("models\\Barrel.obj", true);
     m_zpBarrel.AddGeo(m_zgBarrel);
