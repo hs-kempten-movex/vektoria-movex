@@ -64,9 +64,9 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zpBarrel.TranslateYDelta(1.0f);
     m_zpBarrel.RotateX(QUARTERPI);
     m_zgBarrel->SetMaterial(& m_zmBarrel);
-    m_zmBarrel.MakeTextureDiffuse("textures\\BarrelDiffuseTex.png");
-    m_zmBarrel.MakeTextureBump("textures\\BarrelNormalTex.jpg");
-    m_zmBarrel.MakeTextureSpecular("textures\\BarrelSpecularTex.png");
+    m_zmBarrel.MakeTextureDiffuse("textures\\clutter\\BarrelDiffuseTex.png");
+    m_zmBarrel.MakeTextureBump("textures\\clutter\\BarrelNormalTex.jpg");
+    m_zmBarrel.MakeTextureSpecular("textures\\clutter\\BarrelSpecularTex.png");
 
     InitCluster(terrain);
 }
