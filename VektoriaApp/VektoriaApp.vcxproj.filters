@@ -96,7 +96,7 @@
     <ClInclude Include="Utils\ThreadPool.h">
       <Filter>Headerdateien\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="GeoBioJapanischerSchildfarn.h">
+    <ClInclude Include="Forest\Geos\GeoBioJapanischerSchildfarn.h">
       <Filter>Headerdateien\Forest\Geos</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,7 +146,7 @@
     <ClCompile Include="Utils\PlacementUtils.cpp">
       <Filter>Quelldateien\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="GeoBioJapanischerSchildfarn.cpp">
+    <ClCompile Include="Forest\Geos\GeoBioJapanischerSchildfarn.cpp">
       <Filter>Quelldateien\Forest\Geos</Filter>
     </ClCompile>
   </ItemGroup>

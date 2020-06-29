@@ -48,6 +48,13 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
         zpPoppy->Scale(1.5f);
     }
 
+    for (auto& zpJapanischerSchildfarn : m_zpJapanischeSchildfarne)
+    {
+        zpJapanischerSchildfarn = new PlantPlacement<GeoBioJapanischerSchildfarn, 3>(m_random.Rand(), m_random.RandFr(), 0.2f, 0.0f);
+        zpJapanischerSchildfarn->InitLoDs({ { {100.0f, 0}, { 500.0f, 1 }, { 1000.0f, 2 } } }, &threadPool);
+        zpJapanischerSchildfarn->Scale(1.5f);
+    }
+
     m_zpConifer.InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
     m_zpConifer.Scale(3.5f);
 
@@ -87,11 +94,18 @@ void Forest::InitCluster(CGeoTerrain* terrain)
                 auto newPoppies = newCluster->AddPlacementsForSpecies(zpPoppy, TREES_PER_CLUSTER, 10.0, 130.0f);
                 poppyPlacements.insert(poppyPlacements.end(), newPoppies.begin(), newPoppies.end());
             }
+            std::vector<CPlacement*> japanischerSchildfarnPlacements;
+            for (auto& zpJapanischerSchildfarn : m_zpJapanischeSchildfarne)
+            {
+                auto newJapanischeSchildfarne = newCluster->AddPlacementsForSpecies(zpJapanischerSchildfarn, TREES_PER_CLUSTER, 10.0, 130.0f);
+                japanischerSchildfarnPlacements.insert(japanischerSchildfarnPlacements.end(), newJapanischeSchildfarne.begin(), newJapanischeSchildfarne.end());
+            }
             
             AddPlacement(newCluster);
             m_forestClusters.push_back(newCluster);
             
             m_zpFlowers.insert(m_zpFlowers.end(), poppyPlacements.begin(), poppyPlacements.end());
+            m_zpFlowers.insert(m_zpFlowers.end(), japanischerSchildfarnPlacements.begin(), japanischerSchildfarnPlacements.end());
         }
     }
 }

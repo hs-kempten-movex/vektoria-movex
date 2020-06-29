@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{875CCC02-C17C-4145-A074-6C7FB9250A48}</ProjectGuid>
     <RootNamespace>VektoriaApp</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,12 +153,12 @@
     <ClInclude Include="Forest\ForestCluster.h" />
     <ClInclude Include="Forest\Geos\CherryBlossomTree.h" />
     <ClInclude Include="Forest\Geos\GeoBioAsianTree.h" />
+    <ClInclude Include="Forest\Geos\GeoBioJapanischerSchildfarn.h" />
     <ClInclude Include="Forest\Geos\GeoBioPoppy.h" />
     <ClInclude Include="Forest\Geos\IPlantGeo.h" />
     <ClInclude Include="Forest\Geos\Nadelbaum.h" />
     <ClInclude Include="Forest\PlantPlacement.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GeoBioJapanischerSchildfarn.h" />
     <ClInclude Include="Island.h" />
     <ClInclude Include="Player\Butterfly.h" />
     <ClInclude Include="Player\Controller.h" />
@@ -175,10 +175,10 @@
     <ClCompile Include="Forest\ForestCluster.cpp" />
     <ClCompile Include="Forest\Geos\CherryBlossomTree.cpp" />
     <ClCompile Include="Forest\Geos\GeoBioAsianTree.cpp" />
+    <ClCompile Include="Forest\Geos\GeoBioJapanischerSchildfarn.cpp" />
     <ClCompile Include="Forest\Geos\GeoBioPoppy.cpp" />
     <ClCompile Include="Forest\Geos\Nadelbaum.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GeoBioJapanischerSchildfarn.cpp" />
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="Player\Butterfly.cpp" />
     <ClCompile Include="Player\Controller.cpp" />

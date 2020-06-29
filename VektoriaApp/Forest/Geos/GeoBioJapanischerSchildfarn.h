@@ -1,6 +1,6 @@
 #pragma once
 #include "Vektoria\Root.h"
-#include "Forest/Geos/IPlantGeo.h"
+#include "IPlantGeo.h"
 
 using namespace Vektoria;
 
