@@ -35,7 +35,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     {
         zpCherryBlossomTree = new PlantPlacement<CherryBlossomTree, 4>(m_random.Rand(), m_random.RandFr() * 150.0f, 0.2f, 0.0f);
         zpCherryBlossomTree->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
-        zpCherryBlossomTree->Scale(1.1f);
+        zpCherryBlossomTree->Scale(2.0f);
 
         zpCherryBlossomTree->InitCollisionGeo(&threadPool);
         m_collisionGeos.push_back(&zpCherryBlossomTree->GetCollisionGeo());
@@ -98,12 +98,12 @@ void Forest::InitCluster(CGeoTerrain* terrain)
             ForestCluster* newCluster = new ForestCluster(m_random.Rand(), terrain, CHVector(i, 0, j), CLUSTER_SIZE);
             for (auto& zpCherryBlossomTree : m_zpCherryBlossomTrees)
             {
-                newCluster->AddPlacementsForSpecies(zpCherryBlossomTree, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI); //cherrytrees höhe wo sie wachsen dürfen, abhang etc
+                newCluster->AddPlacementsForSpecies(zpCherryBlossomTree, TREES_PER_CLUSTER, 10.0f, 75.0f, 0.0f, QUARTERPI); //cherrytrees höhe wo sie wachsen dürfen, abhang etc
             }
 
             for (auto& zpConifer : m_zpConifers)
             {
-                newCluster->AddPlacementsForSpecies(zpConifer, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI);
+                newCluster->AddPlacementsForSpecies(zpConifer, TREES_PER_CLUSTER, 55.0f, F_MAX, 0.0f, QUARTERPI);
             }
             
             std::vector<CPlacement*> poppyPlacements;
