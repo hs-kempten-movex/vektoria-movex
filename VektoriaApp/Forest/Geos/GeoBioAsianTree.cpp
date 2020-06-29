@@ -1,6 +1,6 @@
 #include "GeoBioAsianTree.h"
 
-namespace Vektoria
+namespace ForestNS
 {
 	CGeoBioAsianTree::CGeoBioAsianTree()
 	{
@@ -130,9 +130,9 @@ namespace Vektoria
 
 
 
-			m_iIterations += 23;
+			m_iIterations += 11;
 			CGeoLSystem::Iterate(m_iIterations, m_acAxiom);
-			m_iIterations -= 23;
+			m_iIterations -= 11;
 
 			if (fRootCutHeight < 0.0f)
 			{
@@ -155,7 +155,7 @@ namespace Vektoria
 	}
 	
 
-	void CGeoBioAsianTree::Init(CGeoBioAsianTree * pzgTemplate, unsigned int uLoD)
+	void CGeoBioAsianTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 	{
 		if (!pzgTemplate)
 		{

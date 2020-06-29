@@ -1,10 +1,14 @@
 #pragma once
 #include "Vektoria\GeoBio.h"
+#include "IPlantGeo.h"
 
-namespace Vektoria
+using namespace Vektoria;
+
+namespace ForestNS
 {
 
-	class CGeoBioAsianTree : public CGeoBio
+	class CGeoBioAsianTree : 
+      public IPlantGeo
 	{
 	public:
 
@@ -12,11 +16,11 @@ namespace Vektoria
 
 		~CGeoBioAsianTree();
 
-		void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD);
+		void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD) override;
 
-		void Init(CGeoBioAsianTree* pzgTemplate, unsigned int uLoD);
+		void Init(IPlantGeo* pzgTemplate, unsigned int uLoD) override;
 
-		void DeIterate();
+		void DeIterate() override;
 
 		float GetOptimalLoDMin(float fAge, unsigned int uLoD);
 
