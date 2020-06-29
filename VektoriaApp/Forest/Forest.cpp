@@ -72,8 +72,8 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zmBarrel.MakeTextureSpecular("textures\\clutter\\BarrelSpecularTex.png");
 
     m_zgChest = objLoader.LoadGeo("models\\Chest.obj", true);
-    m_zpChest.AddGeo(m_zgBarrel);
-    m_zgBarrel->SetMaterial(&m_zmChest);
+    m_zpChest.AddGeo(m_zgChest);
+    m_zgChest->SetMaterial(&m_zmChest);
     m_zmChest.MakeTextureDiffuse("textures\\clutter\\ChestDiffuseTex.jpg");
     m_zmChest.MakeTextureBump("textures\\clutter\\ChestNormalTex.jpg");
     m_zmChest.MakeTextureSpecular("textures\\clutter\\ChestSpecularTex.jpg");
