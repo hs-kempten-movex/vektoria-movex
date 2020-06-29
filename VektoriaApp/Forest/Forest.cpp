@@ -56,6 +56,9 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
         zpAsiaTree = new PlantPlacement<CGeoBioAsianTree, 4>(m_random.Rand(), m_random.RandFr() * 300.0f, 0.2f, 0.0f);
         zpAsiaTree->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
         zpAsiaTree->Scale(2.0f);
+
+        zpAsiaTree->InitCollisionGeo(&threadPool);
+        m_collisionGeos.push_back(&zpAsiaTree->GetCollisionGeo());
     }
 
     for (auto& zpPoppy : m_zpPoppies)
