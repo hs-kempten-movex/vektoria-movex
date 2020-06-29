@@ -71,6 +71,13 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zmBarrel.MakeTextureBump("textures\\clutter\\BarrelNormalTex.jpg");
     m_zmBarrel.MakeTextureSpecular("textures\\clutter\\BarrelSpecularTex.png");
 
+    m_zgChest = objLoader.LoadGeo("models\\Chest.obj", true);
+    m_zpChest.AddGeo(m_zgBarrel);
+    m_zgBarrel->SetMaterial(&m_zmChest);
+    m_zmChest.MakeTextureDiffuse("textures\\clutter\\ChestDiffuseTex.jpg");
+    m_zmChest.MakeTextureBump("textures\\clutter\\ChestNormalTex.jpg");
+    m_zmChest.MakeTextureSpecular("textures\\clutter\\ChestSpecularTex.jpg");
+
     InitCluster(terrain);
 }
 
@@ -89,7 +96,9 @@ void Forest::InitCluster(CGeoTerrain* terrain)
 
             newCluster->AddPlacementsForSpecies(&m_zpConifer, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI);
 
-            newCluster->AddPlacementsForSpecies(&m_zpBarrel, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f);
+            newCluster->AddPlacementsForSpecies(&m_zpBarrel, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Barrels to Island
+
+            newCluster->AddPlacementsForSpecies(&m_zpChest, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Chests to Island
             
             std::vector<CPlacement*> poppyPlacements;
             for (auto& zpPoppy : m_zpPoppies)
