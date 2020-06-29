@@ -3,7 +3,7 @@
 #include "../Utils/ThreadPool.h"
 
 #define CLUSTER_SIZE 200
-#define TREES_PER_CLUSTER 20
+#define TREES_PER_CLUSTER 15
 
 using namespace Vektoria;
 using namespace ForestNS;
@@ -41,6 +41,16 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
         m_collisionGeos.push_back(&zpCherryBlossomTree->GetCollisionGeo());
     }
 
+    for (auto& zpConifer : m_zpConifers)
+    {
+        zpConifer = new PlantPlacement<Nadelbaum, 4>(m_random.Rand(), m_random.RandFr() * 300.0f, 0.2f, 0.0f);
+        zpConifer->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
+        zpConifer->Scale(3.5f);
+
+        zpConifer->InitCollisionGeo(&threadPool);
+        m_collisionGeos.push_back(&zpConifer->GetCollisionGeo());
+    }
+
     for (auto& zpPoppy : m_zpPoppies)
     {
         zpPoppy = new PlantPlacement<GeoBioPoppy, 3>(m_random.Rand(), m_random.RandFr(), 0.2f, 0.0f);
@@ -54,12 +64,6 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
         zpJapanischerSchildfarn->InitLoDs({ { {100.0f, 0}, { 500.0f, 1 }, { 1000.0f, 2 } } }, &threadPool);
         zpJapanischerSchildfarn->Scale(1.5f);
     }
-
-    m_zpConifer.InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
-    m_zpConifer.Scale(3.5f);
-
-    m_zpConifer.InitCollisionGeo(&threadPool);
-    m_collisionGeos.push_back(&m_zpConifer.GetCollisionGeo());
 
     CFileWavefront objLoader;
     m_zgBarrel = objLoader.LoadGeo("models\\Barrel.obj", true);
@@ -97,11 +101,10 @@ void Forest::InitCluster(CGeoTerrain* terrain)
                 newCluster->AddPlacementsForSpecies(zpCherryBlossomTree, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI); //cherrytrees höhe wo sie wachsen dürfen, abhang etc
             }
 
-            newCluster->AddPlacementsForSpecies(&m_zpConifer, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI);
-
-            newCluster->AddPlacementsForSpecies(&m_zpBarrel, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Barrels to Island
-
-            newCluster->AddPlacementsForSpecies(&m_zpChest, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Chests to Island
+            for (auto& zpConifer : m_zpConifers)
+            {
+                newCluster->AddPlacementsForSpecies(zpConifer, TREES_PER_CLUSTER, 0.0, 130.0f, 0.0f, QUARTERPI);
+            }
             
             std::vector<CPlacement*> poppyPlacements;
             for (auto& zpPoppy : m_zpPoppies)
@@ -121,6 +124,9 @@ void Forest::InitCluster(CGeoTerrain* terrain)
             
             m_zpFlowers.insert(m_zpFlowers.end(), poppyPlacements.begin(), poppyPlacements.end());
             m_zpFlowers.insert(m_zpFlowers.end(), japanischerSchildfarnPlacements.begin(), japanischerSchildfarnPlacements.end());
+
+            newCluster->AddPlacementsForSpecies(&m_zpBarrel, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Barrels to Island
+            newCluster->AddPlacementsForSpecies(&m_zpChest, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Chests to Island
         }
     }
 }
