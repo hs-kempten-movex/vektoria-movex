@@ -10,7 +10,7 @@ namespace Vektoria
 	{
 	}
 
-	void CGeoBioBonsai::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
+	void CGeoBioBonsai::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD)
 		{
 			m_fAge = fAge;
 			m_fAgeStopped = fAge;
@@ -24,6 +24,12 @@ namespace Vektoria
 
 			if (frTimeShifted > 0.1f && frTimeShifted < 0.9f) // Außerhalb Februar bis November
 				m_bHasLeaves = true;
+
+			if (isLoD == false)
+			{
+				m_bHasLeaves = false;
+				m_bIsHitbox = true;
+			}
 
 
 			if (m_fAgeStopped > 200.0f)
@@ -273,6 +279,12 @@ namespace Vektoria
 
 
 		}
+
+		if (m_bIsHitbox == true) {
+			m_iTurtleStartLattitude = 4;
+			m_iTurtleStartLongitude = 8;
+		}
+
 		if (m_iTurtleStartLattitude == 1)
 			m_iTurtleStartLattitude = 2;
 		if (m_iTurtleStartLattitude == 0 && m_iTurtleStartLongitude > 0)
@@ -316,5 +328,27 @@ namespace Vektoria
 	void CGeoBioBonsai::DeIterate()
 	{
 		((CGeoLSystem*)this)->DeIterate();
+	}
+
+	float CGeoBioBonsai::GetOptimalLoDMin(float fAge, unsigned int uLoD)
+	{
+		float m_fAgeStopped = fAge;
+		if (m_fAgeStopped > 500.0f)
+			m_fAgeStopped = 500.f;
+		if (m_fAgeStopped < 2.1f)
+			m_fAgeStopped = 2.1f;
+		if (uLoD == 0)
+			return 0.0F;
+		return (40.f + m_fAgeStopped * 0.5f) * powf(4.0f, uLoD - 1);
+	}
+
+	float CGeoBioBonsai::GetOptimalLoDMax(float fAge, unsigned int uLoD)
+	{
+		float m_fAgeStopped = fAge;
+		if (m_fAgeStopped > 500.0f)
+			m_fAgeStopped = 500.f;
+		if (m_fAgeStopped < 2.1f)
+			m_fAgeStopped = 2.1f;
+		return (40.f + m_fAgeStopped * 0.5f) * powf(4.0f, uLoD);
 	}
 }

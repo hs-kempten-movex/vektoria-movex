@@ -13,19 +13,23 @@ namespace Vektoria
 
 		CGeoBioBonsai();
 
-		void Iterate(float fAge, float frTimeOfYear = 0.25f, float fRootCutHeight = 0.0f);
+		void Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bool isLoD);
 
 		void Init(CGeoBioBonsai* pzgTemplate, unsigned int uLoD);
 
 		void DeIterate();
 
-		CGeoLeaf m_zgLeafMain;
+		float GetOptimalLoDMin(float fAge, unsigned int uLoD);
+
+		float GetOptimalLoDMax(float fAge, unsigned int uLoD);
 
 	private:
 
+		CGeoLeaf m_zgLeafMain;
 		CGeoTriangleTable* m_zgBush;
 		CFileWavefront m_zfwv;
 		CMaterial m_zmBush;
+		bool m_bIsHitbox;
 
 
 	};
