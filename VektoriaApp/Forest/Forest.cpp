@@ -64,6 +64,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     CFileWavefront objLoader;
     m_zgBarrel = objLoader.LoadGeo("models\\Barrel.obj", true);
     m_zpBarrel.AddGeo(m_zgBarrel);
+    m_zpBarrel.SetLoD(0.0f, 500.0f);
     m_zpBarrel.TranslateYDelta(1.0f);
     m_zpBarrel.RotateX(QUARTERPI);
     m_zgBarrel->SetMaterial(& m_zmBarrel);
@@ -73,6 +74,8 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
 
     m_zgChest = objLoader.LoadGeo("models\\Chest.obj", true);
     m_zpChest.AddGeo(m_zgChest);
+    m_zpChest.SetLoD(0.0f, 500.0f);
+    m_zpChest.TranslateYDelta(-0.1f);
     m_zgChest->SetMaterial(&m_zmChest);
     m_zmChest.MakeTextureDiffuse("textures\\clutter\\ChestDiffuseTex.jpg");
     m_zmChest.MakeTextureBump("textures\\clutter\\ChestNormalTex.jpg");
