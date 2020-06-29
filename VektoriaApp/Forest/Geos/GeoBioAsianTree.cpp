@@ -10,16 +10,25 @@ namespace Vektoria
 	{
 	}
 
-	void CGeoBioAsianTree::Iterate(float fAge, float fRootCutHeight)
+	void CGeoBioAsianTree::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight)
 		{
 			m_fAge = fAge;
 			m_fAgeStopped = fAge;
 			m_fRootCutHeight = fRootCutHeight;
+			m_frTimeOfYear = frTimeOfYear;
 
 			if (m_fAgeStopped > 200.0f)
 				m_fAgeStopped = 200.0f;
 			if (m_fAgeStopped < 1.0f)
 				m_fAgeStopped = 1.0f;
+
+			float frTimeShifted = m_frTimeOfYear + 0.25f;
+			if (frTimeShifted > 1.0f)
+				frTimeShifted -= 1.0f;
+			// 0= 22.Dez. 0.5=22.Juni 0.75 = 22 Sep.
+
+			if (frTimeShifted > 0.1f && frTimeShifted < 0.9f) // Außerhalb Februar bis November
+				m_bHasLeaves = true;
 
 			if (m_fAgeStopped > 50.0f)
 			{
@@ -89,15 +98,31 @@ namespace Vektoria
 			SetTurtleStartHeight(m_fTurtleStartLength);
 			SetTurtleStartRadius(m_fTurtleStartRadius);
 
-			// Stamm und Äste
-			SetAxiom("X");
-			AddRule("20:X={r>0.005,+(r0.90)_(>35)f[(l0.85)(<10)(r0.87)X][(l0.55)(r0.7)(>50)X]}{r<0.0051,Y}");
-			AddRule("20:X={r>0.005,+(r0.9)_(<33)f[(l0.93)(>15)(r0.94)X][(l0.65)(r0.7)(<45)X]}{r<0.0051,Y}");
-			AddRule("20:X={r>0.005,+(r0.84)_(<27)f[(l0.90)(>15)(r0.91)X][(l0.55)(r0.7)(>60)X]}{r<0.0051,Y}");
-			AddRule("20:X={r>0.005,°+(r0.93)_(v23)f[(l0.96)(^15)(r0.85)X]}{r<0.0051,Y}");
-			AddRule("20:X={r>0.005,+(r0.95)_(^30)f[(l0.82)(v15)(r0.94)X][(l0.60)(r0.7)(<77)X]}{r<0.0051,Y}");
-			AddRule("50:Y=!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.95)f[^l]!!(l0.95)f[vh]!!(l0.95)f[^l]!!(l0.90)f[vl]!!(l0.95)f[^l]!!(l0.90)f[vl]l");
-			AddRule("50:Y=!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.70)f[^l]!!(l0.95)f[vh]!!(l0.95)f[^l]!!(l0.90)f[vl]!!(l0.95)f[^l]!!(l0.90)f[vl]l");
+			if (m_bHasLeaves)
+			{
+
+				// Stamm und Äste
+				SetAxiom("A");
+				AddRule("20:A={r>0.005,+(r0.90)_(>35)f[(l0.85)(<10)(r0.87)A][(l0.55)(r0.7)(>50)A]}{r<0.0051,B}");
+				AddRule("20:A={r>0.005,+(r0.9)_(<33)f[(l0.93)(>15)(r0.94)A][(l0.65)(r0.7)(<45)A]}{r<0.0051,B}");
+				AddRule("20:A={r>0.005,+(r0.84)_(<27)f[(l0.90)(>15)(r0.91)A][(l0.55)(r0.7)(>60)A]}{r<0.0051,B}");
+				AddRule("20:A={r>0.005,°+(r0.93)_(v23)f[(l0.96)(^15)(r0.85)A]}{r<0.0051,B}");
+				AddRule("20:A={r>0.005,+(r0.95)_(^30)f[(l0.82)(v15)(r0.94)A][(l0.60)(r0.7)(<77)A]}{r<0.0051,B}");
+				AddRule("50:B=!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.95)f[^l]!!(l0.95)f[vh]!!(l0.95)f[^l]!!(l0.90)f[vl]!!(l0.95)f[^l]!!(l0.90)f[vl]l");
+				AddRule("50:B=!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.70)f[^l]!!(l0.95)f[vh]!!(l0.95)f[^l]!!(l0.90)f[vl]!!(l0.95)f[^l]!!(l0.90)f[vl]l");
+
+			}
+			else
+			{
+				SetAxiom("A");
+				AddRule("20:A={r>0.005,+(r0.90)_(>35)f[(l0.85)(<10)(r0.87)A][(l0.55)(r0.7)(>50)A]}");
+				AddRule("20:A={r>0.005,+(r0.9)_(<33)f[(l0.93)(>15)(r0.94)A][(l0.65)(r0.7)(<45)A]}");
+				AddRule("20:A={r>0.005,+(r0.84)_(<27)f[(l0.90)(>15)(r0.91)A][(l0.55)(r0.7)(>60)A]}");
+				AddRule("20:A={r>0.005,°+(r0.93)_(v23)f[(l0.96)(^15)(r0.85)A]}");
+				AddRule("20:A={r>0.005,+(r0.95)_(^30)f[(l0.82)(v15)(r0.94)A][(l0.60)(r0.7)(<77)A]}");
+			}
+
+
 
 			m_iIterations += 23;
 			CGeoLSystem::Iterate(m_iIterations, m_acAxiom);
@@ -143,6 +168,11 @@ namespace Vektoria
 		{
 			return;
 		}
+
+		float frTimeShifted = m_frTimeOfYear + 0.25f;
+		if (frTimeShifted > 1.0f)
+			frTimeShifted -= 1.0f;
+		// 0= 22.Dez. 0.5=22.Juni 0.75 = 22 Sep.
 		
 		m_zgLeafMain.SetMiddle(Vektoria::CHVector(0.0f, 0.03f, 0.5f, 1.0f));
 		if (uLoD == 0)
@@ -258,10 +288,26 @@ namespace Vektoria
 			
 		}
 
+		// 0.0f Dez/Jan, 0.25 März/April, 0.5 Jun/Jul, 0.75 Sep/Okt
+		float fLeafScaling = 0.0f;
+		if (frTimeShifted >= 0.1f && frTimeShifted <= 0.8f) // Von Februar bis November
+			fLeafScaling = 1.6f * (frTimeShifted - 0.1f) / 0.7f;
+
 		CHMat mScale;
-		mScale.Scale(2.0f);
+		mScale.Scale(fLeafScaling);
 		m_zgLeafMain.Transform(mScale);
+
 		m_zmLeaf.LoadPreset("LeafBirch");
+
+		float faLeafColoring = 0.0f;
+		float frColorScaling = 1.0f;
+		if (frTimeShifted >= 0.7f) // Ab Anfang September
+		{
+			faLeafColoring = (frTimeShifted - 0.6f) / -0.15f * THIRDPI;
+			m_zmLeaf.RotateHue(faLeafColoring);
+			frColorScaling = 1.0f - (frTimeShifted - 0.7f) / 0.3f;
+			m_zmLeaf.ScaleDelta(frColorScaling);
+		}
 
 		SetMaterialLeaf(&m_zmLeaf);
 
@@ -271,6 +317,9 @@ namespace Vektoria
 		SetSwakeRandomFactor(m_fSwakeRandom);
 		SetTurtleStartHeight(m_fTurtleStartLength);
 		SetTurtleStartRadius(m_fTurtleStartRadius);
+
+		SetLeafSkipFactor(20);
+
 
 		if (uLoD == 1)
 		{
