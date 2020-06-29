@@ -96,6 +96,9 @@ void Forest::InitCluster(CGeoTerrain* terrain)
         for (int j = -TERRAIN_SIZE / 2; j < TERRAIN_SIZE; j += CLUSTER_SIZE * 2)
         {
             ForestCluster* newCluster = new ForestCluster(m_random.Rand(), terrain, CHVector(i, 0, j), CLUSTER_SIZE);
+            AddPlacement(newCluster);
+            m_forestClusters.push_back(newCluster);
+
             for (auto& zpCherryBlossomTree : m_zpCherryBlossomTrees)
             {
                 newCluster->AddPlacementsForSpecies(zpCherryBlossomTree, TREES_PER_CLUSTER, 10.0f, 75.0f, 0.0f, QUARTERPI); //cherrytrees höhe wo sie wachsen dürfen, abhang etc
@@ -106,24 +109,17 @@ void Forest::InitCluster(CGeoTerrain* terrain)
                 newCluster->AddPlacementsForSpecies(zpConifer, TREES_PER_CLUSTER, 55.0f, F_MAX, 0.0f, QUARTERPI);
             }
             
-            std::vector<CPlacement*> poppyPlacements;
             for (auto& zpPoppy : m_zpPoppies)
             {
                 auto newPoppies = newCluster->AddPlacementsForSpecies(zpPoppy, TREES_PER_CLUSTER, 10.0, 130.0f);
-                poppyPlacements.insert(poppyPlacements.end(), newPoppies.begin(), newPoppies.end());
+                m_zpFlowers.insert(m_zpFlowers.end(), newPoppies.begin(), newPoppies.end());
             }
-            std::vector<CPlacement*> japanischerSchildfarnPlacements;
+
             for (auto& zpJapanischerSchildfarn : m_zpJapanischeSchildfarne)
             {
                 auto newJapanischeSchildfarne = newCluster->AddPlacementsForSpecies(zpJapanischerSchildfarn, TREES_PER_CLUSTER, 10.0, 130.0f);
-                japanischerSchildfarnPlacements.insert(japanischerSchildfarnPlacements.end(), newJapanischeSchildfarne.begin(), newJapanischeSchildfarne.end());
-            }
-            
-            AddPlacement(newCluster);
-            m_forestClusters.push_back(newCluster);
-            
-            m_zpFlowers.insert(m_zpFlowers.end(), poppyPlacements.begin(), poppyPlacements.end());
-            m_zpFlowers.insert(m_zpFlowers.end(), japanischerSchildfarnPlacements.begin(), japanischerSchildfarnPlacements.end());
+                m_zpFlowers.insert(m_zpFlowers.end(), newJapanischeSchildfarne.begin(), newJapanischeSchildfarne.end());
+            }            
 
             newCluster->AddPlacementsForSpecies(&m_zpBarrel, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Barrels to Island
             newCluster->AddPlacementsForSpecies(&m_zpChest, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Chests to Island
