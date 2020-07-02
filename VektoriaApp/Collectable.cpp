@@ -50,6 +50,7 @@ void Collectable::Gather(PlayerNS::Player* player)
             if (IsAvailableAtPosition(playerPosition))
             {
                 player->AddPoints(m_points);
+                player->UpdateScore();
                 m_remainingCooldown = m_cooldown;
 
                 return;

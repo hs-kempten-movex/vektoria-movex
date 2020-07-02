@@ -49,7 +49,7 @@ void Player::Init(CPlacement* pzpShadowCastingLight, CGeos* CollisionObjects, CG
     {
         assert(m_id == 1);
         m_viewport.InitFull(&m_camera);
-        /*m_viewport.AddOverlay(&m_PointOverlay);*/
+        InitScore();
         
     } 
     else
@@ -94,18 +94,16 @@ void Player::Tick(float fTime, float fTimeDelta)
 
 void Player::InitScore()
 {
-    /*m_Material.LoadPreset("NasaStars");*/
-    //m_PointOverlay.Init()
 
     m_WritingFont = new CWritingFont();
-    m_WritingFont->LoadPreset("LucidaConsoleBlackF");
-    m_FloatRect.Init(0.0f, 0.0f, 0.5f, 0.5f);
-    
-    m_viewport.AddWriting(&m_Writing);
-    m_Writing.Init(m_FloatRect, 3, m_WritingFont);
+    m_WritingFont->LoadPreset("LucidaConsoleWhite");
+    m_WritingFont->SetChromaKeyingOn();
+    m_FloatRect.Init(0.1f, 0.1f, 0.2f, 0.03f);
+    m_Writing.Init(m_FloatRect, 10, m_WritingFont);
     m_Writing.PrintInt(m_score);
-    m_Writing.Fini();
-    //m_PointOverlay.AddWriting(&m_Writing);
-    //m_PointOverlay.SetTransparency(1.0f);
-    //m_PointOverlay.SwitchOn();
+    m_Image.Init("textures\\Transparent_square.png");
+    m_PointOverlay.Init(&m_Image, m_FloatRect, true);
+    m_PointOverlay.AddWriting(&m_Writing);
+    m_PointOverlay.SwitchOn();
+    m_viewport.AddOverlay(&m_PointOverlay);
 }

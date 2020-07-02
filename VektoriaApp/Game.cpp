@@ -45,7 +45,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
   m_collectables = std::vector<Collectable>(flowers.size());
   for (int i = 0; i < flowers.size(); i++)
   {
-      m_collectables[i].Init(flowers[i], 30.0f, 10, 10.0f);
+      m_collectables[i].Init(flowers[i], 30.0f, 100, 10.0f);
   }
 
 	InitPlayers();

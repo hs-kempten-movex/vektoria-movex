@@ -36,6 +36,11 @@ namespace PlayerNS
             m_score += points;
         }
 
+        void UpdateScore()
+        {
+                m_Writing.PrintInt(m_score);
+        }
+
     private:
         uint8_t m_id;
         uint8_t m_playerCount;
@@ -46,14 +51,15 @@ namespace PlayerNS
         CViewport m_viewport;
         Butterfly m_butterfly;
 
-        int m_score = 10;
+        int m_score = 0;
         void InitScore();
 
+    protected:
 		//overlay test
         COverlay m_PointOverlay;
-        CMaterial m_Material;
         CFloatRect m_FloatRect;
         CWritingFont* m_WritingFont;
 		CWriting m_Writing;
+        CImage m_Image;
     };
 }
