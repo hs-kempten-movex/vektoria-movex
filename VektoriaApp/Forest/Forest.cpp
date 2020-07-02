@@ -95,6 +95,16 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zmChest.MakeTextureBump("textures\\clutter\\ChestNormalTex.jpg");
     m_zmChest.MakeTextureSpecular("textures\\clutter\\ChestSpecularTex.jpg");
 
+    m_zgStone = objLoader.LoadGeo("models\\Stone01.obj");
+    m_zpStone.AddGeo(m_zgStone);
+    m_zpStone.SetLoD(0.0f, 500.0f);
+    //float random = (float)rand();
+    //m_zpStone.RotateXDelta(random);
+    m_zgStone->SetMaterial(&m_zmStone);
+    m_zmStone.MakeTextureDiffuse("textures\\clutter\\Stone01DiffuseTex.jpg");
+    m_zmStone.MakeTextureBump("textures\\clutter\\Stone01NormalTex.jpg");
+    m_zmStone.MakeTextureSpecular("textures\\clutter\\Stone01SpecularTex.jpg");
+
     InitCluster(terrain);
 }
 
@@ -138,6 +148,7 @@ void Forest::InitCluster(CGeoTerrain* terrain)
 
             newCluster->AddPlacementsForSpecies(&m_zpBarrel, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Barrels to Island
             newCluster->AddPlacementsForSpecies(&m_zpChest, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Chests to Island
+            newCluster->AddPlacementsForSpecies(&m_zpStone, TREES_PER_CLUSTER * 2, 0.0f, 1000.0f, 0.0f, QUARTERPI);
         }
     }
 }

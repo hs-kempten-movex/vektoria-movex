@@ -51,6 +51,10 @@ namespace ForestNS
         CPlacement m_zpChest;
         CMaterial m_zmChest;
 
+        CGeo* m_zgStone;
+        CPlacement m_zpStone;
+        CMaterial m_zmStone;
+
         void InitCluster(CGeoTerrain* terrain);
 
         CRandom m_random;
