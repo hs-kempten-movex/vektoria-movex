@@ -99,11 +99,15 @@ void Player::InitScore()
     m_WritingFont->LoadPreset("LucidaConsoleWhite");
     m_WritingFont->SetChromaKeyingOn();
     m_FloatRect.Init(0.1f, 0.1f, 0.2f, 0.03f);
+    m_PointFloatRect.Init(0.0f, 0.095f, 0.07f, 0.035f);
+    m_PointWriting.Init(m_PointFloatRect, 6, m_WritingFont);
+    m_PointWriting.PrintString("Score:");
     m_Writing.Init(m_FloatRect, 10, m_WritingFont);
     m_Writing.PrintInt(m_score);
     m_Image.Init("textures\\Transparent_square.png");
     m_PointOverlay.Init(&m_Image, m_FloatRect, true);
     m_PointOverlay.AddWriting(&m_Writing);
+    m_PointOverlay.AddWriting(&m_PointWriting);
     m_PointOverlay.SwitchOn();
     m_viewport.AddOverlay(&m_PointOverlay);
 }

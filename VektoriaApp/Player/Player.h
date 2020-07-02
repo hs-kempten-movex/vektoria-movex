@@ -58,8 +58,10 @@ namespace PlayerNS
 		//overlay test
         COverlay m_PointOverlay;
         CFloatRect m_FloatRect;
+        CFloatRect m_PointFloatRect;
         CWritingFont* m_WritingFont;
 		CWriting m_Writing;
+        CWriting m_PointWriting;
         CImage m_Image;
     };
 }
