@@ -90,20 +90,26 @@ void Player::Tick(float fTime, float fTimeDelta)
     m_butterfly.Tick(fTime, fTimeDelta);
 }
 
-    //in progress unbekannte vektoria features zu beseitigen
+
 
 void Player::InitScore()
 {
-
+	//Font erstellen, Schriftart laden, auf Transparent stellen
     m_WritingFont = new CWritingFont();
     m_WritingFont->LoadPreset("LucidaConsoleWhite");
     m_WritingFont->SetChromaKeyingOn();
-    m_FloatRect.Init(0.1f, 0.1f, 0.2f, 0.03f);
-    m_PointFloatRect.Init(0.0f, 0.095f, 0.07f, 0.035f);
+
+	//erstellen von Bereichen für die prints
+    m_FloatRect.Init(0.1f, 0.1f, 0.2f, 0.03f); //Rect für die Punkte
+    m_PointFloatRect.Init(0.0f, 0.095f, 0.07f, 0.035f); //Rect für "Score:"
+
+	//print info
     m_PointWriting.Init(m_PointFloatRect, 6, m_WritingFont);
     m_PointWriting.PrintString("Score:");
     m_Writing.Init(m_FloatRect, 10, m_WritingFont);
     m_Writing.PrintInt(m_score);
+
+	//overlay mit transparenten hintergrund erstellen, writings hinzufügen, an viewport hängen
     m_Image.Init("textures\\Transparent_square.png");
     m_PointOverlay.Init(&m_Image, m_FloatRect, true);
     m_PointOverlay.AddWriting(&m_Writing);
