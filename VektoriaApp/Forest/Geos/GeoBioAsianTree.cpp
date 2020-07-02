@@ -100,6 +100,9 @@ namespace ForestNS
 				m_fSwakeRandom = 0.0005f;
 			}
 
+			m_fTurtleStartLength *= 0.75f;
+			m_fTurtleStartRadius *= 0.75f;
+
 			SetSwakeRandomFactor(m_fSwakeRandom);
 			SetTurtleStartHeight(m_fTurtleStartLength);
 			SetTurtleStartRadius(m_fTurtleStartRadius);
@@ -109,13 +112,13 @@ namespace ForestNS
 
 				// Stamm und Äste
 				SetAxiom("A");
-				AddRule("20:A={r>0.005,+(r0.90)_(>35)f[(l0.85)(<10)(r0.87)A][(l0.55)(r0.7)(>50)A]}{r<0.0051,B}");
-				AddRule("20:A={r>0.005,+(r0.9)_(<33)f[(l0.93)(>15)(r0.94)A][(l0.65)(r0.7)(<45)A]}{r<0.0051,B}");
-				AddRule("20:A={r>0.005,+(r0.84)_(<27)f[(l0.90)(>15)(r0.91)A][(l0.55)(r0.7)(>60)A]}{r<0.0051,B}");
-				AddRule("20:A={r>0.005,°+(r0.93)_(v23)f[(l0.96)(^15)(r0.85)A]}{r<0.0051,B}");
-				AddRule("20:A={r>0.005,+(r0.95)_(^30)f[(l0.82)(v15)(r0.94)A][(l0.60)(r0.7)(<77)A]}{r<0.0051,B}");
-				AddRule("50:B=!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.95)f[^l]!!(l0.95)f[vh]!!(l0.95)f[^l]!!(l0.90)f[vl]!!(l0.95)f[^l]!!(l0.90)f[vl]l");
-				AddRule("50:B=!(l0.95)f[^l]!!(l0.95)f[vl]!!(l0.70)f[^l]!!(l0.95)f[vh]!!(l0.95)f[^l]!!(l0.90)f[vl]!!(l0.95)f[^l]!!(l0.90)f[vl]l");
+				AddRule("20:A={r>0.008,+(r0.90)_(>35)f[(l0.85)(<10)(r0.87)A][(l0.55)(r0.7)(>50)A]}{r<0.0081,B}");
+				AddRule("20:A={r>0.008,+(r0.9)_(<33)f[(l0.93)(>15)(r0.94)A][(l0.65)(r0.7)(<45)A]}{r<0.0081,B}");
+				AddRule("20:A={r>0.008,+(r0.84)_(<27)f[(l0.90)(>15)(r0.91)A][(l0.55)(r0.7)(>60)A]}{r<0.0081,B}");
+				AddRule("20:A={r>0.008,°+(r0.93)_(v23)f[(l0.96)(^15)(r0.85)A]}{r<0.0081,B}");
+				AddRule("20:A={r>0.008,+(r0.95)_(^30)f[(l0.82)(v15)(r0.94)A][(l0.60)(r0.7)(<77)A]}{r<0.0081,B}");
+				AddRule("50:B=!(l0.95)f[^(R0.1)(L0.1)l]!!(l0.95)f[v(R0.1)(L0.1)l]!!(l0.95)f[^(R0.1)(L0.1)l]!!(l0.95)f[v(R0.1)(L0.1)l]!!(l0.95)f[^(R0.1)(L0.1)l]!!(l0.95)f[v(R0.1)(L0.1)h]!!(l0.95)f[^(R0.1)(L0.1)l]!!(l0.90)f[v(R0.1)(L0.1)l]!!(l0.95)f[^(R0.1)(L0.1)l]!!(l0.90)f[v(R0.1)(L0.1)l](R0.1)(L0.1)l");
+				AddRule("50:B=!(l0.95)f[^(R0.1)(L0.1)l]!!(l0.95)f[v(R0.1)(L0.1)l]!!(l0.70)f[^(R0.1)(L0.1)l]!!(l0.95)f[v(R0.1)(L0.1)h]!!(l0.95)f[^(R0.1)(L0.1)l]!!(l0.90)f[v(R0.1)(L0.1)l]!!(l0.95)f[^(R0.1)(L0.1)l]!!(l0.90)f[v(R0.1)(L0.1)l](R0.1)(L0.1)l");
 
 			}
 			else
@@ -155,7 +158,7 @@ namespace ForestNS
 	}
 	
 
-	void CGeoBioAsianTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
+	void CGeoBioAsianTree::Init(IPlantGeo* pzgTemplate, unsigned int uLoD)
 	{
 		if (!pzgTemplate)
 		{
@@ -179,7 +182,7 @@ namespace ForestNS
 		if (frTimeShifted > 1.0f)
 			frTimeShifted -= 1.0f;
 		// 0= 22.Dez. 0.5=22.Juni 0.75 = 22 Sep.
-		
+
 		m_zgLeafMain.SetMiddle(Vektoria::CHVector(0.0f, 0.03f, 0.5f, 1.0f));
 		if (uLoD == 0)
 		{
@@ -238,7 +241,7 @@ namespace ForestNS
 
 			avOuter[26] = CHVector(0.01f, 0.0f, 0.016f, 1.0f);
 			avOuter[27] = CHVector(0.00f, 0.0f, 0.015f, 1.0f);
-			
+
 
 			for (int i = 0; i < 28; i++)
 				m_zgLeafMain.AddOuter(&avOuter[i]);
@@ -277,7 +280,7 @@ namespace ForestNS
 		}
 		else
 		{
-			
+
 			CHVector avOuter[5];
 			avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
 			avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
@@ -291,17 +294,17 @@ namespace ForestNS
 
 			m_zgLeafMain.Init(&m_zmLeaf, true, true);
 			SetGeoLeaf(&m_zgLeafMain);
-			
+
 		}
 
 		// 0.0f Dez/Jan, 0.25 März/April, 0.5 Jun/Jul, 0.75 Sep/Okt
-		float fLeafScaling = 0.0f;
-		if (frTimeShifted >= 0.1f && frTimeShifted <= 0.8f) // Von Februar bis November
-			fLeafScaling = 4.5f * (frTimeShifted - 0.1f) / 0.7f;
+		//float fLeafScaling = 0.0f;
+		//if (frTimeShifted >= 0.1f && frTimeShifted <= 0.8f) // Von Februar bis November
+		//	fLeafScaling = 4.5f * (frTimeShifted - 0.1f) / 0.7f;
 
 
 		CHMat mScale;
-		mScale.Scale(fLeafScaling);
+		mScale.Scale(2.5f);
 		m_zgLeafMain.Transform(mScale);
 
 		m_zmLeaf.LoadPreset("LeafBirch");
@@ -318,14 +321,19 @@ namespace ForestNS
 
 		SetMaterialLeaf(&m_zmLeaf);
 
-		m_zmBark.LoadPreset("BarkBirch");
+		//m_zmBark.LoadPreset("BarkBirch");
+		m_zmBark.MakeTextureDiffuse("textures\\Bark_09_3K_Base_Color.png");
+		m_zmBark.MakeTextureBump("textures\\Bark_09_3K_Normal.png");
+		m_zmBark.MakeTextureHeight("textures\\Bark_09_3K_Height.png");
+		m_zmBark.MakeTextureSpecular("textures\\Bark_09_3K_Roughness.png");
+
 		SetMaterial(&m_zmBark);
 
 		SetSwakeRandomFactor(m_fSwakeRandom);
 		SetTurtleStartHeight(m_fTurtleStartLength);
 		SetTurtleStartRadius(m_fTurtleStartRadius);
 
-		SetLeafSkipFactor(5);
+		//SetLeafSkipFactor(1);
 
 
 		if (uLoD == 1)
