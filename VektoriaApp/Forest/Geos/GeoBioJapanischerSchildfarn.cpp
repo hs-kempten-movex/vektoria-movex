@@ -335,11 +335,12 @@ void GeoBioJapanischerSchildfarn::Init(IPlantGeo * pzgTemplate, unsigned int uLo
 		m_zgLeafMain.Transform(mScale);
 		SetLeafSkipFactor(uLoD * 4);
 	}
+
 	m_zmLeaf.MakeTextureDiffuse("textures\\japanesefern.png");
-	/*m_zmLeaf.MakeTextureBump("textures\\poppyleaf_n.png");
-	m_zmLeaf.MakeTextureHeight("textures\\poppyleaf_h.png");
-	m_zmLeaf.MakeTextureSpecular("textures\\poppyleaf_o.png");
-	m_zmLeaf.SetChromaKeyingOn();*/
+	m_zmLeaf.MakeTextureBump("textures\\japanesefern_n.png");
+	m_zmLeaf.MakeTextureHeight("textures\\japanesefern_s.png");
+	m_zmLeaf.MakeTextureSpecular("textures\\japanesefern_h.png");
+	//m_zmLeaf.SetChromaKeyingOn();
 
 	/*CHMat mScaleleaf;
 	mScaleleaf.ScaleX(0.05f);
