@@ -32,7 +32,7 @@ namespace PlayerNS
         CPlacement m_zpWingsR;
 
         CMaterial m_zmWings;
-        CMaterial& m_zmTorso;
+        CMaterial m_zmTorso;
 
         float m_wingRotation;
         float m_wingRotationDirection = -1.0f;
