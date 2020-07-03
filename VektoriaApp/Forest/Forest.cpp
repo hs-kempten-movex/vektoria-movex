@@ -95,7 +95,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zmChest.MakeTextureBump("textures\\clutter\\ChestNormalTex.jpg");
     m_zmChest.MakeTextureSpecular("textures\\clutter\\ChestSpecularTex.jpg");
 
-    m_zgStone = objLoader.LoadGeo("models\\Stone01.obj");
+    m_zgStone = objLoader.LoadGeo("models\\Stone01.obj", true);
     m_zpStone.AddGeo(m_zgStone);
     m_zpStone.SetLoD(0.0f, 500.0f);
     m_zgStone->SetMaterial(&m_zmStone);
