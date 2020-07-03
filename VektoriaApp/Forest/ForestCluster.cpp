@@ -21,7 +21,7 @@ ForestCluster::ForestCluster(unsigned int seed, CGeoTerrain* terrain, CHVector p
 #endif // DEBUG_FORESTCLUSTER
 }
 
-std::vector<CPlacement*> ForestCluster::AddPlacementsForSpecies(CPlacement* plant, uint8_t numPlants, float minHeight, float maxHeight, float minSlope, float maxSlope)
+std::vector<CPlacement*> ForestCluster::AddPlacementsForSpecies(CPlacement* plant, uint8_t numPlants, float minHeight, float maxHeight, float minSlope, float maxSlope, float maxXRotation, float minScale, float maxScale)
 {
     std::vector<CPlacement*> plantPlacements;
     for (uint8_t i = 0; i < numPlants; i++)
@@ -33,7 +33,9 @@ std::vector<CPlacement*> ForestCluster::AddPlacementsForSpecies(CPlacement* plan
         if (randomPosition.y >= minHeight && randomPosition.y <= maxHeight && slope >= minSlope && slope <= maxSlope)
         {
             CPlacement* plantPlacement = new CPlacement();
-            plantPlacement->RotateYDelta(UM_FRAND()*TWOPI);
+            plantPlacement->RotateYDelta(m_random.RandFr() * TWOPI);
+            plantPlacement->RotateXDelta(m_random.RandFr() * maxXRotation);
+            plantPlacement->ScaleDelta(minScale + (m_random.RandFr() * (maxScale - minScale)));
             plantPlacement->TranslateDelta(randomPosition - GetPos());
             plantPlacement->AddPlacement(plant);
 
