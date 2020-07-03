@@ -35,7 +35,7 @@ namespace ForestNS
     private:
         std::array<PlantPlacement<CherryBlossomTree, 4>*, 4> m_zpCherryBlossomTrees;
         std::array<PlantPlacement<Nadelbaum, 4>*, 3> m_zpConifers;
-        std::array<PlantPlacement<CGeoBioAsianTree, 4>*, 2> m_zpAsiaTrees;
+        std::array<PlantPlacement<CGeoBioAsianTree, 3>*, 2> m_zpAsiaTrees;
         std::array<PlantPlacement<GeoBioPoppy, 3>*, 4> m_zpPoppies;
         std::array<PlantPlacement<GeoBioJapanischerSchildfarn, 3>*, 4> m_zpJapanischeSchildfarne;        
 
