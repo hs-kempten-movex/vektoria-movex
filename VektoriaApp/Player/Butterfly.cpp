@@ -10,8 +10,12 @@ Butterfly::Butterfly()
     m_wingsR = objLoader.LoadGeo("models\\ButterflyWingsRight.obj", true);
 
     m_zmWings.MakeTextureDiffuse("textures\\butterfly\\WingsDiff.png");
+    m_zmWings.MakeTextureSpecular("textures\\butterfly\\WingsSpecularTex.jpg");
+    m_zmTorso.MakeTextureDiffuse("textures\\butterfly\\TorsoDiffuseTex.jpg");
+    m_zmTorso.MakeTextureSpecular("textures\\butterfly\\TorsoSpecularTex.jpg");
     m_wingsL->SetMaterial(&m_zmWings);
     m_wingsR->SetMaterial(&m_zmWings);
+    m_torso->SetMaterial(&m_zmTorso);
 
     this->AddPlacement(&m_zpTorso);
     m_zpTorso.AddPlacement(&m_zpWingsL);
