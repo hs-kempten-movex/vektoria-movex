@@ -186,7 +186,7 @@ namespace ForestNS
 		m_zgLeafMain.SetMiddle(Vektoria::CHVector(0.0f, 0.03f, 0.5f, 1.0f));
 		if (uLoD == 0)
 		{
-			CHVector avOuter[28];
+			CHVector avOuter[18];
 
 			//Stiel:
 			avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
@@ -200,50 +200,50 @@ namespace ForestNS
 
 			// Z2:
 			avOuter[6] = CHVector(0.1f, 0.0f, 0.79f, 1.0f);
-			avOuter[7] = CHVector(0.115f, 0.0f, 0.755f, 1.0f);
+			//avOuter[7] = CHVector(0.115f, 0.0f, 0.755f, 1.0f);
 
 
 			// Z3:
-			avOuter[8] = CHVector(0.135f, 0.0f, 0.725f, 1.0f);
-			avOuter[9] = CHVector(0.15f, 0.0f, 0.69f, 1.0f);
+			avOuter[7] = CHVector(0.135f, 0.0f, 0.725f, 1.0f);
+			//avOuter[9] = CHVector(0.15f, 0.0f, 0.69f, 1.0f);
 
 			// Z4:
-			avOuter[10] = CHVector(0.16f, 0.0f, 0.65f, 1.0f);
-			avOuter[11] = CHVector(0.17f, 0.0f, 0.62f, 1.0f);
+			avOuter[8] = CHVector(0.16f, 0.0f, 0.65f, 1.0f);
+			//avOuter[11] = CHVector(0.17f, 0.0f, 0.62f, 1.0f);
 
 			// Z5:
-			avOuter[12] = CHVector(0.175f, 0.0f, 0.575f, 1.0f);
-			avOuter[13] = CHVector(0.175f, 0.0f, 0.54f, 1.0f);
+			avOuter[9] = CHVector(0.175f, 0.0f, 0.575f, 1.0f);
+			//avOuter[13] = CHVector(0.175f, 0.0f, 0.54f, 1.0f);
 
 			// Z6:
-			avOuter[14] = CHVector(0.165f, 0.0f, 0.5f, 1.0f);
-			avOuter[15] = CHVector(0.16f, 0.0f, 0.475f, 1.0f);
+			avOuter[10] = CHVector(0.165f, 0.0f, 0.5f, 1.0f);
+			//avOuter[15] = CHVector(0.16f, 0.0f, 0.475f, 1.0f);
 
 			// Z7:
-			avOuter[16] = CHVector(0.158f, 0.0f, 0.44f, 1.0f);
-			avOuter[17] = CHVector(0.155f, 0.0f, 0.41f, 1.0f);
+			avOuter[11] = CHVector(0.158f, 0.0f, 0.44f, 1.0f);
+			//avOuter[17] = CHVector(0.155f, 0.0f, 0.41f, 1.0f);
 
 			// Z8:
-			avOuter[18] = CHVector(0.145f, 0.0f, 0.375f, 1.0f);
-			avOuter[19] = CHVector(0.135f, 0.0f, 0.34f, 1.0f);
+			avOuter[12] = CHVector(0.145f, 0.0f, 0.375f, 1.0f);
+			//avOuter[19] = CHVector(0.135f, 0.0f, 0.34f, 1.0f);
 
 			// Z9:
-			avOuter[20] = CHVector(0.11f, 0.0f, 0.3f, 1.0f);
-			avOuter[21] = CHVector(0.09f, 0.0f, 0.26f, 1.0f);
+			avOuter[13] = CHVector(0.11f, 0.0f, 0.3f, 1.0f);
+			//avOuter[21] = CHVector(0.09f, 0.0f, 0.26f, 1.0f);
 
 			// Z10:
-			avOuter[22] = CHVector(0.075f, 0.0f, 0.24f, 1.0f);
-			avOuter[23] = CHVector(0.05f, 0.0f, 0.22f, 1.0f);
+			avOuter[14] = CHVector(0.075f, 0.0f, 0.24f, 1.0f);
+			//avOuter[23] = CHVector(0.05f, 0.0f, 0.22f, 1.0f);
 
 			// Z11:
-			avOuter[24] = CHVector(0.035f, 0.0f, 0.19f, 1.0f);
-			avOuter[25] = CHVector(0.02f, 0.0f, 0.175f, 1.0f);
+			avOuter[15] = CHVector(0.035f, 0.0f, 0.19f, 1.0f);
+			//avOuter[25] = CHVector(0.02f, 0.0f, 0.175f, 1.0f);
 
-			avOuter[26] = CHVector(0.01f, 0.0f, 0.016f, 1.0f);
-			avOuter[27] = CHVector(0.00f, 0.0f, 0.015f, 1.0f);
+			avOuter[16] = CHVector(0.01f, 0.0f, 0.016f, 1.0f);
+			avOuter[17] = CHVector(0.00f, 0.0f, 0.015f, 1.0f);
+			
 
-
-			for (int i = 0; i < 28; i++)
+			for (int i = 0; i < 18; i++)
 				m_zgLeafMain.AddOuter(&avOuter[i]);
 
 			m_zgLeafMain.Init(&m_zmLeaf, true, true);
@@ -251,7 +251,7 @@ namespace ForestNS
 		}
 		else if (uLoD <= 2)
 		{
-			CHVector avOuter[14];
+			CHVector avOuter[9];
 
 			//Stiel:
 			avOuter[0] = CHVector(0.0f, 0.0f, 1.0f, 1.0f);
@@ -260,19 +260,19 @@ namespace ForestNS
 
 			//Ausbuchtung:
 			avOuter[3] = CHVector(0.05f, 0.0f, 0.85f, 1.0f);
-			avOuter[4] = CHVector(0.1f, 0.0f, 0.79f, 1.0f);
-			avOuter[5] = CHVector(0.135f, 0.0f, 0.725f, 1.0f);
-			avOuter[6] = CHVector(0.16f, 0.0f, 0.65f, 1.0f);
-			avOuter[7] = CHVector(0.175f, 0.0f, 0.575f, 1.0f);
-			avOuter[8] = CHVector(0.165f, 0.0f, 0.5f, 1.0f);
-			avOuter[9] = CHVector(0.158f, 0.0f, 0.44f, 1.0f);
-			avOuter[10] = CHVector(0.145f, 0.0f, 0.375f, 1.0f);
-			avOuter[11] = CHVector(0.11f, 0.0f, 0.3f, 1.0f);
-			avOuter[12] = CHVector(0.075f, 0.0f, 0.24f, 1.0f);
-			avOuter[13] = CHVector(0.03f, 0.0f, 0.016f, 1.0f);
+			//avOuter[4] = CHVector(0.1f, 0.0f, 0.79f, 1.0f);
+			avOuter[4] = CHVector(0.135f, 0.0f, 0.725f, 1.0f);
+			//avOuter[6] = CHVector(0.16f, 0.0f, 0.65f, 1.0f);
+			avOuter[5] = CHVector(0.175f, 0.0f, 0.575f, 1.0f);
+			//avOuter[8] = CHVector(0.165f, 0.0f, 0.5f, 1.0f);
+			avOuter[6] = CHVector(0.158f, 0.0f, 0.44f, 1.0f);
+			//avOuter[10] = CHVector(0.145f, 0.0f, 0.375f, 1.0f);
+			avOuter[7] = CHVector(0.11f, 0.0f, 0.3f, 1.0f);
+			//avOuter[12] = CHVector(0.075f, 0.0f, 0.24f, 1.0f);
+			avOuter[8] = CHVector(0.03f, 0.0f, 0.016f, 1.0f);
 
 
-			for (int i = 0; i < 14; i++)
+			for (int i = 0; i < 9; i++)
 				m_zgLeafMain.AddOuter(&avOuter[i]);
 
 			m_zgLeafMain.Init(&m_zmLeaf, true, true);
