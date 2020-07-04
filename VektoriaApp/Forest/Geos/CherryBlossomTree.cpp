@@ -462,10 +462,10 @@ void CherryBlossomTree::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 				SetGeoBlossom(&m_zgBlossomMain);
 
 				CHMat blossomscaling;
-				blossomscaling.Scale((float)uLoD * 3.5);
+				blossomscaling.Scale((float)uLoD * 6.0f);
 				m_zgBlossomMain.Transform(blossomscaling);
 
-				SetBlossomSkipFactor(uLoD * 3);
+				SetBlossomSkipFactor(uLoD * 6);
 
 			}
 
