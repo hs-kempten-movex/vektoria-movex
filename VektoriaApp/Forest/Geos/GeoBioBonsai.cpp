@@ -1,6 +1,6 @@
 #include "GeoBioBonsai.h"
 
-namespace Vektoria
+namespace ForestNS
 {
 	CGeoBioBonsai::CGeoBioBonsai()
 	{
