@@ -121,8 +121,8 @@ namespace ForestNS
 				
 				// Äste mit Baumkrone
 
-				AddRule("50:B=(l1.5)(r0.7)(<55)f(l0.7)(<35)f(r0.8)(l0.2)(>75)f(<10)(l0.1)&f(^45)(L0.5)(R0.5)a");
-				AddRule("50:B=(l1.4)(r0.5)(>40)f(l0.6)(<10)f(r0.6)(l0.4)(<5)f(^10)(l0.5)f(<90)&f(^75)f(R0.4)(L0.4)a");
+				//AddRule("50:B=(l1.5)(r0.7)(<55)f(l0.7)(<35)f(r0.8)(l0.2)(>75)f(<10)(l0.1)&f(^45)(L0.5)(R0.5)a");
+				AddRule("50:B=(l1.5)(r0.5)(>40)f(l0.7)(<10)f(r0.6)(l0.6)(<5)f(^10)(l0.7)f(<90)&f(R0.4)(L0.4)&(^75)a");
 				//AddRule("25:Y=(l1.5)(r0.4)(<30)f(>60)(l0.1)f(<10)(l0.1)f(^45)(l3.0)(r6.0)a");
 				//AddRule("25:Y=(r0.5)(v20)f(<5)(l1.1)(r0.6)f[(l0.9)(^60)(r0.8)f(>7)(l0.4)(r0.8)f(v30)(l0.1)f][(l0.8)(v51)(r0.7)f(<10)(l0.1)f(^45)(l10.0)(r15.0)a");
 			}
@@ -139,16 +139,16 @@ namespace ForestNS
 
 				// Äste ohne Baumkrone
 
-				AddRule("50:B=(l1.5)(r0.7)(<55)f(l0.7)(<35)f(r0.8)(l0.2)(>75)f(<10)(l0.1)&f(^45)(L0.5)(R0.5)a");
-				AddRule("50:B=(l1.4)(r0.5)(>40)f(l0.6)(<10)f(r0.6)(l0.4)(<5)f(^10)(l0.5)f(<90)&f(^75)f(R0.4)(L0.4)a");
+				AddRule("50:B=(l1.5)(r0.7)(<55)f(l0.7)(<35)f(r0.8)(l0.2)(>75)f(<10)(l0.1)&f(^45)(l0.5)(r0.5)a");
+				AddRule("50:B=(l1.4)(r0.5)(>40)f(l0.6)(<10)f(r0.6)(l0.4)(<5)f(^10)(l0.5)f(<90)&f(^75)f(r0.4)(l0.4)a");
 				//AddRule("25:Y=(l1.5)(r0.4)(<30)f(>60)(l0.1)f(<10)(l0.1)f(^45)(l3.0)(r6.0)a");
 				//AddRule("25:Y=(r0.5)(v20)f(<5)(l1.1)(r0.6)f[(l0.9)(^60)(r0.8)f(>7)(l0.4)(r0.8)f(v30)(l0.1)f][(l0.8)(v51)(r0.7)f(<10)(l0.1)f(^45)(l10.0)(r15.0)a");
 			}
 
 
-			m_iIterations += 23;
+			m_iIterations += 11;
 			CGeoLSystem::Iterate(m_iIterations, m_acAxiom);
-			m_iIterations -= 23;
+			m_iIterations -= 11;
 
 			if (fRootCutHeight < 0.0f)
 			{
@@ -221,7 +221,11 @@ namespace ForestNS
 		}
 
 
-		m_zmBark.LoadPreset("BarkBirch");
+		//m_zmBark.LoadPreset("BarkBirch");
+		m_zmBark.MakeTextureDiffuse("textures\\Bark_09_3K_Base_Color.png");
+		m_zmBark.MakeTextureBump("textures\\Bark_09_3K_Normal.png");
+		m_zmBark.MakeTextureHeight("textures\\Bark_09_3K_Height.png");
+		m_zmBark.MakeTextureSpecular("textures\\Bark_09_3K_Roughness.png");
 		SetMaterial(&m_zmBark);
 
 		SetSwakeRandomFactor(m_fSwakeRandom);
