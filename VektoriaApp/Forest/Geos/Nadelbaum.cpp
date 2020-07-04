@@ -107,7 +107,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bo
 	// iIterations += 14;
 	SetDefaultAngles(PHI / 2.0f, PHI / 2.0f, PHI);				// Angabe der Rotationswinkel der Turtle (Default: 10, 10, 10)
 	SetDefaultFactorGravitation(0.005f);
-
+	
 	SetSwakeRandomFactor(m_fSwakeRandom);
 	SetTurtleStartHeight(m_fTurtleStartLength);
 	SetTurtleStartRadius(m_fTurtleStartRadius);
@@ -262,9 +262,9 @@ void Nadelbaum::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.0f);
 		SetGeoLeaf(&m_zgLeafMain);
 		CHMat mScale;
-		mScale.Scale(2.0f);
+		mScale.Scale(10.0f);
 		m_zgLeafMain.Transform(mScale);
-		SetLeafSkipFactor(4);
+		SetLeafSkipFactor(15);
 	}
 	else
 	{
@@ -286,24 +286,16 @@ void Nadelbaum::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 		m_zgLeafMain.Init(&m_zmLeaf, true, true, 0.0f, 0.0f, 0.001f);
 		SetGeoLeaf(&m_zgLeafMain);
 		CHMat mScale;
-		mScale.Scale(1.5f*(float)uLoD);
+		mScale.Scale(10.5f*(float)uLoD);
 		m_zgLeafMain.Transform(mScale);
 		SetLeafSkipFactor(75 * uLoD);
 
 	}
 
 	m_zmLeaf.MakeTextureDiffuse("textures\\darkgreen_image.jpg");
+	m_zmLeaf.MakeTextureSpecular("textures\\black_image.jpg");
+	m_zmLeaf.SetSpecularStrength(0.1f);
 	m_zmLeaf.SetSpecularStrength(0.01f);
-
-	//float faLeafColoring = 0.0f;
-	//float frColorScaling = 1.0f;
-	//if (frTimeShifted >= 0.7f) // Ab Anfang September
-	//{
-	//	faLeafColoring = (frTimeShifted - 0.6f) / -0.15f*THIRDPI;
-	//	m_zmLeaf.RotateHue(faLeafColoring);
-	//	frColorScaling = 1.0f - (frTimeShifted - 0.7f) / 0.3f;
-	//	m_zmLeaf.ScaleDelta(frColorScaling);
-	//}
 
 	SetMaterialLeaf(&m_zmLeaf);
 
@@ -312,6 +304,7 @@ void Nadelbaum::Init(IPlantGeo * pzgTemplate, unsigned int uLoD)
 	m_zmBark.MakeTextureBump("textures\\bark_n.png");
 	m_zmBark.MakeTextureHeight("textures\\bark_h.png");
 	m_zmBark.MakeTextureSpecular("textures\\bark_s.png");
+	
 	// setvertexdisplacement on
 	//m_zmBark.SetSpecularSharpness(100.0f);
 	//m_zmBark.SetTextureSpecularBlack();
