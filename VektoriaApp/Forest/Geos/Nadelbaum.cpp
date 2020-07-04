@@ -140,7 +140,7 @@ void Nadelbaum::Iterate(float fAge, float frTimeOfYear, float fRootCutHeight, bo
 		AddRule("20:J={r>0.008,&(r0.75)(l0.75)_(v10)(<6)f[(<42)(r0.75)J][(^38)(r0.75)J]J}{r<0.00801,D}");
 
 		// Die Nadel-Äste
-		AddRule("D={r>0.004,(+10)[B](r0.99)(L0.01)fD}{r<0.00401,}");
+		AddRule("D={r>0.004,(+10)[B](r0.99)(L0.01)_fD}{r<0.00401,}");
 
 		// Die Nadeln
 		AddRule("B=(R0.09)(L0.09)[^n][<n][vn][>n]");
