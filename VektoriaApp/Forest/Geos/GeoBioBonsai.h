@@ -7,7 +7,7 @@ namespace ForestNS
 {
 
 		class CGeoBioBonsai : 
-	 public CGeoBio
+	 public IPlantGeo
 		{
 		public:
 
