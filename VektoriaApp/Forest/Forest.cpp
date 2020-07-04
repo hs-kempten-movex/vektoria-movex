@@ -34,7 +34,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     for (auto &zpCherryBlossomTree : m_zpCherryBlossomTrees)
     {
         zpCherryBlossomTree = new PlantPlacement<CherryBlossomTree, 4>(m_random.Rand(), m_random.RandFr() * 150.0f, 0.2f, 0.0f);
-        zpCherryBlossomTree->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
+        zpCherryBlossomTree->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 4 }, { 1500.0f, 5 } } }, &threadPool);
         zpCherryBlossomTree->Scale(2.0f);
 
         zpCherryBlossomTree->InitCollisionGeo(&threadPool);
@@ -44,7 +44,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     for (auto& zpConifer : m_zpConifers)
     {
         zpConifer = new PlantPlacement<Nadelbaum, 4>(m_random.Rand(), m_random.RandFr() * 300.0f, 0.2f, 0.0f);
-        zpConifer->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 }, { 1500.0f, 4 } } }, &threadPool);
+        zpConifer->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 4 }, { 1500.0f, 5 } } }, &threadPool);
         zpConifer->Scale(3.5f);
 
         zpConifer->InitCollisionGeo(&threadPool);
@@ -54,7 +54,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     for (auto& zpAsiaTree : m_zpAsiaTrees)
     {
         zpAsiaTree = new PlantPlacement<CGeoBioAsianTree, 3>(m_random.Rand(), m_random.RandFr() * 300.0f, 0.2f, 0.0f);
-        zpAsiaTree->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 3 } } }, &threadPool);
+        zpAsiaTree->InitLoDs({ { {100.0f, 1}, { 500.0f, 2 }, { 1000.0f, 4 } } }, &threadPool);
         zpAsiaTree->Scale(2.0f);
 
         zpAsiaTree->InitCollisionGeo(&threadPool);
