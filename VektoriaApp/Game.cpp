@@ -32,8 +32,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_scene.SetFrustumCullingOn();
 
   //TODO check how sky works with multiple cameras. It shoud be set on the camera placement instead of the island placement
-  m_scene.SetSkyOn(&m_island.m_pIsland1);
-  m_scene.SetSkyShadowDepth(250.0f);
+  //m_scene.SetSkyOn(&m_island.m_pIsland1);
+  m_scene.SetSkyShadowDepth(500.0f);
 
   m_scene.m_pscenephysics->m_vGravity = CHVector(0, 0, 0);
 
@@ -68,6 +68,7 @@ void CGame::InitPlayers()
         m_frame.AddDeviceGameController(&player);
 
         m_scene.AddPlacement(&player);
+        m_scene.SetSkyOn(&player);
     }
 }
 
