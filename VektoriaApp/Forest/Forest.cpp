@@ -107,6 +107,9 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zgPadogaBase = objLoader.LoadGeo("models\\PadogaBase.obj", true);
     m_zgPadogaSupport = objLoader.LoadGeo("models\\PadogaSupport.obj", true);
     m_zgPadogaRoof = objLoader.LoadGeo("models\\PadogaRoof.obj", true);
+    m_zgPadogaBase->SetMaterial(&m_zmPadogaBase);
+    m_zgPadogaSupport->SetMaterial(&m_zmPadogaSupport);
+    m_zgPadogaRoof->SetMaterial(&m_zmPadogaRoof);
 
     m_zpPadoga.AddGeo(m_zgPadogaBase);
     m_zpPadoga.AddGeo(m_zgPadogaSupport);
@@ -114,9 +117,11 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
 
     m_zmPadogaBase.MakeTextureDiffuse("textures\\clutter\\PadogaBaseDiffuseTex.png");
     m_zmPadogaBase.MakeTextureBump("textures\\clutter\\PadogaBaseNormalTex.png");
-    m_zmPadogaSupport.MakeTextureDiffuse("textures\\clutter\\PadogaSupportsDiffuseTex.jpg");
+    m_zmPadogaBase.MakeTextureSpecular("textures\\clutter\\PadogaBaseSpecluarTex.png");
+    m_zmPadogaSupport.MakeTextureDiffuse("textures\\clutter\\PadogaSupportsDiffuse.jpg");
     m_zmPadogaRoof.MakeTextureDiffuse("textures\\clutter\PadogaRoofDiffuseTex.png");
     m_zmPadogaRoof.MakeTextureBump("textures\\clutter\\PadogaRoofNormalTex.png");
+    m_zmPadogaRoof.MakeTextureSpecular("textures\\clutter\\PadogaRoofSpecularTex.png");
 
 
 
