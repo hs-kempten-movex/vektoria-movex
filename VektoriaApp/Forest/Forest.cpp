@@ -119,7 +119,7 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zmPadogaBase.MakeTextureBump("textures\\clutter\\PadogaBaseNormalTex.png");
     m_zmPadogaBase.MakeTextureSpecular("textures\\clutter\\PadogaBaseSpecluarTex.png");
     m_zmPadogaSupport.MakeTextureDiffuse("textures\\clutter\\PadogaSupportsDiffuse.jpg");
-    m_zmPadogaRoof.MakeTextureDiffuse("textures\\clutter\PadogaRoofDiffuseTex.png");
+    m_zmPadogaRoof.MakeTextureDiffuse("textures\\clutter\\PadogaRoofDiffuseTex.png");
     m_zmPadogaRoof.MakeTextureBump("textures\\clutter\\PadogaRoofNormalTex.png");
     m_zmPadogaRoof.MakeTextureSpecular("textures\\clutter\\PadogaRoofSpecularTex.png");
 
