@@ -54,6 +54,14 @@ namespace ForestNS
         CGeo* m_zgStone;
         CPlacement m_zpStone;
         CMaterial m_zmStone;
+        
+        CGeo* m_zgPadogaBase;
+        CGeo* m_zgPadogaSupport;
+        CGeo* m_zgPadogaRoof;
+        CPlacement m_zpPadoga;
+        CMaterial m_zmPadogaBase;
+        CMaterial m_zmPadogaSupport;
+        CMaterial m_zmPadogaRoof;
 
         void InitCluster(CGeoTerrain* terrain);
 

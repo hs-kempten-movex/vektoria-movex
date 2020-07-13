@@ -103,6 +103,24 @@ void ForestNS::Forest::Init(CGeoTerrain * terrain)
     m_zmStone.MakeTextureBump("textures\\clutter\\Stone01NormalTex.jpg");
     m_zmStone.MakeTextureSpecular("textures\\clutter\\Stone01SpecularTex.jpg");
 
+
+    m_zgPadogaBase = objLoader.LoadGeo("models\\PadogaBase.obj", true);
+    m_zgPadogaSupport = objLoader.LoadGeo("models\\PadogaSupport.obj", true);
+    m_zgPadogaRoof = objLoader.LoadGeo("models\\PadogaRoof.obj", true);
+
+    m_zpPadoga.AddGeo(m_zgPadogaBase);
+    m_zpPadoga.AddGeo(m_zgPadogaSupport);
+    m_zpPadoga.AddGeo(m_zgPadogaRoof);
+
+    m_zmPadogaBase.MakeTextureDiffuse("textures\\clutter\\PadogaBaseDiffuseTex.png");
+    m_zmPadogaBase.MakeTextureBump("textures\\clutter\\PadogaBaseNormalTex.png");
+    m_zmPadogaSupport.MakeTextureDiffuse("textures\\clutter\\PadogaSupportsDiffuseTex.jpg");
+    m_zmPadogaRoof.MakeTextureDiffuse("textures\\clutter\PadogaRoofDiffuseTex.png");
+    m_zmPadogaRoof.MakeTextureBump("textures\\clutter\\PadogaRoofNormalTex.png");
+
+
+
+
     InitCluster(terrain);
 }
 
@@ -147,6 +165,7 @@ void Forest::InitCluster(CGeoTerrain* terrain)
             newCluster->AddPlacementsForSpecies(&m_zpBarrel, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Barrels to Island
             newCluster->AddPlacementsForSpecies(&m_zpChest, TREES_PER_CLUSTER, 0.0, 40.0f, 0.0f, 0.5236f); //Adds Random Chests to Island
             newCluster->AddPlacementsForSpecies(&m_zpStone, TREES_PER_CLUSTER * 2, 0.0f, 1000.0f, 0.0f, QUARTERPI, TWOPI, 0.5f, 4.0f);
+            newCluster->AddPlacementsForSpecies(&m_zpPadoga, TREES_PER_CLUSTER, 0.0, 100.0f, 0.0f, 0.5236f); //Adds Padogas
         }
     }
 }
